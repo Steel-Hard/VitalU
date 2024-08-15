@@ -1,0 +1,7 @@
+dentro desta pasta (server) executar:
+npm i
+
+notas: 
+
+caso adicione um pacote estritamente nescessário
+instale com -D e adicione abaixo:

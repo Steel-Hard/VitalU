@@ -1,0 +1,14 @@
+-dentro desta pasta (front) executar :
+    npm i
+-dentro da paste (main) executar:
+    npm i
+
+notas: 
+
+-Trabalho apenas na pasta MAIN pois lá é onde "fica" o react.
+-Pacotes adicionais para react devem ser instalados na pasta MAIN.
+
+
+
+-caso adicione um pacote estritamente nescessário,
+instale com -D e adicione abaixo:
