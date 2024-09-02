@@ -2,7 +2,6 @@
 
 ### Urgente Ler Arquivo Leia.txt
 ABP 2_semestre.
-Claro! Vamos atualizar o README conforme suas instruções. 
 
 ---
 
