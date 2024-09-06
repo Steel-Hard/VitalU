@@ -1,7 +1,9 @@
 //Página de apresentação
+
+import ParallaxComp from "../components/Parallax/Parallax"
 export function Welcome(){
     return(
-        <div>Bem vindo!</div>
+        <ParallaxComp/>
     )
 
 }
