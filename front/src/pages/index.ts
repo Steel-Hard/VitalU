@@ -1,5 +1,5 @@
 // IMPORTA PARA EXPORTAR
 import { Welcome } from "./Welcome";
-import { Login } from "./Login";
+import { Login } from "./login";
 
 export { Welcome, Login };
