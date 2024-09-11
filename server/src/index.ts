@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { Cadastrar_Novo_Usuario } from "./routes";
 
 dotenv.config();
 
@@ -18,3 +19,5 @@ app.use(cors());
 app.listen(PORT, () => {
     console.log("Rodando na porta ", PORT)
 });
+
+app.post('./cadastro',Cadastrar_Novo_Usuario);
