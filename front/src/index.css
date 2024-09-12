@@ -8,11 +8,20 @@ body {
   place-items: center;
   min-width: 100%;
   min-height: 100vh;
-  background-image: url("../public/Design_sem_nome__1_-removebg-preview.png");
-  backdrop-filter: blur(10 px);
+  background-color: #E1E1E1;
+  background-image: url("../public/backgroundf3.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
 }
 #root{
   min-width: 100%;
   min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
 }

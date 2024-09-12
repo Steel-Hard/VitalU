@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Logo } from '../Logo/Logo';
 
 const ParallaxComp = () => {
   // obter o valor de rolagem
@@ -10,10 +11,11 @@ const ParallaxComp = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]); // Opacidade dos selementos
   const opacity2 = useTransform(scrollY, [0, 300], [0, 1]);
   return (
-    <div style={{ height: '200vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
-      <motion.h1 style={{ scale, y, opacity, marginTop: '100px'}}>
-        Vital-U
-      </motion.h1>
+    <div style={{ height: '200vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
+      <motion.div style={{ scale, y, opacity, marginTop: '100px', display:'flex', flexDirection: 'row', alignItems: 'center' , justifyContent: 'center'}}>
+        <Logo/>
+        <h1>Vital-U</h1>
+      </motion.div>
 
       <motion.img
           src="https://via.placeholder.com/300"

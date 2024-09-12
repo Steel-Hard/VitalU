@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Campform from "../../components/Campform/Campform"
+import { FlexDiv, FlexDivCo } from "../FlexDiv/FlexDIv";
 
 
 // export default function Calcimc(){
@@ -38,7 +39,7 @@ export default function Calcimc() {
     function calcularIMC() {
         if (altura > 0) {
             const alturacm = altura / 100; // Converte a altura de centímetros para metros
-            let res = peso / (alturacm * alturacm);
+            const res = peso / (alturacm * alturacm);
             setImc(parseFloat(res.toFixed(2))); // Arredonda o IMC para 2 casas decimais
         } else {
             alert("Altura deve ser maior que zero!");
@@ -65,24 +66,24 @@ export default function Calcimc() {
     }
 
     return (
-        <div>
+        <FlexDivCo>
             <p>Cálculo do IMC e TMB</p>
             <Campform label="Peso (kg)" state={peso} funcState={setPeso} />
             <Campform label="Altura (cm)" state={altura} funcState={setAltura} />
             <Campform label="Idade (anos)" state={idade} funcState={setIdade} />
 
-            <div>
+            <FlexDiv>
                 <label>Sexo:</label>
                 <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
                     <option value="masculino">Masculino</option>
                     <option value="feminino">Feminino</option>
                 </select>
-            </div>
+            </FlexDiv>
 
             <button onClick={calcular}>Calcular</button>
 
             {imc !== null && <p>Resultado do IMC: {imc}</p>}
             {tmb !== null && <p>Taxa Metabólica Basal (TMB): {tmb} kcal/dia</p>}
-        </div>
+        </FlexDivCo>
     );
 }

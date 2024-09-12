@@ -1,5 +1,4 @@
-import { Welcome, Login, Perfil} from './pages';
-
+import { Welcome, Login,Cadastro, PerfilConfig} from './pages';
 import {BrowserRouter,  Route,  Routes} from 'react-router-dom'
 
 export default function App() {
@@ -8,7 +7,8 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Welcome/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/perfil' element={<Perfil/>}/>
+        <Route path='/cadastro' element={<Cadastro/>}/>
+        <Route path='/perfil/config' element={<PerfilConfig/>}/>
       </Routes>    
     </BrowserRouter>
   );
