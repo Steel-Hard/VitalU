@@ -26,3 +26,12 @@ export const FlexDivCo = styled.div`
     height: 100%;
 
 `
+export const FlexDivResp = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    justify-content: center;
+    width: 100%;
+
+`

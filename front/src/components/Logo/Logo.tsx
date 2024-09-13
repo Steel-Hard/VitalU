@@ -1,10 +1,10 @@
 import { FlexDivLogo } from "../FlexDiv/FlexDIv";
-import logo from '../../assets/Logo.png'
+import logo from '../../assets/logor.svg'
 
 export function Logo(){
     return(
         <FlexDivLogo>
-            <img src={logo}/>
+            <img className="logoapp" src={logo}/>
         </FlexDivLogo>
     )
 
