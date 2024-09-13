@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BtnStl = styled.button<BtnProps>`
+export const BtnStl = styled.button<BtnProps>`
   background-color: rgb(67, 170, 132);
   border: none;
   box-shadow: 0 3px 2px #1a1616b5;
