@@ -13,7 +13,7 @@ export const StlCaixa = styled.div<CaixaProps>`
   margin: 20px;
   height: ${({height})=>height?height:"70%"};
   width: ${({width})=>width?width:"30%"};  
- 
+  
 
   @media (max-width: 768px) {
       width: 80%;
@@ -21,7 +21,7 @@ export const StlCaixa = styled.div<CaixaProps>`
   }
 
   @media (max-width: 480px) {
-      width: 95%;
+      width: ${({smlWidth})=>smlWidth?smlWidth:"95%"};
       padding: 10px;
   }  
 `
@@ -29,8 +29,6 @@ export const StlCaixa = styled.div<CaixaProps>`
 interface CaixaProps{
   height?: string;
   width?: string;
+  smlWidth?:string
 
 }
-  
-
-
