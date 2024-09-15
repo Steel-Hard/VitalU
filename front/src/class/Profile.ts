@@ -1,10 +1,11 @@
-import Objetivos from "../enum/Objetivos"
+import { Objetivos } from "../enum/Objetivos"
 import calcularIMC from "../utils/calcularIMC"
 
 class Profile {
     private id?: number
     private nome?: string
     private foto?: string
+    private email?: string
 
     private altura?: number
     private peso?: number
@@ -15,6 +16,7 @@ class Profile {
         this.id = 1
         this.nome = 'Usuário'
         this.foto = 'https://www.w3schools.com/howto/img_avatar.png'
+        this.email = "usuario@email.com"
         this.altura = 1.75
         this.peso = 70
         this.objetivoPeso = Objetivos.manterPeso
@@ -28,6 +30,7 @@ class Profile {
     public getId = () => this.id
     public getNome = () => this.nome
     public getFoto = () => this.foto
+    public getEmail = () => this.email
     public getAltura = () => this.altura
     public getPeso = () => this.peso
     public getObjetivoPeso = () => this.objetivoPeso
@@ -35,6 +38,7 @@ class Profile {
     public setId = (id: number) => this.id = id
     public setNome = (nome: string) => this.nome = nome
     public setFoto = (foto: string) => this.foto = foto
+    public setEmail = (email: string) => this.email = email
     public setAltura = (altura: number) => this.altura = altura
     public setPeso = (peso: number) => this.peso = peso
     public setObjetivoPeso = (objetivoPeso: Objetivos) => this.objetivoPeso = objetivoPeso
