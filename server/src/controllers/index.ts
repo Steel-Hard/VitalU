@@ -1,23 +1,12 @@
-// teste e exemplificação 
+import { Router } from "express";
+import User from "./User";
+const routes = Router();
 
-import pool from "../bd";
 
-async function asyncrono() {
-    
-    const mail = 'sasdas';
-    const pass = 'sadasa';
-    
-    try{
-        const insert = await pool.query(`INSERT INTO User_Default (Email,Passwd) values ($1,$2)`,[mail,pass]);
-        console.log(insert);
-        const select = await pool.query('SELECT * FROM User_Default');
-        console.log(select);
-    
-    }catch(err){
-        console.log(err);
-    }
 
-}
+routes.post("/cadastro", User.Cadastrar_Novo_Usuario);
+routes.post("/login", User.Login);
 
-asyncrono();
 
+
+export {routes};

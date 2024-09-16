@@ -1,5 +1,10 @@
-import Cadastrar_Novo_Usuario from './cadastro'
+import { Router } from "express";
+import  User  from "./Cadastro"
 
-export {
-    Cadastrar_Novo_Usuario
-}
+const routes = Router();
+
+routes.use("/cadastro", User);
+
+routes.use("/login", User);
+
+export default routes;
