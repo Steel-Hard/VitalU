@@ -192,6 +192,10 @@
         width: 64px;
         height: 64px;
     }
+    
+    .informacoes {
+        width: 100% !important;
+    }
 
     .identificacao {
         width: calc(100% - 64px);
