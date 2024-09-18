@@ -12,7 +12,7 @@ const jwtSecret = process.env.JWT_SECRET || 'default-secret';
 class User{
 
     public async Cadastrar_Novo_Usuario(req: Request, res: Response): Promise<Object> {
-    const { mail, passwd } = req.body;
+    const { mail, passwd, nome} = req.body;
 
     if (!mail || !passwd) {
         return res.status(400).json({ error: 'Forneça os dados' });
@@ -22,13 +22,13 @@ class User{
         const clUsr = process.env.DB_T_USR;
         const clEmail = process.env.DB_T_USR_M;
         const clPwd = process.env.DB_T_USR_P;
-
+        const clNome = process.env.DB_T_USR_N;
         // Implementação bcrypt
         const hashedPassword = await bcrypt.hash(passwd, saltRounds);
 
         await pool.query(
-            `INSERT INTO ${clUsr} (${clEmail}, ${clPwd}) VALUES ($1, $2)`,
-            [mail, hashedPassword]
+            `INSERT INTO ${clUsr} (${clEmail}, ${clPwd}, ${clNome}) VALUES ($1, $2, $3)`,
+            [mail, hashedPassword, nome]
         );
 
         return res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
