@@ -14,7 +14,7 @@ export function Cadastro() {
         <StlInput type="text" height="40px" width="50%" placeholder="Nome"/>
         <StlInput type="email" height="40px" width="50%" placeholder="E-mail"/>
         <StlInput type="password" height="40px" width="50%" placeholder="Senha"/>
-        <Btn height="40px" width="50%" conteudo="Cadastar"/>
+        <Btn height="40px" width="100%" conteudo="Cadastar"/>
         <FlexDivResp>
           <Link to='/login'>Retornar ao login</Link>
 

@@ -13,6 +13,7 @@ const ParallaxComp = () => {
   const y = useTransform(scrollY, [0, 500], [0, 200]); // Movimento vertical dos elementos
   const opacity = useTransform(scrollY, [0, 300], [1, 0]); // Opacidade dos selementos
   const opacity2 = useTransform(scrollY, [0, 300], [0, 1]);
+  const opacity3 = useTransform(scrollY, [0,300],[0,1]);
   return (
     <div style={{ height: '200vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
       <motion.div style={{ scale, y, opacity, marginTop: '100px', display:'flex', flexDirection: 'row', alignItems: 'center' , justifyContent: 'center'}}>
@@ -20,23 +21,27 @@ const ParallaxComp = () => {
         <h1>Vital-U</h1>
       </motion.div>
 
+      <motion.div style={{ scale, y, opacity, marginTop: '100px', display:'flex', flexDirection: 'row', alignItems: 'center' , justifyContent: 'center', fontSize:50}}>
+        <p>A plataforma que te auxilia na perda de peso</p>
+      </motion.div>
+
       <motion.img
-          src="https://via.placeholder.com/300"
+          src='peixe.png'
           alt="Imagem Exemplo"
-          style={{scale, opacity, width: '300px', marginTop: '200px', height: 'auto', marginBottom: '200px' }}
+          style={{scale:5, opacity:opacity3, width: '300px', marginTop: '200px', height: 'auto', marginBottom: '200px', display:'flex' }}
         />
 
       <motion.div
         style={{  scale: scale2, y, opacity: opacity2, textAlign: 'center', padding: '20px' }}
       >
         <Stlform>
-          <StlCaixa height='50px' smlWidth='65%'>
+          <StlCaixa height='50px' smlWidth='70%'>
         <p> Controle suas calorias com facilidade e alcance seus objetivos! </p>
           </StlCaixa>
-          <StlCaixa height='50px' smlWidth='65%'>
+          <StlCaixa height='50px' smlWidth='70%'>
         <p> Seu IMC em menos de 60 segundos: fácil, rápido e ao seu alcance! </p>
           </StlCaixa>
-          <StlCaixa height='50px' smlWidth='65%'>
+          <StlCaixa height='50px' smlWidth='70%'>
         <p> Tenha mais praticidade no seu dia a dia </p>
           </StlCaixa>
         </Stlform>
@@ -44,7 +49,8 @@ const ParallaxComp = () => {
       <motion.div
         style={{  scale: scale2, y, opacity: opacity2, textAlign: 'center', padding: '20px', marginTop:'300px' }}
       >
-          <Btn height='75px' width='250px'/>
+          <Btn height='75px' width='250px' conteudo='Vamos Começar!' link='/cadastro'/>
+
       </motion.div>
     
     </div>
