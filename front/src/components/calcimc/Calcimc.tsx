@@ -9,10 +9,10 @@ export default function Calcimc() {
     const [peso, setPeso] = useState<number>(0);
     const [altura, setAltura] = useState<number>(0); // altura em metros
     const [idade, setIdade] = useState<number>(0);
-    const [sexo, setSexo] = useState<string>(''); // 'masculino' ou 'feminino'
-    const [imc, setImc] = useState<any>(null);
-    const [tmb, setTmb] = useState<any>(null);
-    const [fator, setFator] = useState<string>('Pouco ou nenhum exercício');
+    const [sexo, setSexo] = useState<string>(""); // 'masculino' ou 'feminino'
+    const [imc, setImc] = useState<any>();
+    const [tmb, setTmb] = useState<any>();
+    const [fator, setFator] = useState<string >("");
 
 
     return (
@@ -25,16 +25,16 @@ export default function Calcimc() {
             <FlexDiv>
                 <label>Sexo:</label>
                 <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
-                <option value="">Selecione</option> {/* Opção inicial vazia */}
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
+                <option value={''}>Selecione</option> {/* Opção inicial vazia */}
+                    <option value={Genero.M}>Masculino</option>
+                    <option value={Genero.F}>Feminino</option>
                 </select>
             </FlexDiv>
 
             <FlexDiv>
                 <label>Basal atividade:</label>
                 <select value={fator} onChange={(e) => setFator(e.target.value)}>
-
+                    <option value={''}>Selecione</option> 
                     <option value={FatorAtividade.sedentario}>Sedentario</option>
                     <option value={FatorAtividade.atividadeLeve}>Atividade Leve</option>
                     <option value={FatorAtividade.atividadeModerada}>Atividade Moderada</option>
@@ -47,6 +47,12 @@ export default function Calcimc() {
 
 
             <BtnStl onClick={() => {
+                console.log(fator,sexo)
+                if(fator == "" || sexo == ""){
+                    console.log("sem itens")
+                    return
+
+                }
                 setImc(CalculosMetabolicos.imc(altura,peso))
                 setTmb(CalculosMetabolicos.basal(altura,peso,idade,sexo,fator))
             
@@ -55,8 +61,9 @@ export default function Calcimc() {
             
         </FlexDivCo> 
 
-            <FlexDiv>{imc !== null && <p>Resultado do IMC: {imc}</p>}
-            {tmb !== null && <p>Taxa Metabólica Basal (TMB): {tmb} kcal/dia</p>}
-        </FlexDiv></>            //verificar formatação flexdiv para aparecer abaixo do calcular não ao lado
+        <FlexDivCo>
+                {imc !== null && <p>Resultado do IMC: {imc}</p>}
+                {tmb !== null && <p>Taxa Metabólica Basal (TMB): {tmb} kcal/dia</p>}
+        </FlexDivCo></>            //verificar formatação flexdiv para aparecer abaixo do calcular não ao lado
     );
 }
