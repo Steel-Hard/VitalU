@@ -6,8 +6,8 @@ enum Objetivos {
 
 
 enum Genero {
-    M = 'masculino1000',
-    F = 'feminino',
+    M = 'Masculino',
+    F = 'Feminino',
 }
 
 enum FatorAtividade{

@@ -1,4 +1,4 @@
-import Objetivos from "../enum/Objetivos"
+import {Objetivos} from "../enum/Objetivos"
 import calcularIMC from "../utils/calcularIMC"
 
 class Profile {

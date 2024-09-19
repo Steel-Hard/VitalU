@@ -40,10 +40,10 @@ export class CalculosMetabolicos{
         if (peso > 0 && altura > 0 && idade > 0) {
             let tmbResult: number;
             console.log(altura,peso,idade,gen,fatorResp)
-            if (gen === 'masculino') {
+            if (gen === 'Masculino') {
                 tmbResult = (88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade)) * fatorResp;
             } else {
-                tmbResult = (447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade)) * fatorResp * 100;
+                tmbResult = (447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade)) * fatorResp;
             }
             console.log(tmbResult)
             return tmbResult.toFixed(2)// Arredonda a TMB para 2 casas decimais
