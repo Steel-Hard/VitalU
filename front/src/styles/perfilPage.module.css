@@ -1,0 +1,241 @@
+.main {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.perfil {
+    height: calc(680px - 70px);
+    width: 320px;
+    padding-top: 70px;
+}
+
+.perfil>div>.img {
+    background-color: #fff;
+    width: 320px;
+    height: 320px;
+    border-radius: 100%;
+    margin-bottom: 30px;
+    border: 1px solid rgba(32, 32, 32, 0.2);
+}
+
+.perfil>div>.img>img {
+    width: 320px;
+    height: 320px;
+    border-radius: 100%;
+}
+
+.perfil .identificacao {
+    display: flex;
+    justify-content: space-between;
+}
+
+.identificacao>div>strong {
+    font-family: var(--inter);
+    font-weight: bolder;
+    font-size: 24px;
+    /* color: #202020; */
+    color: #2D865B;
+}
+
+.identificacao>div>p {
+    font-family: var(--inter);
+    margin: 0;
+    padding: 0;
+    color: rgba(32, 32, 32, 0.7);
+    font-size: 15px;
+}
+
+.identificacao>img {
+    cursor: pointer;
+}
+
+.perfil>hr {
+    border: 1px solid rgba(32, 32, 32, 0.2);
+}
+
+.informacoes {
+    background-color: #fff;
+    border-radius: 10px;
+    min-height: calc(680px - 150px);
+    max-height: auto;
+    width: calc(600px - 100px);
+    padding: 50px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info>div {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.info>div>label {
+    font-family: var(--inter);
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.info>div>p {
+    font-family: var(--inter);
+    margin: 0;
+    font-size: 18px;
+}
+
+.informacoes>hr {
+    border: 1px solid #318E6C;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.alimentos>.titulo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.alimentos>.titulo>* {
+    font-family: var(--inter);
+    font-weight: bolder;
+    margin: 0;
+    color: #202020;
+}
+
+.alimentos>.titulo>h2 {
+    font-size: 20px;
+}
+
+.alimentos>.titulo>p {  
+    font-size: 13px;
+}
+
+.alimento {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.alimento>p {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-family: var(--inter);
+    font-size: 14px;
+    min-width: 40px;
+}
+
+.alimento>p:first-child {
+    font-weight: bolder;
+}
+
+.alimento>p:nth-child(2) {
+    text-align: center;
+}
+
+.rodape {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    width: calc(100% - 100px);
+    bottom: 50px;
+}
+
+.rodape>button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: white;
+    background-color: #318E6C;
+    font-weight: bolder;
+    font-family: var(--inter);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.rodape>button:hover {
+    background-color: #2D865B;
+}
+
+@media (max-width: 960px) {
+    .perfil {
+        width: 100%;
+        height: auto;
+        padding-top: 0px;
+    }
+
+    .perfil>div {
+        display: flex;
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .perfil>div>.img {
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        margin-bottom: 0px;
+    }
+
+    .perfil>div>.img>img {
+        width: 64px;
+        height: 64px;
+    }
+    
+    .informacoes {
+        width: 100% !important;
+    }
+
+    .identificacao {
+        width: calc(100% - 64px);
+        align-items: center;
+        padding: 0px 10px;
+    }
+
+    .identificacao>div>strong {
+        font-size: 18px;
+    }
+
+    .identificacao>div>p {
+        font-size: 12px;
+    }
+
+    .identificacao>img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .informacoes {
+        width: 100%;
+        height: calc(680px - 80px);
+        width: calc(600px - 60px);
+        padding: 40px 30px;
+    }
+
+    .info>div>label {
+        font-size: 16px;
+    }
+
+    .info>div>p {
+        font-size: 16px;
+    }
+
+    .rodape {
+        display: flex;
+        justify-content: end;
+        position: absolute;
+        width: calc(100% - 60px);
+        bottom: 50px;
+    }
+}
