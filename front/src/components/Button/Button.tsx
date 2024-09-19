@@ -26,12 +26,13 @@ interface BtnProps{
   conteudo?: string;
   height?: string;
   width?: string;
+  link?:string;
 }
 
 function Btn(props:BtnProps) {
   return (
     <>
-      <BtnStl height={props.height} width={props.width}>{props.conteudo}</BtnStl>
+      <a href={props.link}><BtnStl height={props.height} width={props.width}>{props.conteudo}</BtnStl></a>
     </>
   );
 }

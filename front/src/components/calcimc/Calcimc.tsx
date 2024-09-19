@@ -2,14 +2,14 @@ import { useState } from "react"
 import Campform from "../../components/Campform/Campform"
 import { BtnStl } from"../Button/Button"
 import { FlexDiv, FlexDivCo } from "../FlexDiv/FlexDIv";
-import { FatorAtividade,Genero } from "../../enum/Objetivos";
+import { FatorAtividade,Genero } from "../../enum/Objetivos";// foi tirado o "genero" para uma edição direto no "sexo"
 import { CalculosMetabolicos } from "../../class/calculosmet";
 
 export default function Calcimc() {
     const [peso, setPeso] = useState<number>(0);
     const [altura, setAltura] = useState<number>(0); // altura em metros
     const [idade, setIdade] = useState<number>(0);
-    const [sexo, setSexo] = useState<string>('masculino'); // 'masculino' ou 'feminino'
+    const [sexo, setSexo] = useState<string>(''); // 'masculino' ou 'feminino'
     const [imc, setImc] = useState<any>(null);
     const [tmb, setTmb] = useState<any>(null);
     const [fator, setFator] = useState<string>('Pouco ou nenhum exercício');
@@ -25,8 +25,9 @@ export default function Calcimc() {
             <FlexDiv>
                 <label>Sexo:</label>
                 <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
-                    <option value={Genero.M}>Masculino</option>
-                    <option value={Genero.F}>Feminino</option>
+                <option value="">Selecione</option> {/* Opção inicial vazia */}
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
                 </select>
             </FlexDiv>
 
@@ -52,10 +53,10 @@ export default function Calcimc() {
             }}>Calcular</BtnStl>
 
             
-        </FlexDivCo>
+        </FlexDivCo> 
 
             <FlexDiv>{imc !== null && <p>Resultado do IMC: {imc}</p>}
             {tmb !== null && <p>Taxa Metabólica Basal (TMB): {tmb} kcal/dia</p>}
-            </FlexDiv></>
+        </FlexDiv></>            //verificar formatação flexdiv para aparecer abaixo do calcular não ao lado
     );
 }
