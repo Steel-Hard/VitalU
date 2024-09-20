@@ -67,6 +67,7 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 |Como um desenvolvedor | Quero que o sistema possa integrar com APIs externas para facilitar a consulta de dados nutricionais de alimentos. | Para melhorar a funcionalidade e a precisão das informações nutricionais.                            |
 
 # ❤️‍🔥BURNDOWN
+<img src= "https://github.com/Steel-Hard/VitalU/blob/b539149992bded736594d7201a17e920a53cb11f/docs/burndown.jpg" />
 
 
 
