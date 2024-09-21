@@ -10,13 +10,9 @@ const saltRounds = parseInt(process.env.SRounds as string);
 const jwtSecret = process.env.JWT_SECRET || 'default-secret';
 
 class User{
-
-    public async Cadastrar_Novo_Usuario(req: Request, res: Response): Promise<Object> {
+    
+    public async Cadastrar_Novo_Usuario(req: Request, res: Response): Promise<Response> {
     const { mail, passwd, nome} = req.body;
-
-    if (!mail || !passwd) {
-        return res.status(400).json({ error: 'Forneça os dados' });
-    }
 
     try {
         const clUsr = process.env.DB_T_USR;
@@ -40,12 +36,8 @@ class User{
 }
 
 
-    public async Login(req: Request, res: Response): Promise<Object> {
+    public async Login(req: Request, res: Response): Promise<Response> {
     const { mail, passwd } = req.body;
-
-    if (!mail || !passwd) {
-        return res.status(400).json({ error: 'E-mail e senha são obrigatórios' });
-    }
 
     try {
         const clUsr = process.env.DB_T_USR;
