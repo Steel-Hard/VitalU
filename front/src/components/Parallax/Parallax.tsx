@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Logo } from '../Logo/Logo';
 import { StlCaixa } from '../box/white_box';
 import Styled from 'styled-components';
 import Btn from '../Button/Button';
+import { Logo } from '../Logo/Logo';
 
 const ParallaxComp = () => {
   const { scrollY } = useScroll();
@@ -11,22 +11,23 @@ const ParallaxComp = () => {
   const y = useTransform(scrollY, [0, 500], [0, 150]); // Ajustado para 150
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const opacity2 = useTransform(scrollY, [0, 300], [0, 1]);
-  const opacity3 = useTransform(scrollY, [0, 300], [0, 1]);
+
 
   return (
     <Container>
-      <motion.div style={{ scale, y, opacity, marginTop: '50px', textAlign: 'center' }}>
-        <Logo />
-        <h1>Vital-U</h1>
+      <motion.div style={{ scale, y, opacity, width: '100%',display: 'flex' ,alignItems: 'center', backgroundColor: 'white', justifyContent: 'center'}}>
+        <Stlform>
+          <Logo height='150px' width='150px'/>
+          <h1 className='title'>Vital-U</h1>
+
+        </Stlform>
       </motion.div>
 
       <motion.div style={{ scale, y, opacity, marginTop: '20px', fontSize: 40, textAlign: 'center' }}>
         <p>A plataforma que te auxilia na perda de peso</p>
       </motion.div>
 
-      <motion.div style={{ scale, y, opacity: opacity3, marginTop: '20px', display:'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', fontSize: 40, backgroundColor: '#43aa84', width: '100%' }}>
-        <p>Stay Fit</p>
-      </motion.div>
+      <img src='./foods.png'/>
 
       <motion.div style={{ scale: scale2, y, opacity: opacity2, textAlign: 'center' }}>
         <Stlform>
@@ -52,7 +53,6 @@ const Container = Styled.div`
   align-items: center;
   justify-content: flex-start; // Mantido no topo
   width: 100%;
-  overflow: hidden; 
   box-sizing: border-box; 
 `;
 
@@ -61,6 +61,7 @@ const Stlform = Styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0;
   width: 100%;
 
   @media (min-width: 769px) {

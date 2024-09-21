@@ -4,6 +4,7 @@ import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
 import Alimento from "../class/Alimento"
 import AlimentoDoDia from "../class/AlimentosDoDia"
+import { LinhaSld } from "../components/Linha/Linha"
 
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
@@ -19,89 +20,92 @@ export default function Perfil() {
     usuario.adicionarAlimentoConsumido(alimentoDoDia3)
 
     return (
-        <div className={css.main}>
-            <div className={css.perfil}>
-                <div>
-                    <div className={css.img}>
-                        <img src={usuario.getFoto()} alt="Foto de perfil" />
+        <>
+            <LinhaSld/>
+            <div className={css.main}>
+                <div className={css.perfil}>
+                    <div>
+                        <div className={css.img}>
+                            <img src={usuario.getFoto()} alt="Foto de perfil" />
+                        </div>
+                        <div className={css.identificacao}>
+                            <div>
+                                <strong>{usuario.getNome()}</strong>
+                                <p>{usuario.getEmail()}</p>
+                            </div>
+                            <img
+                                src={config}
+                                className={css.configuracoes}
+                                onClick={() => window.location.href = "./perfil/config"}
+                            />
+                        </div>
                     </div>
-                    <div className={css.identificacao}>
+                    <hr />
+                </div>
+                <div className={css.informacoes}>
+                    <div className={css.info}>
                         <div>
-                            <strong>{usuario.getNome()}</strong>
+                            <label>Email:</label>
                             <p>{usuario.getEmail()}</p>
                         </div>
-                        <img
-                            src={config}
-                            className={css.configuracoes}
-                            onClick={() => window.location.href = "./perfil/config"}
-                        />
+                        <div>
+                            <label>Genêro:</label>
+                            <p>{usuario.getGenero()}</p>
+                        </div>
+                        <div>
+                            <label>Data de Nascimento:</label>
+                            <p>{usuario.getDataNascimento()}</p>
+                        </div>
+                        <div>
+                            <label>Altura:</label>
+                            <p>{usuario.getAltura()}</p>
+                        </div>
+                        <div>
+                            <label>Peso:</label>
+                            <p>{usuario.getPeso()}</p>
+                        </div>
+                        <div>
+                            <label>IMC:</label>
+                            <p>{usuario.calcularIMC().toFixed(1)}</p>
+                        </div>
+                        <div>
+                            <label>Objetivo:</label>
+                            <p>{usuario.getObjetivoPeso()}</p>
+                        </div>
                     </div>
-                </div>
-                <hr />
-            </div>
-            <div className={css.informacoes}>
-                <div className={css.info}>
-                    <div>
-                        <label>Email:</label>
-                        <p>{usuario.getEmail()}</p>
+                    <hr />
+                    <div className={css.alimentos}>
+                        <div className={css.titulo}>
+                            <h2>Alimentos</h2>
+                            <p>
+                                {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}
+                            </p>
+                        </div>
+                        <div className={css.lista}>
+                            {usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
+                                return (
+                                    <div className={css.alimento} key={index}>
+                                        <p>
+                                            {
+                                                alimentoDoDia.getDataDeConsumo().getHours() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getHours() : alimentoDoDia.getDataDeConsumo().getHours()
+                                            }
+                                            :
+                                            {
+                                                alimentoDoDia.getDataDeConsumo().getMinutes() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes() : alimentoDoDia.getDataDeConsumo().getMinutes()
+                                            }
+                                        </p>
+                                        <p>{alimentoDoDia.getQuantidade()}x</p>
+                                        <p>{alimentoDoDia.getAlimento().getNome()}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
-                    <div>
-                        <label>Genêro:</label>
-                        <p>{usuario.getGenero()}</p>
+                    <div className={css.rodape}>
+                        <button>ADICIONAR ALIMENTO</button>
                     </div>
-                    <div>
-                        <label>Data de Nascimento:</label>
-                        <p>{usuario.getDataNascimento()}</p>
-                    </div>
-                    <div>
-                        <label>Altura:</label>
-                        <p>{usuario.getAltura()}</p>
-                    </div>
-                    <div>
-                        <label>Peso:</label>
-                        <p>{usuario.getPeso()}</p>
-                    </div>
-                    <div>
-                        <label>IMC:</label>
-                        <p>{usuario.calcularIMC().toFixed(1)}</p>
-                    </div>
-                    <div>
-                        <label>Objetivo:</label>
-                        <p>{usuario.getObjetivoPeso()}</p>
-                    </div>
-                </div>
-                <hr />
-                <div className={css.alimentos}>
-                    <div className={css.titulo}>
-                        <h2>Alimentos</h2>
-                        <p>
-                            {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}
-                        </p>
-                    </div>
-                    <div className={css.lista}>
-                        {usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
-                            return (
-                                <div className={css.alimento} key={index}>
-                                    <p>
-                                        {
-                                            alimentoDoDia.getDataDeConsumo().getHours() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getHours() : alimentoDoDia.getDataDeConsumo().getHours()
-                                        }
-                                        :
-                                        {
-                                            alimentoDoDia.getDataDeConsumo().getMinutes() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes() : alimentoDoDia.getDataDeConsumo().getMinutes()
-                                        }
-                                    </p>
-                                    <p>{alimentoDoDia.getQuantidade()}x</p>
-                                    <p>{alimentoDoDia.getAlimento().getNome()}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-                <div className={css.rodape}>
-                    <button>ADICIONAR ALIMENTO</button>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

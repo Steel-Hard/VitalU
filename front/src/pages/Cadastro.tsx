@@ -2,19 +2,24 @@ import { Link } from "react-router-dom";
 import Btn from "../components/Button/Button";
 import { FlexDivResp } from "../components/FlexDiv/FlexDIv";
 import { StlInput } from "../components/Inputs/Input";
-import { Logo } from "../components/Logo/Logo";
 import {StlCaixa} from "../components/box/white_box";
+import { LinhaSld } from "../components/Linha/Linha";
+import { Logo } from "../components/Logo/Logo";
+
+
+
 
 export function Cadastro() {
   return (
     <>
-      <Logo/>
-      <StlCaixa height="400px" >
-        <h1>Cadastro</h1>
-        <StlInput type="text" height="40px" width="50%" placeholder="Nome"/>
-        <StlInput type="email" height="40px" width="50%" placeholder="E-mail"/>
-        <StlInput type="password" height="40px" width="50%" placeholder="Senha"/>
-        <Btn height="40px" width="100%" conteudo="Cadastar"/>
+      <LinhaSld/>
+      <StlCaixa height="90%" width='300px' radius={true} >
+        <Logo height="50px" width="auto" />
+        <h1 className="title_default">Cadastro</h1>
+        <StlInput type="text" height="40px" width="80%" placeholder="Nome"/>
+        <StlInput type="email" height="40px" width="80%" placeholder="E-mail"/>
+        <StlInput type="password" height="40px" width="80%" placeholder="Senha"/>
+        <Btn height="40px" width="100%" conteudo="Cadastrar"/>
         <FlexDivResp>
           <Link to='/login'>Retornar ao login</Link>
 

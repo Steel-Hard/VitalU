@@ -8,10 +8,7 @@ body {
   min-width: 100%;
   min-height: calc(100vh - 40px);
   background-color: #E1E1E1;
-  background-image: url("../public/backgroundf3.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+
 }
 
 #root{
@@ -23,10 +20,17 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+.title_default{
+  color: #31aa88;
 
-.logoapp{
- 
 }
+.title{
+  color: #31aa88;
+  font-size: 100px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
 
 .links{
   color: rgb(67, 170, 132);

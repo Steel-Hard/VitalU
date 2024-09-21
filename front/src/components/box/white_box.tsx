@@ -8,6 +8,7 @@ export const StlCaixa = styled.div<CaixaProps>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  border-radius: ${({radius})=> radius? '150px 150px 25px 25px' : '0px'};
   padding:20px;
   align-items: center;
   margin: 20px;
@@ -30,5 +31,6 @@ interface CaixaProps{
   height?: string;
   width?: string;
   smlWidth?:string
+  radius?: boolean;
 
 }
