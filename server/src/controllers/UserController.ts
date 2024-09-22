@@ -13,12 +13,12 @@ class User{
     
     public async Cadastrar_Novo_Usuario(req: Request, res: Response): Promise<Response> {
     const { mail, passwd, nome} = req.body;
-
+    const clUsr = process.env.DB_T_USR;
+    const clEmail = process.env.DB_T_USR_M;
+    const clPwd = process.env.DB_T_USR_P;
+    const clNome = process.env.DB_T_USR_N;
+    
     try {
-        const clUsr = process.env.DB_T_USR;
-        const clEmail = process.env.DB_T_USR_M;
-        const clPwd = process.env.DB_T_USR_P;
-        const clNome = process.env.DB_T_USR_N;
         // Implementação bcrypt
         const hashedPassword = await bcrypt.hash(passwd, saltRounds);
 
@@ -38,11 +38,11 @@ class User{
 
     public async Login(req: Request, res: Response): Promise<Response> {
     const { mail, passwd } = req.body;
+    const clUsr = process.env.DB_T_USR;
+    const clEmail = process.env.DB_T_USR_M;
+    const clPwd = process.env.DB_T_USR_P as string;
 
     try {
-        const clUsr = process.env.DB_T_USR;
-        const clEmail = process.env.DB_T_USR_M;
-        const clPwd = process.env.DB_T_USR_P as string;
 
         const result = await pool.query(
             `SELECT ${clPwd} FROM ${clUsr} WHERE ${clEmail} = $1`,

@@ -15,10 +15,10 @@ app.use(express.json());
 //aceita requisição de outras origens
 app.use(cors());
 
+app.use(routes);
 app.listen(PORT, () => {
     console.log("Rodando na porta ", PORT)
 });
 
-app.use(routes);
 
 export default app;
