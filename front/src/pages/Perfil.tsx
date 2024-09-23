@@ -4,7 +4,7 @@ import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
 import Alimento from "../class/Alimento"
 import AlimentoDoDia from "../class/AlimentosDoDia"
-import { LinhaSld } from "../components/Linha/Linha"
+import { LinhaSld } from "../components/index"
 
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)

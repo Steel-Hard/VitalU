@@ -1,5 +1,5 @@
 import axios ,{AxiosInstance} from "axios"
-const url = process.env.VITE_URL_BASE
+const url = 'http://localhost:3030'
 
 export const defaultInteraction: AxiosInstance = axios.create({
     baseURL: url,

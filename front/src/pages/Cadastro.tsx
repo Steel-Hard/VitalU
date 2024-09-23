@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
-import {BtnStl} from "../components/Button/Button";
-import { FlexDivResp } from "../components/FlexDiv/FlexDIv";
-import { StlInput } from "../components/Inputs/Input";
-import {StlCaixa} from "../components/box/white_box";
-import { LinhaSld } from "../components/Linha/Linha";
-import { Logo } from "../components/Logo/Logo";
+import { BtnStl,FlexDivResp,StlInput,StlCaixa,LinhaSld,Logo} from "../components/index";
 import { useState } from "react";
-
+import user from '../services/default'
 export function Cadastro() {
   const [nome,setNome] = useState("");
   const [email,setEmail] = useState("");
   const [senha,setSenha] = useState("");
+  const [mensagem,setMensagem] = useState("");
+  
 
   const enviarDados = () =>{
-    console.log(nome,email,senha);    
+    user.cadastro(nome,email,senha,setMensagem);    
+   
   }
 
   return (
@@ -31,7 +29,7 @@ export function Cadastro() {
 
         </FlexDivResp>
         <FlexDivResp>
-         
+              {mensagem} 
 
         </FlexDivResp>
       </StlCaixa>

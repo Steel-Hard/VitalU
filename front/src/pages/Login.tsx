@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { StlCaixa } from "../components/box/white_box";
-import {BtnStl} from "../components/Button/Button";
-import { FlexDivResp } from "../components/FlexDiv/FlexDIv";
-import { StlInput } from "../components/Inputs/Input";
-import { Logo } from "../components/Logo/Logo";
-import { LinhaSld } from "../components/Linha/Linha";
-
+import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld } from "../components/index";
 
 
 export function Login() {
