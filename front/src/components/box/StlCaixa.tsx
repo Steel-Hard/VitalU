@@ -6,7 +6,7 @@ export const StlCaixa = styled.div<CaixaProps>`
   background-color: white;
   box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({direction}) => direction? direction: 'column'};
   justify-content: flex-start;
   border-radius: ${({radius})=> radius? '150px 150px 25px 25px' : '0px'};
   padding:20px;
@@ -30,7 +30,8 @@ export const StlCaixa = styled.div<CaixaProps>`
 interface CaixaProps{
   height?: string;
   width?: string;
-  smlWidth?:string
+  smlWidth?:string;
   radius?: boolean;
+  direction?:string;
 
 }

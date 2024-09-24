@@ -43,3 +43,44 @@ export const FlexDivWe = styled.div`
     width: 100%;
     height: 100%;
     `
+
+export const Container = styled.div`
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; // Mantido no topo
+  width: 100%;
+  box-sizing: border-box; 
+`;
+
+export const Stlform = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    width: 100%;
+  }
+`
+export const StlformReverse = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 30px;
+  justify-content: center;
+  margin: 0;
+ 
+
+  @media (max-width: 769px) {
+    flex-direction: column;
+
+  }
+`
+;
+;

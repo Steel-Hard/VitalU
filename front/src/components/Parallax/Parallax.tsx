@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { StlCaixa } from '../box/white_box';
-import Styled from 'styled-components';
-import Btn from '../Button/Button';
-import { Logo } from '../Logo/Logo';
+import { Link } from 'react-router-dom';
+import { StlCaixa,Logo, BtnStlStl, Container, BtnStl } from '../index';
+import styled from 'styled-components';
+
 
 const ParallaxComp = () => {
   const { scrollY } = useScroll();
@@ -40,23 +40,15 @@ const ParallaxComp = () => {
       </motion.div>
 
       <motion.div style={{ scale: scale2, y, opacity: 1, textAlign: 'center', padding: '20px', marginTop: '50px' }}>
-        <Btn height='75px' width='250px' conteudo='Vamos Começar!' link='/cadastro' />
+        <Link to='/cadastro'>
+          <BtnStl height='75px' width='250px' >Vamos Começar!</BtnStl>
+        </Link>
       </motion.div>
     </Container>
   );
 };
 
-const Container = Styled.div`
-  height: 200vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; // Mantido no topo
-  width: 100%;
-  box-sizing: border-box; 
-`;
-
-const Stlform = Styled.div`
+const Stlform = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,5 +61,6 @@ const Stlform = Styled.div`
     width: 100%;
   }
 `;
+
 
 export default ParallaxComp;
