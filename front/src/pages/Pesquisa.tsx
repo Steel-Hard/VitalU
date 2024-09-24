@@ -1,8 +1,19 @@
+import { useEffect,useState } from "react"
 import { LinhaSld, StlInput, Nav,FlexDivCo,FlexDiv, StlCaixa,FoodCard} from "../components/index"
+import foods from  '../services/foods'
 
 
 
 export function Pesquisa(){
+   const [alimentos,setAlimento] = useState([])
+
+    useEffect(() =>{
+        foods.buscarCategoria(1,setAlimento);
+      
+    },[])
+
+
+
     return(
         <>
             <LinhaSld/>
@@ -19,10 +30,9 @@ export function Pesquisa(){
                 </FlexDiv>
                 
             </FlexDivCo>
-            <FoodCard/>
-            <FoodCard/>
-            <FoodCard/>
-            <FoodCard/>
+            {
+                alimentos ? alimentos.map((obj,i) => <FoodCard key={i} data={obj}/>) : <div>carregando</div>       
+            }
         </FlexDivCo>
         </>
     )

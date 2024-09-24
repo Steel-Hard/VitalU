@@ -1,19 +1,21 @@
 import styled from 'styled-components'
 
+interface FlexProps{
+  width?: string;
+  height?: string;
+  margin?: string;
+  direction?: string;
+}
 
 
-export const FlexDiv = styled.div`
+export const FlexDiv = styled.div<FlexProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-
-`
-export const FlexDivLogo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-
+    flex-direction: ${({direction}) => direction? direction: 'unset'};
+    width: ${({width}) => width? width:'auto'};
+    height: ${({height}) => height? height: 'auto'};
+    margin: ${({margin}) => margin? margin:margin};
 `
 
 
@@ -24,7 +26,6 @@ export const FlexDivCo = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
-
 `
 export const FlexDivResp = styled.div`
     display: flex;
@@ -59,21 +60,24 @@ export const Stlform = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  width: 100%;
+  margin: 10px;
+  gap: 20px;
+  padding: 5px;
 
-  @media (min-width: 769px) {
+
+  @media (max-width: 769px) {
     flex-direction: row;
-    width: 100%;
+
   }
 `
 export const StlformReverse = styled.div`
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  height:100%;
   align-items: center;
+  justify-content: space-between;
 
   padding: 30px;
-  justify-content: center;
   margin: 0;
  
 

@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { StlCaixa,Logo, BtnStlStl, Container, BtnStl } from '../index';
+import { StlCaixa,Logo,  Container, BtnStl } from '../index';
 import styled from 'styled-components';
 
 

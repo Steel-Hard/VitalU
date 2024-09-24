@@ -1,30 +1,74 @@
 import { useState } from "react";
-import { StlCaixa,BtnStl,StlformReverse } from "../index";
+import {
+  StlCaixa,
+  BtnStl,
+  HiddenButton,
+  StlformReverse,
+  FlexDiv,
+  TitleFoods,
+  FoodInfo
+} from "../index";
+import  styled from 'styled-components'
+import { alimentosProps } from "../../types";
+import { Stlform } from "../FlexDiv/FlexDIv";
 
-
-export default function FoodCard(){
-    const [count,setCount] = useState(0);
-    return(
-        <StlCaixa direction="row">
-            <div>
-
-                <h1>Arroz</h1>
-                <p>300kcal, doce</p>
-            </div>
-            <StlformReverse>
-                {count > 0 ? <BtnStl onClick={()=> {setCount(prev => prev-=1)}}>-</BtnStl>:<></>}
-                
-                {count}
-                <BtnStl onClick={()=>{ 
-                    setCount(prev => prev+=1)
-                }}>
-                    +
-                </BtnStl>
-
-            </StlformReverse>
-            <BtnStl>Adicionar</BtnStl>
-
-        </StlCaixa>
-    )
-
+interface alimentosData {
+  data: alimentosProps;
 }
+
+const ButtonContainer = styled.div`
+  position: relative; // permitir posicionamento absoluto do cartão
+  display: inline-block; // evitar que o cartão afete outros elementos
+`;
+
+
+export default function FoodCard(props: alimentosData) {
+  const [count, setCount] = useState(1);
+  const [isVisible,setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    setVisible(!isVisible);
+
+  }
+  return (
+    <StlCaixa direction="row" width="60%" >
+      <StlformReverse>
+        <FlexDiv margin="10px" width="20%">
+          <TitleFoods>{props.data.pro_descricao}</TitleFoods>
+        
+        </FlexDiv>
+        <ButtonContainer>
+            <BtnStl onClick={toggleVisible}>
+                Informações
+            </BtnStl>
+            <FoodInfo data={props.data} isVisible={isVisible}/>
+        </ButtonContainer>
+        <Stlform>
+
+            <HiddenButton
+            onClick={() => {
+                setCount((prev) => (prev -= 1));
+            }}
+            visible={count > 1}
+            >
+            -
+            </HiddenButton>
+            {count}
+            <BtnStl
+            onClick={() => {
+                setCount((prev) => (prev += 1));
+            }}
+            >
+            +
+            </BtnStl>
+        </Stlform>
+
+        <BtnStl>Adicionar</BtnStl>
+      </StlformReverse>
+    </StlCaixa>
+  );
+}
+
+
+
+
