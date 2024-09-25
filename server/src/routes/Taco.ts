@@ -5,10 +5,6 @@ const routes = Router();
 
 
 
-routes.post("/buscar",Foods.buscarAlimentos);
-
-routes.post("/categoria",Foods.obterCategoria);
-
 routes.post("/cadastro",Foods.cadastrarProduto);
 
 

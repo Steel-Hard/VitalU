@@ -1,49 +1,11 @@
 import { Request,Response } from "express";
-import User from '../controllers/UserController'
+import { CadastroProduto } from "../types";
 import pool from "../bd";
+
 
 
 class Foods{
 
-    public async buscarAlimentos(req:Request,res:Response): Promise<Response>{
-        const {user_query} = req.body;
-        const nQuery = `${user_query}%`;
-        try{
-            const resposta = await pool.query(`
-                SELECT produto.pro_descricao, prodprep.* 
-                FROM produto 
-                JOIN prodprep 
-	            ON produto.id = prodprep.pp_produto 
-                WHERE produto.pro_descricao ILIKE $1
-                ORDER BY produto.pro_descricao ASC`,[nQuery]
-            );
-
-            return res.json({"resposta":resposta.rows});
-        }catch{
-             return res.status(401).json({"err":"não foi possivel conectar"})
-        }
-
-
-
-    }
-    public async obterCategoria(req:Request,res:Response):Promise<Response>{
-        const {n_categoria} = req.body;
-        try{
-            const resposta = await pool.query(`
-                    SELECT produto.pro_descricao, prodprep.* 
-                    FROM produto 
-                    JOIN prodprep 
-                    ON produto.id = prodprep.pp_produto 
-                    WHERE produto.pro_grupo = $1
-                `,[n_categoria]
-            );
-
-            return res.json({"resposta": resposta.rows});
-        }catch{
-            return res.status(401).json({"err":"não foi possivel realizar busca"});
-        }
-
-    }
 
     public async cadastrarProduto(req: Request<{}, {}, CadastroProduto>, res: Response): Promise<Response> {
         const {
@@ -104,28 +66,10 @@ class Foods{
             return res.status(500).json({ error: "Erro ao cadastrar produto." });
         }
     }
+ 
 }    
 
 export default new Foods;
 
 
 
-interface CadastroProduto {
-    usr_id: number;
-    nome?: string;
-    descricao?: string;
-    tamanho_porcao?: number;
-    unidade_tamanho_porcao?: string;
-    quantidade_por_porcao?: number;
-    unidade_quantidade_por_porcao?: string;
-    calorias?: number;
-    proteina?: number;
-    carboidrato?: number;
-    acucares?: number;
-    fibras?: number;
-    gordura_total?: number;
-    gordura_saturada?: number;
-    gordura_trans?: number;
-    calcio?: number;
-    sodio?: number;
-}
