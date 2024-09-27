@@ -12,9 +12,7 @@ const pool = new Pool({
     user: 'postgres',
     password:  '123',
     database: 'vitalu',
-    ssl:{
-      rejectUnauthorized: false 
-    }
+    ssl:false
 });
 
 
