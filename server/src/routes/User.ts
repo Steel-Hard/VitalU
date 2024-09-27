@@ -7,4 +7,6 @@ routes.post('/cadastro', user.Cadastrar_Novo_Usuario);
 routes.post('/login', user.Login);
 routes.post('/dados', user.determinarPerfil);
 routes.get("/obter",authenticateToken, user.obterDados);
+
+routes.post("/add.fav",user.add_Fav)
 export default routes;

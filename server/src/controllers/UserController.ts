@@ -111,6 +111,21 @@ class User {
 
     }
 
+    public async add_Fav(req: Request, res: Response): Promise<Response> {
+        const { user_default_id, tipo_alimento, alimento_id } = req.body;
+        try {
+            // Tipo_Alimento_Domain AS TEXT CHECK (VALUE IN ('prodprep','Prod_Usr'));
+            const resp: any = await pool.query(
+                `INSERT INTO user_has_favoritos (user_default_id, tipo_alimento, alimento_id) VALUES ($1, $2, $3)`,
+                [user_default_id, tipo_alimento, alimento_id]
+            );
+            return res.send( "Favorito Salvo." );
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Erro ao adicionar alimento." });
+        }
+    }
+
 };
 
 export default new User;
