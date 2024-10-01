@@ -8,8 +8,8 @@ class Foods{
 
 
     public async cadastrarProduto(req: Request<{}, {}, CadastroProduto>, res: Response): Promise<Response> {
+        const {id} =res.locals;
         const {
-            usr_id,
             nome,
             descricao,
             tamanho_porcao,
@@ -29,7 +29,7 @@ class Foods{
         } = req.body;
     
         const values: (string | number | null | undefined)[] = [
-            usr_id, nome, descricao, tamanho_porcao, unidade_tamanho_porcao,
+            id, nome, descricao, tamanho_porcao, unidade_tamanho_porcao,
             quantidade_por_porcao, unidade_quantidade_por_porcao, calorias, proteina,
             carboidrato, acucares, fibras, gordura_total, gordura_saturada,
             gordura_trans, calcio, sodio

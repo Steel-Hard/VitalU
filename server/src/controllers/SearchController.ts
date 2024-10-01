@@ -19,8 +19,17 @@ class Search{
         }catch{
              return res.status(401).json({"err":"não foi possivel conectar"})
         }
-
-
+    }
+    public async buscarProduto(req:Request,res:Response): Promise<Response>{
+        const {id} = res.locals;
+        try{
+            const buscar = await pool.query(`
+               SELECT  * FROM Prod_Usr WHERE User_Default_Id = $1
+            `,[id]);
+            return res.status(200).json({"resposta":buscar.rows})
+        }catch(err){
+            return res.status(401).json({err:"Não Foi Possivel Buscar Produtos"})
+        }
 
     }
     public async obterCategoria(req:Request,res:Response):Promise<Response>{

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const ParallaxComp = () => {
   const { scrollY } = useScroll();
-  const scale = useTransform(scrollY, [0, 500], [1, 1.5]); // Reduzido para 1.5
+  const scale = useTransform(scrollY, [0, 500], [1, 1]); // Reduzido para 1.5
   const scale2 = useTransform(scrollY, [0, 1000], [0.5, 1.2]); // Reduzido para 1.2
   const y = useTransform(scrollY, [0, 500], [0, 150]); // Ajustado para 150
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);

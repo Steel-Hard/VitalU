@@ -29,7 +29,7 @@ class User {
 
             return res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
         } catch (error) {
-            console.error('Erro ao cadastrar usuário:', error);
+            
             return res.status(500).json({ error: 'Erro ao cadastrar usuário' });
         }
 
@@ -49,7 +49,7 @@ class User {
                 [mail]
             );
 
-            console.log("resultado",result);
+            
 
             if (result.rows.length === 0) {
                 return res.status(401).json({ error: 'Credenciais inválidas' });
@@ -68,28 +68,28 @@ class User {
                 return res.status(401).json({ error: 'Credenciais inválidas' });
             }
         } catch (error) {
-            console.error('Erro ao fazer login:', error);
             return res.status(500).json({ error: 'Erro ao fazer login' });
         }
     }
-    //incompleto falta adaptaçâo do banco
     public async determinarPerfil(req: Request, res: Response): Promise<Response> {
-        const { usr_id, altura, peso, genero, objetivos, data } = req.body
+        const {id} = res.locals;
+        const { altura, peso, genero, objetivos, data_nasc } = req.body;
+       
         try {
             const verificar_dados = await pool.query(`
                 SELECT * FROM User_Dados WHERE User_Default_Id = $1
-            `, [usr_id]);
+            `, [id]);
 
             if (verificar_dados.rows.length == 0) {
                 const insert = await pool.query(`
                         INSERT INTO User_Dados VALUES ($1,$2,$3,$4,$5,$6)
-                    `, [usr_id, altura, peso, genero, objetivos, data]);
-                return res.status(200).json({ message: "Dados Salvos Com Sucesso", status: "Inicial" })
+                    `, [id, altura, peso, genero, objetivos, data_nasc]);
+                return res.status(200).json({ message: "Dados Salvos Com Sucesso"})
             } else {
                 const update = await pool.query(`
                     UPDATE User_Dados SET Altura = $1,Peso = $2,Genero= $3,Obj_Peso= $4  WHERE User_Default_Id = $5
-                    `, [altura, peso, genero, objetivos, usr_id])
-                return res.status(200).json({ message: "Dados Salvos Com Sucesso", status: "Subsequente" })
+                    `, [altura, peso, genero, objetivos, id])
+                return res.status(200).json({ message: "Dados Atualizados Com Sucesso"})
             }
         } catch (err) {
             return res.status(401).json({ err: err })
@@ -107,17 +107,16 @@ class User {
             return res.status(401).json({err: err});
         }
 
-
-
     }
 
     public async add_Fav(req: Request, res: Response): Promise<Response> {
-        const { user_default_id, tipo_alimento, alimento_id } = req.body;
+        const {id} = res.locals;
+        const { tipo_alimento, alimento_id } = req.body;
         try {
             // Tipo_Alimento_Domain AS TEXT CHECK (VALUE IN ('prodprep','Prod_Usr'));
             const resp: any = await pool.query(
                 `INSERT INTO user_has_favoritos (user_default_id, tipo_alimento, alimento_id) VALUES ($1, $2, $3)`,
-                [user_default_id, tipo_alimento, alimento_id]
+                [id, tipo_alimento, alimento_id]
             );
             return res.send( "Favorito Salvo." );
         } catch (err) {

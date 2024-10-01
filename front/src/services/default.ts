@@ -15,9 +15,11 @@ class Auth{
         })
     }
     async login(email:string,senha:string){
-        await defaultInteraction.post("user/login", {mail:email, passwd:senha})
+        await defaultInteraction.post("/user/login", {mail:email, passwd:senha})
         .then((res) => {
-            console.log(res.data.message);
+            window.localStorage.setItem("token",res.data.token);
+            window.location.href ="/perfil";
+
         })
         .catch((err) =>{
             console.log(err.response.data)
