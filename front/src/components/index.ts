@@ -6,14 +6,17 @@ import { FlexDiv, FlexDivCo,  FlexDivResp, FlexDivWe,Container,StlformReverse } 
 import Campform from "./Campform/Campform";
 import Calcimc from "./calcimc/Calcimc";
 import { BtnStl,HiddenButton } from "./Button/Button";
-import { StlCaixa } from "./box/StlCaixa";
+import { StlCaixa } from "./StlCaixa/StlCaixa";
 import { Nav } from "./Nav/Nav";
 import { TitleFoods } from "./Texts/Title";
 import FoodCard from "./FoodCard/FoodCard";
 import FoodInfo from "./FoodInfo/FoodInfo";
+import FoodCategorias from "./FoodCategorias/FoodCategorias";
 
 export {
     Logo, LinhaSld, ParallaxComp, StlInput, FlexDiv, FlexDivCo,  FlexDivResp, FlexDivWe,Container,
-    Campform, Calcimc, BtnStl, StlCaixa,Nav,FoodCard,StlformReverse, HiddenButton,TitleFoods,FoodInfo
+    Campform, Calcimc, BtnStl, StlCaixa,Nav,FoodCard,StlformReverse, HiddenButton,TitleFoods,FoodInfo,
+    FoodCategorias
+
 
 }

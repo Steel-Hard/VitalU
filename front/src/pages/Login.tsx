@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld } from "../components/index";
-
+import autenticar from '../services/default'
 
 export function Login() {
   const [email,setEmail] = useState("");
   const [senha,setSenha] = useState("");
   const enviarDados = () =>{
-    console.log(email,senha);    
+    autenticar.login(email,senha);    
   }
 
   

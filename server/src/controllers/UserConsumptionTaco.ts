@@ -4,10 +4,10 @@ import { Request,Response } from "express";
 
 class UserConsumptionTaco{
     public async salvarConsumoTaco(req:Request,res:Response): Promise<Response>{
-        const {taco_id,usr_id,data_consumo,quantidade} = req.body
+        const {taco_id,usr_id,data_consumo,prep_id,quantidade} = req.body
         try{
-            const data = await pool.query(`INSERT INTO Usr_Consome_Taco VALUES ($1,$2,$3,$4)`,
-                [taco_id,usr_id,data_consumo,quantidade]);
+            const data = await pool.query(`INSERT INTO Usr_Consome_Taco VALUES ($1,$2,$3,$4,$5)`,
+                [taco_id,prep_id,usr_id,data_consumo,quantidade]);
 
             return res.status(201).json({"message":"dados inseridos com sucesso"});
         }catch(err){

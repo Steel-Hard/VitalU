@@ -20,6 +20,10 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+@font-face {
+  font-family: 'michrome';
+  src: url('./assets//fonts/mich.ttf');
+}
 .title_default{
   color: #31aa88;
 
@@ -27,10 +31,9 @@ body {
 .title{
   color: #31aa88;
   font-size: 100px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'michrome';
   font-weight: bold;
 }
-
 
 .links{
   color: rgb(67, 170, 132);
@@ -39,3 +42,4 @@ body {
 a{
   color: rgb(67, 170, 132);
 }
+

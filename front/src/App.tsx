@@ -19,7 +19,6 @@ export default function App() {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/perfil/config" element={<PerfilConfig />} />
         <Route path="/pesquisa" element={<Pesquisa />} />
-        <Route path="/pesquisa/:querry" element={<Pesquisa />} />
         <Route path="/cadastroalimento" element={<CadastroAlimento />} />
       </Routes>
     </BrowserRouter>

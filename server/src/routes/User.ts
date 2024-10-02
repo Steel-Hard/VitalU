@@ -5,7 +5,7 @@ const routes = Router();
 
 routes.post('/cadastro', user.Cadastrar_Novo_Usuario);
 routes.post('/login', user.Login);
-routes.post('/dados', user.determinarPerfil);
+routes.post('/dados',authenticateToken, user.determinarPerfil);
 routes.get("/obter",authenticateToken, user.obterDados);
 
 routes.post("/add.fav",user.add_Fav)

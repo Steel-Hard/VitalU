@@ -8,9 +8,13 @@ export const defaultInteraction: AxiosInstance = axios.create({
     }
 });
 
+
+const {token} = localStorage
+
 export const userInteraction: AxiosInstance = axios.create({
     baseURL: url,
     headers:{
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization":  token
     }
 });

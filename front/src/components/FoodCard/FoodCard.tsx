@@ -33,9 +33,9 @@ export default function FoodCard(props: alimentosData) {
   return (
     <StlCaixa direction="row" width="60%" >
       <StlformReverse>
-        <FlexDiv margin="10px" width="20%">
+        <FlexDiv direction="column"  margin="10px" width="20%">
           <TitleFoods>{props.data.pro_descricao}</TitleFoods>
-        
+          <h4>{props.data.preparacao}</h4>        
         </FlexDiv>
         <ButtonContainer>
             <BtnStl onClick={toggleVisible}>
