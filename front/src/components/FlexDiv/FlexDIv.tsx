@@ -5,6 +5,8 @@ interface FlexProps{
   height?: string;
   margin?: string;
   direction?: string;
+  bgColor?: string;
+  gap?: string;
 }
 
 
@@ -16,6 +18,8 @@ export const FlexDiv = styled.div<FlexProps>`
     width: ${({width}) => width? width:'auto'};
     height: ${({height}) => height? height: 'auto'};
     margin: ${({margin}) => margin? margin:margin};
+    background-color: ${({bgColor}) => bgColor? bgColor:'transparent'};
+    gap: ${({gap}) => gap? gap:'0px'}
 `
 
 

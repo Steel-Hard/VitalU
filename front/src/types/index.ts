@@ -1,5 +1,6 @@
 export interface alimentosProps {
     id: number;
+    preparacao:string;
     pp_acucaradicao: number;
     pp_acucartotal: number;
     pp_aglinoleico: number;
