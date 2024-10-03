@@ -1,6 +1,5 @@
-
+import { CalculosMetabolicos } from "./calculosmet"
 import {Objetivos} from "../enum/Objetivos"
-import calcularIMC from "../utils/calcularIMC"
 import AlimentoDoDia from "./AlimentosDoDia"
 
 class Profile {
@@ -25,13 +24,13 @@ class Profile {
         this.email = "usuario@email.com"
         this.genero = "Masculino"
         this.dataNascimento = new Date(2000, 1, 1)
-        this.altura = 1.75
+        this.altura = 175
         this.peso = 70
         this.objetivoPeso = Objetivos.manterPeso
     }
 
     public calcularIMC = () => {
-        if (this.altura && this.peso) return calcularIMC(this.altura, this.peso)
+        if (this.altura && this.peso) return CalculosMetabolicos.imc(this.altura, this.peso)
         return 0
     }
 

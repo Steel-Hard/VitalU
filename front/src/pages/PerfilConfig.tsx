@@ -1,5 +1,5 @@
 import { StlCaixa,LinhaSld } from "../components/index";
-import Calcimc from "../components/calcimc/Calcimc";
+import Calcimc from "../components/Calcimc/Calcimc";
 
 export function PerfilConfig(){
     return(

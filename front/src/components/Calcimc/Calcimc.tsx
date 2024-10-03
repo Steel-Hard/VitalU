@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Campform from "../../components/Campform/Campform"
+import Campform from "../Campform/Campform"
 import { BtnStl } from"../Button/Button"
 import { FlexDiv, FlexDivCo } from "../FlexDiv/FlexDIv";
 import { FatorAtividade,Genero } from "../../enum/Objetivos";// foi tirado o "genero" para uma edição direto no "sexo"

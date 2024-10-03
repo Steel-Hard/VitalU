@@ -11,7 +11,7 @@ class Auth{
             fun(res.data.message);
         })
         .catch((err) => {
-            console.log(err.response.data);
+            fun(err.response.data.error);
         })
     }
     async login(email:string,senha:string){

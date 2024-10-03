@@ -6,6 +6,12 @@ import Alimento from "../class/Alimento"
 import AlimentoDoDia from "../class/AlimentosDoDia"
 import { LinhaSld } from "../components/index"
 
+
+
+import { useEffect } from "react"
+import user from "../services/user"
+
+
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
     const dataAtual = new Date()
@@ -18,6 +24,10 @@ export default function Perfil() {
     usuario.adicionarAlimentoConsumido(alimentoDoDia1)
     usuario.adicionarAlimentoConsumido(alimentoDoDia2)
     usuario.adicionarAlimentoConsumido(alimentoDoDia3)
+
+    useEffect(() => {
+        user.obterDados();
+    })
 
     return (
         <>
@@ -66,7 +76,7 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>IMC:</label>
-                            <p>{usuario.calcularIMC().toFixed(1)}</p>
+                            <p>{usuario.calcularIMC()}</p>
                         </div>
                         <div>
                             <label>Objetivo:</label>

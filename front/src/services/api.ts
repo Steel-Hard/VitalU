@@ -15,6 +15,6 @@ export const userInteraction: AxiosInstance = axios.create({
     baseURL: url,
     headers:{
         "Content-Type": "application/json",
-        "Authorization":  token
+        Authorization: `Bearer ${token}`
     }
 });
