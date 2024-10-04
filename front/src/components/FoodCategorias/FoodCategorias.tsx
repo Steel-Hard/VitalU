@@ -1,4 +1,4 @@
-import { FlexDiv } from "../index";
+import { FlexDiv,Select,Option } from "../index";
 import { grupos } from "../../enum/grupos";
 import { useContext, useEffect } from "react";
 import { SearchCtx } from "../../context/searchContext";
@@ -13,29 +13,29 @@ export default function FoodCategorias(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[tipo])
     return(
-        <FlexDiv>
-            <label>Categoria:</label>
-            <select value={tipo}  onChange={(e) => {setTipo(parseInt(e.target.value))} }>
-                <option value={grupos.CereaisELeguminosas}>Cereais e leguminosas</option>
-                <option value={grupos.HortaliçasTuberosas}>Hortaliças tuberosas</option>
-                <option value={grupos.FarinhasFéculasEMassas}>Farinhas féculas e massas</option>
-                <option value={grupos.CocosCastanhasENozes}>Cocos castanhas e nozes</option>
-                <option value={grupos.HortaliçasFolhosasFrutosasEOutras}>Hortaliças folhosas frutosas e outras</option>
-                <option value={grupos.Frutas}>Frutas</option>
-                <option value={grupos.AçúcaresEProdutosDeConfeitaria}>Açúcares e produtos de confeitaria</option>
-                <option value={grupos.SaisECondimentos}>Sais e condimentos</option>
-                <option value={grupos.CarnesEVísceras}>Carnes e vísceras</option>
-                <option value={grupos.PescadosEFrutosDoMar}>Pescados e frutosDoMar</option>
-                <option value={grupos.EnlatadosEConservas}>Enlatados e conservas</option>
-                <option value={grupos.AvesEOvos}>Aves e ovos</option>
-                <option value={grupos.Laticínios}>Laticínios</option>
-                <option value={grupos.Panificados}>Panificados</option>
-                <option value={grupos.CarnesIndustrializadas}>Carnes industrializadas</option>
-                <option value={grupos.BebidasNãoAlcoólicasEInfusões}>Bebidas não alcoólicas e infusões</option>
-                <option value={grupos.BebidasAlcoólicas}>Bebidas alcoólicas</option>
-                <option value={grupos.ÓleosEGorduras}>Óleos e gorduras</option>
-                <option value={grupos.Miscelâneas}>Miscelâneas</option>        
-            </select>
-        </FlexDiv>
+        
+            
+            <Select value={tipo}  onChange={(e) => {setTipo(parseInt(e.target.value))} }>
+                <Option value={grupos.CereaisELeguminosas}>Cereais e leguminosas</Option>
+                <Option value={grupos.HortaliçasTuberosas}>Hortaliças tuberosas</Option>
+                <Option value={grupos.FarinhasFéculasEMassas}>Farinhas féculas e massas</Option>
+                <Option value={grupos.CocosCastanhasENozes}>Cocos castanhas e nozes</Option>
+                <Option value={grupos.HortaliçasFolhosasFrutosasEOutras}>Hortaliças folhosas frutosas e outras</Option>
+                <Option value={grupos.Frutas}>Frutas</Option>
+                <Option value={grupos.AçúcaresEProdutosDeConfeitaria}>Açúcares e produtos de confeitaria</Option>
+                <Option value={grupos.SaisECondimentos}>Sais e condimentos</Option>
+                <Option value={grupos.CarnesEVísceras}>Carnes e vísceras</Option>
+                <Option value={grupos.PescadosEFrutosDoMar}>Pescados e frutosDoMar</Option>
+                <Option value={grupos.EnlatadosEConservas}>Enlatados e conservas</Option>
+                <Option value={grupos.AvesEOvos}>Aves e ovos</Option>
+                <Option value={grupos.Laticínios}>Laticínios</Option>
+                <Option value={grupos.Panificados}>Panificados</Option>
+                <Option value={grupos.CarnesIndustrializadas}>Carnes industrializadas</Option>
+                <Option value={grupos.BebidasNãoAlcoólicasEInfusões}>Bebidas não alcoólicas e infusões</Option>
+                <Option value={grupos.BebidasAlcoólicas}>Bebidas alcoólicas</Option>
+                <Option value={grupos.ÓleosEGorduras}>Óleos e gorduras</Option>
+                <Option value={grupos.Miscelâneas}>Miscelâneas</Option>        
+            </Select>
+        
     )
 }

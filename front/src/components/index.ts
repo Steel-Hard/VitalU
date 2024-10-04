@@ -14,9 +14,10 @@ import FoodCard from "./FoodCard/FoodCard";
 import FoodInfo from "./FoodInfo/FoodInfo";
 import FoodCategorias from "./FoodCategorias/FoodCategorias";
 import { Message } from "./Message";
-
+import { GenderSelector } from "./GenSelect";
+import { Select,Option } from "./Select";
 export {
     Logo, LinhaSld, ParallaxComp, StlInput, FlexDiv, FlexDivCo,  FlexDivResp, FlexDivWe,Container,
     Campform, Calcimc, BtnStl, StlCaixa,Nav,FoodCard,StlformReverse, HiddenButton,TitleFoods,FoodInfo,
-    FoodCategorias,LoadingSpinner,Message
+    FoodCategorias,LoadingSpinner,Message,GenderSelector,Select,Option
 }
