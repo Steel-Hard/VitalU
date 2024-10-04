@@ -11,6 +11,7 @@ import {
 import  styled from 'styled-components'
 import { alimentosProps } from "../../types";
 import { Stlform } from "../FlexDiv/FlexDIv";
+import user from "../../services/user";
 
 interface alimentosData {
   data: alimentosProps;
@@ -63,7 +64,9 @@ export default function FoodCard(props: alimentosData) {
             </BtnStl>
         </Stlform>
 
-        <BtnStl>Adicionar</BtnStl>
+        <BtnStl onClick={() => {
+          user.adicionarTaco(props.data.id, props.data.pp_preparacao,count)
+        }}>Adicionar</BtnStl>
       </StlformReverse>
     </StlCaixa>
   );

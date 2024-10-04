@@ -1,15 +1,16 @@
 // toda interações favoritos e consumo
 
 import { Router } from "express";
+import {authenticateToken} from  '../middlewares/jwt'
 import UserProduct from "../controllers/UserConsumptionProduct";
 import UserTaco from "../controllers/UserConsumptionTaco";
 
 const routes = Router();
 
 
-routes.post("/", UserTaco.salvarConsumoTaco );
+routes.post("/",authenticateToken, UserTaco.salvarConsumoTaco );
 
-routes.post("/", UserProduct.salvarConsumoProduto );
+routes.post("/",authenticateToken, UserProduct.salvarConsumoProduto );
 
 
 
