@@ -3,30 +3,44 @@ import {Objetivos} from "../enum/Objetivos"
 import AlimentoDoDia from "./AlimentosDoDia"
 
 class Profile {
-    private id?: number
-    private nome?: string
-    private foto?: string
-    private email?: string
-    private genero?: string
-    private dataNascimento?: Date
+    private id?: number | undefined
+    private nome?: string | undefined
+    private foto?: string | undefined
+    private email?: string | undefined
+    private genero?: string | undefined
+    private dataNascimento?: Date | undefined
 
     private alimentosConsumidos: AlimentoDoDia[] = []
 
-    private altura?: number
-    private peso?: number
-    private objetivoPeso?: Objetivos
+    private altura?: number | undefined
+    private peso?: number | undefined
+    private objetivoPeso?: Objetivos | undefined
 
     // Fazer esse constructor entrar com um dado do Backend
     constructor() {
-        this.id = 1
-        this.nome = 'Usuário'
         this.foto = 'https://cdn.icon-icons.com/icons2/1465/PNG/512/265womanrunning2_100534.png'
-        this.email = "usuario@email.com"
-        this.genero = "Masculino"
-        this.dataNascimento = new Date(2000, 1, 1)
-        this.altura = 175
-        this.peso = 70
-        this.objetivoPeso = Objetivos.manterPeso
+    }
+
+    fromJson = (json: any) => {
+        this.nome = json.nome
+        this.email = json.email
+        this.genero = json.genero
+        this.dataNascimento = new Date(json.dataNascimento)
+        this.altura = json.altura
+        this.peso = json.peso
+        switch (json.objetivoPeso) {
+            case "Ganhar Peso":
+                this.objetivoPeso = Objetivos.ganharPeso
+                break
+            case "Manter Peso":
+                this.objetivoPeso = Objetivos.manterPeso
+                break
+            case "Perder Peso":
+                this.objetivoPeso = Objetivos.perderPeso
+                break
+            default:
+                this.objetivoPeso = undefined
+        }
     }
 
     public calcularIMC = () => {
@@ -48,7 +62,7 @@ class Profile {
     public getGenero = (): string | undefined => this.genero
     public getDataNascimento = (): string => {
         if (this.dataNascimento) return this.dataNascimento.toLocaleDateString()
-            return "Data de nascimento não disponível"
+            return ""
     }
     public getAlimentosConsumidos = (): AlimentoDoDia[] => this.alimentosConsumidos
     public getAltura = (): number | undefined => this.altura
