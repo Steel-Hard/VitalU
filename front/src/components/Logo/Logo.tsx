@@ -1,4 +1,4 @@
-import { FlexDiv } from "../FlexDiv/FlexDIv";
+import { FlexDiv } from "../FlexDiv/FlexDiv";
 
 interface LogoProps{
  

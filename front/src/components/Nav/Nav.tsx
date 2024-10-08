@@ -11,3 +11,16 @@ export const Nav = styled.div`
     justify-content: center;
 
 `;
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function Navegacao({children}:any){
+    return(
+        <Nav>
+            {children}
+        </Nav>
+    )
+
+
+
+}

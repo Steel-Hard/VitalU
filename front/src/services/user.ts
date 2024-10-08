@@ -1,8 +1,22 @@
 import { userInteraction } from "./api";
 import { TimeStamp } from "../utils/obterTempo";
+import { obterDataNascimento } from "../utils/calcularDatas";
 
 export default new class User {
     
+    async inserirDados(altura:number,peso:number,genero:string,idade:number,objetivos:string){
+        const data_nasc =  obterDataNascimento(idade);
+        await userInteraction.post("/user/dados",{altura, peso, genero, objetivos, data_nasc })
+        .then((res) => {
+            console.log(res.data)
+
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+     
+
     async obterDados() {
         try {
             const res = await userInteraction.get("/user/obter");

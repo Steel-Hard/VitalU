@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const Select = styled.select`
   padding: 10px 15px;
-  margin: 20px;
+
   font-size: 14px;
   color: white;
   background-color: rgb(67, 170, 132); 
