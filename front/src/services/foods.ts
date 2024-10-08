@@ -48,4 +48,5 @@ class Foods{
         })
     }
 }
+
 export default new Foods;

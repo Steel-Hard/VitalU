@@ -2,22 +2,27 @@ import Profile from "../class/Profile"
 import css from "../styles/perfilPage.module.css"
 import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
-import Alimento from "../class/Alimento"
-import AlimentoDoDia from "../class/AlimentosDoDia"
 import { LinhaSld } from "../components/index"
+
+import user from "../services/user"
+import { useEffect, useState } from "react"
+
 
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
     const dataAtual = new Date()
+    const [usuario, setUsuario] = useState<Profile>(new Profile())
 
-    // variaveis de teste
-    const usuario = new Profile()
-    const alimentoDoDia1: AlimentoDoDia = new AlimentoDoDia(new Alimento("Maçã"), 1, new Date("2021-10-10 08:14:12"))
-    const alimentoDoDia2: AlimentoDoDia = new AlimentoDoDia(new Alimento("Banana"), 2, new Date("2021-10-10 12:30:00"))
-    const alimentoDoDia3: AlimentoDoDia = new AlimentoDoDia(new Alimento("Barra de cereal"), 3, new Date("2021-10-10 18:03:42"))
-    usuario.adicionarAlimentoConsumido(alimentoDoDia1)
-    usuario.adicionarAlimentoConsumido(alimentoDoDia2)
-    usuario.adicionarAlimentoConsumido(alimentoDoDia3)
+    async function obterUsuario() {
+        const res = await user.obterDados()
+        const usuarioDados = new Profile()
+        usuarioDados.fromJson(res.dados)
+        setUsuario(usuarioDados)
+    }
+
+    useEffect(() => {
+        obterUsuario()
+    }, [])
 
     return (
         <>
@@ -66,7 +71,7 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>IMC:</label>
-                            <p>{usuario.calcularIMC().toFixed(1)}</p>
+                            <p>{usuario.calcularIMC()}</p>
                         </div>
                         <div>
                             <label>Objetivo:</label>
@@ -102,7 +107,7 @@ export default function Perfil() {
                         </div>
                     </div>
                     <div className={css.rodape}>
-                        <button>ADICIONAR ALIMENTO</button>
+                        <button onClick={obterUsuario}>ADICIONAR ALIMENTO</button>
                     </div>
                 </div>
             </div>

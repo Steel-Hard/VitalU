@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import UserType from '../types/user';
 
 dotenv.config();
 
@@ -96,17 +97,38 @@ class User {
         }
     }
     //autenticada para dados
-    public async obterDados(req:Request,res:Response): Promise<Response>{
-        const {id} = res.locals
-
-        try{
-            const buscar = await pool.query(`SELECT * FROM User_Dados WHERE User_Default_Id = $1`,[id]);
-            
-            return res.status(200).json({"dados": buscar.rows})
-        }catch(err){
-            return res.status(401).json({err: err});
+    public async obterDados(req: Request, res: Response): Promise<Response> {
+        const { id } = res.locals;
+    
+        try {
+            const [userDefaultResult, userDadosResult] = await Promise.all([
+                pool.query(`SELECT * FROM User_Default WHERE Id = $1`, [id]),
+                pool.query(`SELECT * FROM User_Dados WHERE User_Default_Id = $1`, [id])
+            ]);
+    
+            if (userDefaultResult.rowCount === 0 || userDadosResult.rowCount === 0) {
+                return res.status(404).json({ error: "Usuário não encontrado" });
+            }
+    
+            const { nome, email } = userDefaultResult.rows[0];
+            const { genero, data_nasc, altura, peso, obj_peso } = userDadosResult.rows[0];
+    
+            const userDados: UserType = {
+                nome,
+                email,
+                genero,
+                dataNascimento: data_nasc,
+                altura,
+                peso,
+                objetivoPeso: obj_peso
+            };
+    
+            return res.status(200).json({ dados: userDados });
+    
+        } catch (err) {
+            console.error("Erro ao obter dados do usuário:", err);
+            return res.status(500).json({ error: "Erro interno no servidor" });
         }
-
     }
 
     public async add_Fav(req: Request, res: Response): Promise<Response> {

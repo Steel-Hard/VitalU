@@ -1,0 +1,23 @@
+import { userInteraction } from "./api";
+import { TimeStamp } from "../utils/obterTempo";
+
+export default new class User {
+    
+    async obterDados() {
+        try {
+            const res = await userInteraction.get("/user/obter");
+            const user = res.data;
+            return user;
+        } catch (err) {
+            console.error('Erro ao buscar o usuário:', err);
+            throw err;
+        }
+    }
+
+    async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
+        const data = TimeStamp();
+        await userInteraction.post("/consume/taco", { taco_id: tacoId, data_consumo: data, prep_id: prepId, quantidade: quantidade })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+    }
+}

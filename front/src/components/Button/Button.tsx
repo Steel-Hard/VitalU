@@ -29,9 +29,9 @@ export const HiddenButton = styled(BtnStl)<{visible:boolean}>`
 `
 
 interface BtnProps{
-  conteudo?: string;
+
   height?: string;
   width?: string;
-  link?:string;
+ 
 }
 
