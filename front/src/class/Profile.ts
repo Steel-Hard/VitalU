@@ -25,7 +25,7 @@ class Profile {
         this.nome = json.nome
         this.email = json.email
         this.genero = json.genero
-        this.dataNascimento = new Date(json.dataNascimento)
+        if (json.dataNascimento) this.dataNascimento = new Date(json.dataNascimento)
         this.altura = json.altura
         this.peso = json.peso
         switch (json.objetivoPeso) {
