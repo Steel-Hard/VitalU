@@ -1,43 +1,38 @@
-import { StlCaixa, BtnStl, StlInput, FlexDiv } from "../components/index";
+import {
+  StlCaixa,
+  BtnStl,
+  StlInput,
+  FlexDiv,
+  SelectInBox,
+  Option,
+} from "../components/index";
 
 export function CadastroAlimento() {
   return (
     <>
       <StlCaixa direction="row" width="50%" jcont="center">
         <StlInput
-          placeholder="Alimento"
+          placeholder="Nome do alimento"
           height="30px"
           width="70%"
-          marginL="1%"
-          marginR="1%"
+          marginL="0.5%"
+          marginR="0.5%"
         ></StlInput>
         <StlInput
           placeholder="Qtd"
           height="30px"
           width="20%"
-          marginL="1%"
-          marginR="1%"
+          marginL="0.5%"
+          marginR="0.5%"
         />
 
-        <select
-          name="Unidade"
-          margin-top="10px"
-          margin-bottom="10px"
-          border-radius="5px"
-        >
-          <option value="">Unidade (un)</option>
-          <option value="kg">Quilograma (kg)</option>
-          <option value="grama">Grama (g)</option>
-          <option value="litro">Litro (l)</option>
-          <option value="ml">Milititro (ml)</option>
-        </select>
-        <StlInput
-          placeholder="Uni p/ porção"
-          height="30px"
-          width="60%"
-          marginL="1%"
-          marginR="1%"
-        />
+        <SelectInBox name="Unidade">
+          <Option value="">Unidade (un)</Option>
+          <Option value="kg">Quilograma (kg)</Option>
+          <Option value="grama">Grama (g)</Option>
+          <Option value="litro">Litro (l)</Option>
+          <Option value="ml">Milititro (ml)</Option>
+        </SelectInBox>
       </StlCaixa>
       <StlCaixa direction="row" width="50%" jcont="center">
         <FlexDiv direction="column" margin="15px">
