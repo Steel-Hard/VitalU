@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev ./src/index.ts"
+    "dev": "ts-node-dev ./src/index.ts",
+    "criar":"ts-node ./src/bd/criar",
+    "inserir": "ts-node ./src/bd/inserir"
   },
   "keywords": [],
   "author": "",

@@ -1,20 +1,26 @@
-import { Response, NextFunction } from 'express';
-import { User, RequestWithUser } from '../types';
+import { Request,Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
 
 
 const jwtSecret = process.env.JWT_SECRET || 'default-secret';
 
-export function authenticateToken(req: RequestWithUser, res: Response, next: NextFunction) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+export function authenticateToken(req: Request, res: Response, next: NextFunction) {
+    const authHeader:any =  req.headers.authorization;
+    
+    try{
+        const [,token] = authHeader.split(" ");
+        const decoded = <any>jwt.verify(token, jwtSecret as string);
+        if(!decoded) {
+            res.status(401).json({"err":"Não Autorizado"});
+        }else{
+            res.locals = decoded;
+        }
 
-    if (token == null) return res.sendStatus(401);
+    }catch(err){
+        return res.status(401).send({"err":"Não Autorizado"});
+    }
 
-    jwt.verify(token, jwtSecret, (err, user) => {
-        if (err) return res.sendStatus(403);
-
-        req.user = user as User;
-    });
+    return next();
+    
 };

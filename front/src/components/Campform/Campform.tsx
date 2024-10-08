@@ -1,22 +1,7 @@
-// interface CampformProps{
-//     label: string,
-//     state:any,
-//     funcState:any
-// }
-
 import { FlexDiv } from "../FlexDiv/FlexDIv";
 import { StlInput } from "../Inputs/Input";
 
 
-// export default function Campform(props:CampformProps){
-//     return(
-//         <div>
-//             <label>{props.label}</label>
-//             <input value= {props.state} onChange={(evt)=>props.funcState(evt.target.value)}/>
-            
-//         </div>
-//     )    
-// }
 
 interface CampformProps { 
     label: string;
@@ -34,7 +19,7 @@ export default function Campform(props: CampformProps) {
     return (
         <FlexDiv>
             <label>{props.label}</label>
-            <StlInput
+            <StlInput height="50px"
                 type={props.type || 'text'} // Define o tipo de input (number, text, etc.)
                 value={props.state}
                 onChange={handleChange}

@@ -1,9 +1,12 @@
 //Página de apresentação
+import { LinhaSld,ParallaxComp } from "../components/index"
 
-import ParallaxComp from "../components/Parallax/Parallax"
 export function Welcome(){
     return(
-        <ParallaxComp/>
+        <>
+            <LinhaSld/>
+            <ParallaxComp/>
+        </>
     )
 
 }

@@ -1,19 +1,25 @@
 import styled from 'styled-components'
 
+interface FlexProps{
+  width?: string;
+  height?: string;
+  margin?: string;
+  direction?: string;
+  bgColor?: string;
+  gap?: string;
+}
 
 
-export const FlexDiv = styled.div`
+export const FlexDiv = styled.div<FlexProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-
-`
-export const FlexDivLogo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-
+    flex-direction: ${({direction}) => direction? direction: 'unset'};
+    width: ${({width}) => width? width:'auto'};
+    height: ${({height}) => height? height: 'auto'};
+    margin: ${({margin}) => margin? margin:margin};
+    background-color: ${({bgColor}) => bgColor? bgColor:'transparent'};
+    gap: ${({gap}) => gap? gap:'0px'}
 `
 
 
@@ -24,7 +30,6 @@ export const FlexDivCo = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
-
 `
 export const FlexDivResp = styled.div`
     display: flex;
@@ -43,3 +48,47 @@ export const FlexDivWe = styled.div`
     width: 100%;
     height: 100%;
     `
+
+export const Container = styled.div`
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; // Mantido no topo
+  width: 100%;
+  box-sizing: border-box; 
+`;
+
+export const Stlform = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  gap: 20px;
+  padding: 5px;
+
+
+  @media (max-width: 769px) {
+    flex-direction: row;
+
+  }
+`
+export const StlformReverse = styled.div`
+  display: flex;
+  width: 100%;
+  height:100%;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 30px;
+  margin: 0;
+ 
+
+  @media (max-width: 769px) {
+    flex-direction: column;
+
+  }
+`
+;
+;

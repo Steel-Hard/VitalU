@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { routes } from "./controllers";
+import routes  from "./routes";
 
 dotenv.config();
 
@@ -15,10 +15,10 @@ app.use(express.json());
 //aceita requisição de outras origens
 app.use(cors());
 
+app.use(routes);
 app.listen(PORT, () => {
     console.log("Rodando na porta ", PORT)
 });
 
-app.use(routes);
 
 export default app;

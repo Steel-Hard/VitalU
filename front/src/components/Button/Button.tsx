@@ -22,19 +22,16 @@ export const BtnStl = styled.button<BtnProps>`
   }
 `;
 
+//botão invisivel para manter espaço
+export const HiddenButton = styled(BtnStl)<{visible:boolean}>`
+  visibility: ${(props) => props.visible ? 'visible': 'hidden'};
+  
+`
+
 interface BtnProps{
-  conteudo?: string;
+
   height?: string;
   width?: string;
-  link?:string;
+ 
 }
 
-function Btn(props:BtnProps) {
-  return (
-    <>
-      <a href={props.link}><BtnStl height={props.height} width={props.width}>{props.conteudo}</BtnStl></a>
-    </>
-  );
-}
-
-export default Btn;

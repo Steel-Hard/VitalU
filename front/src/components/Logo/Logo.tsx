@@ -1,11 +1,16 @@
-import { FlexDivLogo } from "../FlexDiv/FlexDIv";
-import logo from '../../assets/logor.svg'
+import { FlexDiv } from "../FlexDiv/FlexDIv";
 
-export function Logo(){
+interface LogoProps{
+ 
+    height?: string;
+    width?: string;
+}
+
+export function Logo(props:LogoProps){
     return(
-        <FlexDivLogo>
-            <img className="logoapp" src={logo}/>
-        </FlexDivLogo>
+        <FlexDiv margin="20px">
+            <img className="logoapp" height={props.height} width={props.width} src='./logo.png'/>
+        </FlexDiv>
     )
 
 }

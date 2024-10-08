@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+}
 
 body {
   margin: 0;
@@ -7,11 +12,8 @@ body {
   place-items: center;
   min-width: 100%;
   min-height: calc(100vh - 40px);
-  background-color: #E1E1E1;
-  background-image: url("../public/backgroundf3.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #E5DCD9;
+
 }
 
 #root{
@@ -23,9 +25,19 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+@font-face {
+  font-family: 'michrome';
+  src: url('./assets//fonts/mich.ttf');
+}
+.title_default{
+  color: #31aa88;
 
-.logoapp{
- 
+}
+.title{
+  color: #31aa88;
+  font-size: 100px;
+  font-family: 'michrome';
+  font-weight: bold;
 }
 
 .links{
@@ -35,3 +47,4 @@ body {
 a{
   color: rgb(67, 170, 132);
 }
+

@@ -6,8 +6,9 @@ export const StlCaixa = styled.div<CaixaProps>`
   background-color: white;
   box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: ${({direction}) => direction? direction: 'column'};
+  justify-content: ${({jContent}) => jContent? jContent:'flex-start'};
+  border-radius: ${({radius})=> radius? '150px 150px 25px 25px' : '0px'};
   padding:20px;
   align-items: center;
   margin: 20px;
@@ -29,6 +30,9 @@ export const StlCaixa = styled.div<CaixaProps>`
 interface CaixaProps{
   height?: string;
   width?: string;
-  smlWidth?:string
+  smlWidth?:string;
+  jContent?:string;
+  radius?: boolean;
+  direction?:string;
 
 }
