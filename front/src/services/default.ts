@@ -8,7 +8,7 @@ class Auth{
         .then((res) =>{
             console.log(res.data);
             //retorna o status da chamada ao usuario
-            fun(res.data.message);
+            this.login(email,senha);
         })
         .catch((err) => {
             fun(err.response.data.error);
