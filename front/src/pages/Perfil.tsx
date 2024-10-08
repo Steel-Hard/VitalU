@@ -58,7 +58,7 @@ export default function Perfil() {
                         <div className={css.identificacao}>
                             <div>
                                 {errorNome ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
-                                {errorNome ? <p></p> : <p>{usuario.getEmail()}</p>}
+                                {errorEmail ? <p></p> : <p>{usuario.getEmail()}</p>}
                             </div>
                             <img
                                 src={config}
