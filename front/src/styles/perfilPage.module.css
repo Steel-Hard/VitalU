@@ -166,6 +166,11 @@
     background-color: #2D865B;
 }
 
+.error {
+    color: #bbb;
+    font-weight: 300;
+}
+
 @media (max-width: 960px) {
     .perfil {
         width: 100%;

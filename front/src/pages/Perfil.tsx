@@ -12,6 +12,13 @@ export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
     const dataAtual = new Date()
     const [usuario, setUsuario] = useState<Profile>(new Profile())
+    const [errorNome, setErrorNome] = useState<boolean>(false)
+    const [errorEmail, setErrorEmail] = useState<boolean>(false)
+    const [errorDataNascimento, setErrorDataNascimento] = useState<boolean>(false)
+    const [errorGenero, setErrorGenero] = useState<boolean>(false)
+    const [errorAltura, setErrorAltura] = useState<boolean>(false)
+    const [errorPeso, setErrorPeso] = useState<boolean>(false)
+    const [errorObjetivo, setErrorObjetivo] = useState<boolean>(false)
 
     async function obterUsuario() {
         const res = await user.obterDados()
@@ -20,13 +27,28 @@ export default function Perfil() {
         setUsuario(usuarioDados)
     }
 
+    function validarDados() {
+        if (usuario.getNome() === "") setErrorNome(true)
+        if (usuario.getEmail() === "") setErrorEmail(true)
+        if (usuario.getDataNascimento() === "") setErrorDataNascimento(true)
+        if (usuario.getGenero() === undefined) setErrorGenero(true)
+        if (usuario.getAltura() === undefined) setErrorAltura(true)
+        if (usuario.getPeso() === undefined) setErrorPeso(true)
+        if (usuario.getObjetivoPeso() === undefined) setErrorObjetivo(true)
+    }
+
+    function teste() {
+        validarDados()
+        console.log(usuario.getGenero())
+    }
+
     useEffect(() => {
         obterUsuario()
     }, [])
 
     return (
         <>
-            <LinhaSld/>
+            <LinhaSld />
             <div className={css.main}>
                 <div className={css.perfil}>
                     <div>
@@ -35,13 +57,14 @@ export default function Perfil() {
                         </div>
                         <div className={css.identificacao}>
                             <div>
-                                <strong>{usuario.getNome()}</strong>
-                                <p>{usuario.getEmail()}</p>
+                                {errorNome ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
+                                {errorEmail ? <p></p> : <p>{usuario.getEmail()}</p>}
                             </div>
                             <img
                                 src={config}
                                 className={css.configuracoes}
-                                onClick={() => window.location.href = "./perfil/config"}
+                                // onClick={() => window.location.href = "./perfil/config"}
+                                onClick={teste}
                             />
                         </div>
                     </div>
@@ -50,24 +73,20 @@ export default function Perfil() {
                 <div className={css.informacoes}>
                     <div className={css.info}>
                         <div>
-                            <label>Email:</label>
-                            <p>{usuario.getEmail()}</p>
+                            <label>Data de Nascimento:</label>
+                            {errorDataNascimento ? <p className={css.error}>Não registrada</p> : <p>{usuario.getDataNascimento()}</p>}
                         </div>
                         <div>
                             <label>Genêro:</label>
-                            <p>{usuario.getGenero()}</p>
-                        </div>
-                        <div>
-                            <label>Data de Nascimento:</label>
-                            <p>{usuario.getDataNascimento()}</p>
+                            {errorGenero ? <p className={css.error}>Não registrado</p> : <p>{usuario.getGenero()}</p>}
                         </div>
                         <div>
                             <label>Altura:</label>
-                            <p>{usuario.getAltura()}</p>
+                            {errorAltura ? <p className={css.error}>Não registrada</p> : <p>{usuario.getAltura()}</p>}
                         </div>
                         <div>
                             <label>Peso:</label>
-                            <p>{usuario.getPeso()}</p>
+                            {errorPeso ? <p className={css.error}>Não registrado</p> : <p>{usuario.getPeso()}</p>}
                         </div>
                         <div>
                             <label>IMC:</label>
@@ -75,7 +94,7 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>Objetivo:</label>
-                            <p>{usuario.getObjetivoPeso()}</p>
+                            {errorObjetivo ? <p className={css.error}>Não registrado</p> : <p>{usuario.getObjetivoPeso()}</p>}
                         </div>
                     </div>
                     <hr />

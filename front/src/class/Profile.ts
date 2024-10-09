@@ -22,25 +22,7 @@ class Profile {
       "https://cdn.icon-icons.com/icons2/1465/PNG/512/265womanrunning2_100534.png";
   }
 
-  fromJson = (json: any) => {
-    this.nome = json.nome;
-    this.email = json.email;
-    this.genero = json.genero;
-    this.dataNascimento = new Date(json.dataNascimento);
-    this.altura = json.altura;
-    this.peso = json.peso;
-    switch (json.objetivoPeso) {
-      case "Ganhar Peso":
-        this.objetivoPeso = Objetivos.ganharPeso;
-        break;
-      case "Manter Peso":
-        this.objetivoPeso = Objetivos.manterPeso;
-        break;
-      case "Perder Peso":
-        this.objetivoPeso = Objetivos.perderPeso;
-        break;
-      default:
-        this.objetivoPeso = undefined;
+
     }
   };
 

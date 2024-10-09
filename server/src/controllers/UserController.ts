@@ -21,6 +21,7 @@ class User {
 
         try {
             // Implementação bcrypt
+
             const hashedPassword = await bcrypt.hash(passwd, saltRounds);
 
             await pool.query(
@@ -30,7 +31,6 @@ class User {
 
             return res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
         } catch (error) {
-            
             return res.status(500).json({ error: 'Erro ao cadastrar usuário' });
         }
 
@@ -96,7 +96,7 @@ class User {
             return res.status(401).json({ err: err })
         }
     }
-    //autenticada para dados
+
     public async obterDados(req: Request, res: Response): Promise<Response> {
         const { id } = res.locals;
     
@@ -105,13 +105,23 @@ class User {
                 pool.query(`SELECT * FROM User_Default WHERE Id = $1`, [id]),
                 pool.query(`SELECT * FROM User_Dados WHERE User_Default_Id = $1`, [id])
             ]);
+
+            console.log(userDefaultResult.rows[0]);
+            console.log(userDadosResult.rows[0]);
     
-            if (userDefaultResult.rowCount === 0 || userDadosResult.rowCount === 0) {
+            if (userDefaultResult.rowCount === 0) {
                 return res.status(404).json({ error: "Usuário não encontrado" });
             }
     
             const { nome, email } = userDefaultResult.rows[0];
-            const { genero, data_nasc, altura, peso, obj_peso } = userDadosResult.rows[0];
+            let genero, data_nasc, altura, peso, obj_peso
+            if (userDadosResult.rows[0] != undefined) {
+                if (userDadosResult.rows[0].genero != undefined) genero = userDadosResult.rows[0].genero
+                if (userDadosResult.rows[0].data_nasc != undefined) data_nasc = userDadosResult.rows[0].data_nasc
+                if (userDadosResult.rows[0].altura != undefined) altura = userDadosResult.rows[0].altura
+                if (userDadosResult.rows[0].peso != undefined) peso = userDadosResult.rows[0].peso
+                if (userDadosResult.rows[0].obj_peso != undefined) obj_peso = userDadosResult.rows[0].obj_peso
+            };
     
             const userDados: UserType = {
                 nome,
