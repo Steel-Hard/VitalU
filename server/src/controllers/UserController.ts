@@ -141,6 +141,7 @@ class User {
         }
     }
 
+
     public async add_Fav(req: Request, res: Response): Promise<Response> {
         const {id} = res.locals;
         const { tipo_alimento, alimento_id } = req.body;
