@@ -10,7 +10,7 @@ import {
 } from "../index";
 import  styled from 'styled-components'
 import { alimentosProps } from "../../types";
-import { Stlform } from "../FlexDiv/FlexDIv";
+import { Stlform } from "../FlexDiv/FlexDiv";
 import user from "../../services/user";
 
 interface alimentosData {

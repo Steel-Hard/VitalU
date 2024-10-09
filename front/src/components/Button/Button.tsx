@@ -10,7 +10,7 @@ export const BtnStl = styled.button<BtnProps>`
   text-align: center;
   height: ${({height})=>height?height:"auto"};
   width: ${({width})=>width?width:"auto"};
-  border-radius: 5px;
+  border-radius: 2px;
   &:active{
     transform: scale(0.95); //diminui um pouco
     box-shadow: 0 1px 1px #1a1616b5; //diminiu para efeito de pressão
