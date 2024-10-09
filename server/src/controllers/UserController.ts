@@ -62,7 +62,7 @@ class User {
 
             if (match) {
                 // Gerar o token
-                const token = jwt.sign({ email: mail, id: user_auth }, jwtSecret, { expiresIn: '1h' });
+                const token = jwt.sign({ email: mail, id: user_auth }, jwtSecret, { expiresIn: '3h' });
 
                 return res.status(200).json({ message: 'Login bem-sucedido', token });
             } else {
@@ -88,8 +88,8 @@ class User {
                 return res.status(200).json({ message: "Dados Salvos Com Sucesso"})
             } else {
                 const update = await pool.query(`
-                    UPDATE User_Dados SET Altura = $1,Peso = $2,Genero= $3,Obj_Peso= $4  WHERE User_Default_Id = $5
-                    `, [altura, peso, genero, objetivos, id])
+                    UPDATE User_Dados SET Altura = $1,Peso = $2,Genero= $3,Obj_Peso= $4, Data_Nasc = $5  WHERE User_Default_Id = $6
+                    `, [altura, peso, genero, objetivos,data_nasc, id])
                 return res.status(200).json({ message: "Dados Atualizados Com Sucesso"})
             }
         } catch (err) {

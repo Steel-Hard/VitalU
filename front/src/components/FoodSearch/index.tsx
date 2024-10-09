@@ -1,52 +1,84 @@
-import { useEffect,useContext  } from "react"
-import { LinhaSld, StlInput, Nav,FlexDivCo,FlexDiv, StlCaixa,FoodCard, FoodCategorias} from "../index"
-import foods from  '../../services/foods'
-import { SearchCtx } from "../../context/searchContext"
-export function FoodSearch(){
-    const {triger,alimentos,setAlimento,setTriger,query,setQuery} = useContext(SearchCtx)
-  
+import { useEffect, useContext } from "react";
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoSearchSharp,IoHome } from "react-icons/io5";
+import MesesDoAno from "../../enum/MesesDoAno";
+import {
+  LinhaSld,
+  StlInput,
+  FlexDiv,
+  StlCaixa,
+  FoodCard,
+  FoodCategorias,
+  Navegacao,
+} from "../index";
+import foods from "../../services/foods";
+import { SearchCtx } from "../../context/searchContext";
+import { Link } from "react-router-dom";
 
-    useEffect(() =>{
-        if(triger){
-            foods.pesquisar(query, setAlimento)
-            setTriger(false);
-        }
+export function FoodSearch() {
+  const { triger, alimentos, setAlimento, setTriger, query, setQuery } = useContext(SearchCtx);
+  const dataAtual = new Date();
+
+  useEffect(() => {
+    if (triger) {
+      foods.pesquisar(query, setAlimento);
+      setTriger(false);
+      setQuery("");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[triger])
+  }, [triger]);
 
-    
-    return(
-        <>
+  return (
+    <>
+      <LinhaSld />
+      <FlexDiv direction="column">
+        <FlexDiv direction="column">
+          <Navegacao>
+            <Link to="/perfil">
+              <IoHome size={50}/>
+            </Link>
+            <h3>
+              {dataAtual.getDate()} de {MesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}    
+            </h3>
+            <div>
+              <FaCalendarAlt  size={45}/>
+            </div>
+          </Navegacao>
 
-        <LinhaSld/>
-        <FlexDivCo>
-    <FlexDivCo>
-
-        <Nav>
-            <StlCaixa>10/10/1999</StlCaixa>
-        </Nav>
-            
-            <StlCaixa  direction="row">
-                <StlInput onChange={e => setQuery(e.target.value)} bcolor='#ffffff' width='60%' height='40px' placeholder='Pesquisa Alimento' />
-                <button onClick={() => {
-                    if(query.length === 0){
-                        return;
-                    }
-                    setTriger(true);
-                
-                }}>Pesquisa</button>
-            </StlCaixa>
-            <FlexDiv gap="20px" margin="20px">
-                <FoodCategorias/>
-            </FlexDiv>   
-
+          <StlCaixa direction="row" width="100%" radius="5px" jcont="space-between" height="50px">
+            <StlInput 
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              bcolor="#ffffff"
+              width="auto"
+              height="50px"
+              placeholder="Pesquisa Alimento"
+            />
+            <button style={{ background: 'transparent', border: 'none', flex: 1, height: '50px' }}
+              onClick={() => {
+                if (query.length === 0) {
+                  return;
+                }
+                setTriger(true);
+              }}
+            >
+              <IoSearchSharp />      
+            </button>
+          </StlCaixa>
+          <FlexDiv margin="20px">
+            <FoodCategorias />
+          </FlexDiv>
+        </FlexDiv>
         
-                           
-        </FlexDivCo>
-        {
-            alimentos ? alimentos.map((obj,i) => <FoodCard key={i} data={obj}/>) : <div>carregando</div>       
-        }
-    </FlexDivCo>
+        {alimentos.taco.length === 0 && alimentos.produto.length === 0 ? (
+          <div>Não Encontramos alimentos</div>
+        ) : (
+          <>
+            {alimentos.taco ? alimentos.taco.map((obj, i) => <FoodCard key={i} data={obj} />) : null}
+            {alimentos.produto ? alimentos.produto.map((obj, i) => <FoodCard key={i} data={obj} />) : null}
+          </>
+        )}
+      </FlexDiv>
     </>
-    )
+  );
 }

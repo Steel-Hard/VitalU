@@ -8,5 +8,5 @@ routes.post('/login', user.Login);
 routes.post('/dados',authenticateToken, user.determinarPerfil);
 routes.get("/obter",authenticateToken, user.obterDados);
 
-routes.post("/add.fav",user.add_Fav)
+routes.post("/favoritar",user.add_Fav)
 export default routes;

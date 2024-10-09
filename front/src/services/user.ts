@@ -3,6 +3,19 @@ import { TimeStamp } from "../utils/obterTempo";
 
 export default new class User {
     
+    async inserirDados(altura:number,peso:number,genero:string,data_nasc:string,objetivos:string){
+        console.log(data_nasc)
+        await userInteraction.post("/user/dados",{altura, peso, genero, objetivos, data_nasc })
+        .then((res) => {
+            console.log(res.data)
+
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+     
+
     async obterDados() {
         try {
             const res = await userInteraction.get("/user/obter");
@@ -15,9 +28,16 @@ export default new class User {
     }
 
     async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
+
         const data = TimeStamp();
         await userInteraction.post("/consume/taco", { taco_id: tacoId, data_consumo: data, prep_id: prepId, quantidade: quantidade })
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
     }
+    async adicionarProduto(produc_id:number, quantidade:number){
+        const data_consumo = TimeStamp();
+        await userInteraction.post("/consume/product/user", { produc_id, data_consumo,  quantidade })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+        }
 }

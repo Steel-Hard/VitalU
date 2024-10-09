@@ -5,7 +5,7 @@ class Foods{
     async pesquisar(query:string, fun:CallableFunction){
         userInteraction.post("/search/foods",{user_query:query})
         .then((res) => {
-            return fun(res.data.resposta);
+            return fun(res.data);
         })
         .catch((err) => {
             return console.log(err)
@@ -14,8 +14,7 @@ class Foods{
     async buscarCategoria(valor:number,fun:CallableFunction){
         userInteraction.post("/search/category", {n_categoria:valor})
         .then((res) => {
-            console.log(res.data.resposta)
-            fun(res.data.resposta);
+            fun(res.data);
         })
         .catch((err) => {
             return console.log(err)

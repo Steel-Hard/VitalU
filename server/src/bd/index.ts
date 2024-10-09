@@ -10,7 +10,7 @@ const pool = new Pool({
     port: 5432,
     host: 'localhost',
     user: 'postgres',
-    password: 'root',
+    password: '123',
     database: 'vitalu',
     ssl:false
 });
