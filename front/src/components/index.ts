@@ -21,7 +21,7 @@ import FoodInfo from "./FoodInfo/FoodInfo";
 import FoodCategorias from "./FoodCategorias/FoodCategorias";
 import { Message } from "./Message";
 import { GenderSelector } from "./GenSelect";
-import { Select, Option } from "./Select";
+import { Select, Option, SelectInBox } from "./Select";
 export {
   Logo,
   LinhaSld,
@@ -48,4 +48,5 @@ export {
   Select,
   Option,
   Navegacao,
+  SelectInBox,
 };

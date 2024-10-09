@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
   font-family: "Inter", sans-serif;
@@ -12,11 +12,10 @@ body {
   place-items: center;
   min-width: 100%;
   min-height: calc(100vh - 40px);
-  background-color: #E5DCD9;
-
+  background-color: #e5dcd9;
 }
 
-#root{
+#root {
   min-width: calc(100% - 40px);
   min-height: calc(100vh - 40px);
   padding: 20px;
@@ -26,34 +25,32 @@ body {
   flex-direction: column;
 }
 @font-face {
-  font-family: 'michrome';
-  src: url('./assets//fonts/mich.ttf');
-  font-family: 'rubik';
-  src: url('./assets//fonts/rubikMonoOne.ttf');
+  font-family: "michrome";
+  src: url("./assets//fonts/mich.ttf");
+  font-family: "rubik";
+  src: url("./assets//fonts/rubikMonoOne.ttf");
 }
-.title_default{
+.title_default {
   color: #31aa88;
-
 }
-.title{
+.title {
   color: #31aa88;
   font-size: 100px;
-  font-family: 'michrome';
+  font-family: "michrome";
   font-weight: bold;
 }
 
-.links{
+.links {
   color: rgb(67, 170, 132);
   margin-left: 4px;
 }
-a{
+a {
   color: rgb(67, 170, 132);
 }
-label{
-  font-family: 'rubik';
+label {
+  font-family: "rubik";
   font-size: small;
   font-weight: normal;
   text-align: start;
   align-self: self-start;
 }
-
