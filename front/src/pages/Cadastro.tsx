@@ -8,7 +8,16 @@ export function Cadastro() {
   const [senha,setSenha] = useState("");
   const [mensagem,setMensagem] = useState("");
   
+  const validarDados = (nome: string, email: string, senha: string) => {
+    if (!nome || !email || !senha) {
+      setMensagem("Todos os campos são obrigatórios.");
+    } else {
+      setMensagem(""); // Clear any previous messages
+      enviarDados();
+    }
+  };
 
+  
   const enviarDados = () =>{
     user.cadastro(nome,email,senha,setMensagem);    
   
@@ -24,9 +33,8 @@ export function Cadastro() {
         <StlInput onChange={e => setNome(e.target.value)} type="text" height="40px" width="80%" placeholder="Nome"/>
         <StlInput onChange={e => setEmail(e.target.value)} type="email" height="40px" width="80%" placeholder="E-mail"/>
         <StlInput onChange={e => setSenha(e.target.value)} type="password" height="40px" width="80%" placeholder="Senha"/>
-        <BtnStl onClick={enviarDados}  height="40px" width="80%">
+        <BtnStl onClick={() => validarDados(nome, email, senha)} height="40px" width="80%">
           Cadastrar
-          
         </BtnStl>
         <FlexDivResp>
           <Link to='/login'>Retornar ao login</Link>
