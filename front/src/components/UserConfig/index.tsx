@@ -4,12 +4,13 @@ import { useState } from "react";
 import { Select, Option, BtnStl, FlexDiv, GenderSelector, Campform, Message } from "../index";
 import { FatorAtividade, Objetivos } from "../../enum/Objetivos";
 import { CalculosMetabolicos } from "../../class/calculosmet";
+import { calcularIdade } from '../../utils/calcularDatas';
 
 export default function UserConfig() {
   const [dadosUsuario, setDadosUsuario] = useState({
     peso: 0,
     altura: 0, // altura em metros
-    idade: 0,
+    idade: "" ,
     sexo: "", // 'masculino' ou 'feminino'
     imc: "" as number | string,
     tmb: "" as number | string,
@@ -26,7 +27,7 @@ export default function UserConfig() {
 
   const verificarCamposNulos = () => {
     const { peso, altura, idade, sexo, fator } = dadosUsuario;
-    return !(peso === 0 || altura === 0 || idade === 0 || sexo === "" || fator === "");
+    return !(peso === 0 || altura === 0 || idade === "" || sexo === "" || fator === "");
   };
 
   return (
@@ -36,17 +37,18 @@ export default function UserConfig() {
           <Campform
             label="Peso (kg)"
             placeholder="Digite Seu Peso"
-            funcState={(value) => atualizarDadosUsuario("peso", value)}
+            funcState={(value: any) => atualizarDadosUsuario("peso", value)}
           />
           <Campform
             label="Altura (cm)"
             placeholder="Digite Sua Altura (cm)"
-            funcState={(value) => atualizarDadosUsuario("altura", value)}
+            funcState={(value: any) => atualizarDadosUsuario("altura", value)}
           />
           <Campform
-            label="Idade"
-            placeholder="Digite Sua Idade (anos)"
-            funcState={(value) => atualizarDadosUsuario("idade", value)}
+            label="Data De Nascimento"
+            type='date'
+            placeholder="Digite Sua Data De Nascimento"
+            funcState={(value: any) => atualizarDadosUsuario("idade", value)}
           />
         </FlexDiv>
         <FlexDiv direction="row" align="baseline"  gap="10px">
@@ -97,7 +99,7 @@ export default function UserConfig() {
               const { altura, peso, idade, sexo, fator,objetivo } = dadosUsuario;
               user.inserirDados(altura,peso,sexo,idade,objetivo);
               const imc = CalculosMetabolicos.imc(altura, peso);
-              const tmb = CalculosMetabolicos.basal(altura, peso, idade, sexo, fator);
+              const tmb = CalculosMetabolicos.basal(altura, peso, calcularIdade(idade), sexo, fator);
 
               atualizarDadosUsuario("imc", imc);
               atualizarDadosUsuario("tmb", tmb);

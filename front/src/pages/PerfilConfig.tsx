@@ -10,7 +10,7 @@ export function PerfilConfig(){
  
             </Nav>
             <h1>EDITAR PERFIL</h1>
-            <StlCaixa jContent="center" height='90%' width="70%">
+            <StlCaixa jcont="center" height='90%' width="70%">
                 <UserConfig />
             </StlCaixa>
         </>

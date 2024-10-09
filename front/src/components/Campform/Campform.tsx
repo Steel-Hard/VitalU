@@ -6,7 +6,7 @@ import { StlInput } from "../Inputs/Input";
 interface CampformProps { 
     label?:string;
     placeholder: string;
-    funcState: (value: number) => void; // Função que recebe um número ou string
+    funcState: CallableFunction;
     type?: string; // Tipo do input (pode ser 'number' ou 'text')
 }
 
@@ -21,7 +21,7 @@ export default function Campform(props: CampformProps) {
                     placeholder={props.placeholder}
                     height="50px"
                     type={props.type || 'text'} // Define o tipo de input (number, text, etc.)
-                    onChange={(e) => props.funcState(parseInt(e.target.value))}
+                    onChange={(e) => {props.funcState(e.target.value)}}
                     
                 />
 

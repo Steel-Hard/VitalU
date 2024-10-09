@@ -1,4 +1,4 @@
-import { FlexDiv,Select,Option } from "../index";
+import { Select,Option } from "../index";
 import { grupos } from "../../enum/grupos";
 import { useContext, useEffect } from "react";
 import { SearchCtx } from "../../context/searchContext";

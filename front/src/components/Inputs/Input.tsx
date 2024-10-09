@@ -9,6 +9,7 @@ interface InputProps {
 }
 
 export const StlInput = styled.input<InputProps>`
+  flex:auto;
   border: none;
   background-color: ${({ bcolor }) => (bcolor ? bcolor : "#c9c9c9")};
   text-align: center;

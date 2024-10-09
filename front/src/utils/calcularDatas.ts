@@ -14,14 +14,3 @@ export function calcularIdade(dataNascimento: Date | string): number {
   }
 // Exemplo de saída: 34 (depende da data atual)
 
-// Função que calcula a data de nascimento a partir da idade
-export function obterDataNascimento(idade: number): Date {
-    const hoje = new Date();
-    const anoNascimento = hoje.getFullYear() - idade;
-  
-    // Retorna a data de nascimento assumindo que o aniversário já ocorreu este ano
-    return new Date(anoNascimento, hoje.getMonth(), hoje.getDate());
-  }
-  
-//(dataNascimento.toISOString()) Exemplo de saída: "1990-10-08T00:00:00.000Z"
-  

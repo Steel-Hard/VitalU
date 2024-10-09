@@ -18,7 +18,7 @@ export function Cadastro() {
   return (
     <>
       <LinhaSld/>
-      <StlCaixa height="90%" width='300px' radius={true} >
+      <StlCaixa height="90%" width='300px' radius="150px 150px 25px 25px" >
         <Logo height="50px" width="auto" />
         <h1 className="title_default">Cadastro</h1>
         <StlInput onChange={e => setNome(e.target.value)} type="text" height="40px" width="80%" placeholder="Nome"/>

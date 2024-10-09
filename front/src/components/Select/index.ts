@@ -4,7 +4,7 @@ export const Select = styled.select<SelectProps>`
   padding: 10px 15px;
 
   font-size: 14px;
-  color: ${({ color }) => (color ? color : "white")};
+  color: ${({ color }) => (color ? color : "#black")};
   background-color: ${({ bcolor }) => (bcolor ? bcolor : "rgb(67, 170, 132)")};
   border: 2px solid #f0f0f0;
 

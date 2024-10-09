@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
+interface BtnProps{
+  height?: string;
+  width?: string;
+  bgColor?: string;
+ 
+}
+
 export const BtnStl = styled.button<BtnProps>`
-  background-color: rgb(67, 170, 132);
+  background-color: ${({bgColor}) => bgColor? bgColor:'rgb(67, 170, 132)'};
   border: none;
   box-shadow: 0 3px 2px #1a1616b5;
   font-size: larger;
@@ -27,11 +34,4 @@ export const HiddenButton = styled(BtnStl)<{visible:boolean}>`
   visibility: ${(props) => props.visible ? 'visible': 'hidden'};
   
 `
-
-interface BtnProps{
-
-  height?: string;
-  width?: string;
- 
-}
 

@@ -8,7 +8,7 @@ export const Nav = styled.div`
     margin-top: 30px;
     margin-bottom: 30px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
 `;
 

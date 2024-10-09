@@ -10,7 +10,7 @@ const routes = Router();
 
 routes.post("/",authenticateToken, UserTaco.salvarConsumoTaco );
 
-routes.post("/",authenticateToken, UserProduct.salvarConsumoProduto );
+routes.post("/user",authenticateToken, UserProduct.salvarConsumoProduto );
 
 
 

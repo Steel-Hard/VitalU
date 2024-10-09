@@ -24,14 +24,14 @@ const ParallaxComp = () => {
       </motion.div>
 
       <motion.div style={{ scale, y, opacity, marginTop: '20px', fontSize: 40, textAlign: 'center' }}>
-        <p>A plataforma que te auxilia na perda de peso</p>
+        <p>A plataforma que te auxilia no controle calórico</p>
       </motion.div>
 
       <img src='./foods.png'/>
 
       <motion.div style={{ scale: scale2, y, opacity: opacity2, textAlign: 'center' }}>
         <Stlform>
-          {["Controle suas calorias com facilidade e alcance seus objetivos!", "Seu IMC em menos de 60 segundos: fácil, rápido e ao seu alcance!", "Tenha mais praticidade no seu dia a dia"].map(text => (
+          {["Atinja seus objetivos!", "Seu IMC fácil, rápido e ao seu alcance!", "Tenha mais praticidade no seu dia a dia"].map(text => (
             <StlCaixa key={text} height='50px' smlWidth='80%'>
               <p>{text}</p>
             </StlCaixa>

@@ -14,7 +14,7 @@ export function Login() {
   return (
    <>
       <LinhaSld/>
-      <StlCaixa height="90%" width='300px' radius={true} >
+      <StlCaixa height="90%" width='300px' radius="150px 150px 25px 25px" >
         <Logo height="50px" width="auto" />
         <h1 className="title_default">Login</h1>
         <StlInput onChange={e => setEmail(e.target.value)} type="email" height="50px" width="80%" placeholder="E-mail"/>
