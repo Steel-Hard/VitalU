@@ -12,5 +12,8 @@ interface MessageProps{
 
 
 export const Message = styled(FlexDiv)<MessageProps>`
-   visibility: ${({visible}) => visible ? 'visible': 'hidden'}
+   visibility: ${({visible}) => visible ? 'visible': 'hidden'};
+   margin-top:10px;
+   color:grey;
+   font-weight: 575;
 `

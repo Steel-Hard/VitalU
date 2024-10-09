@@ -42,13 +42,13 @@ export function Cadastro() {
         <BtnStl onClick={() => validarDados(nome, email, senha)} height="40px" width="80%">
           Cadastrar
         </BtnStl>
+        <Message visible={mensagem ? true : false} height="30px">
+          {mensagem}
+        </Message>
         <FlexDivResp>
           <Link to='/login'>Retornar ao login</Link>
 
         </FlexDivResp>
-        <Message visible={mensagem ? true : false} height="30px">
-          {mensagem}
-        </Message>
       </StlCaixa>
     </>
   );
