@@ -18,7 +18,7 @@ export function Cadastro() {
     } else if (!email.includes('@') || email.length > 250) {
       setMensagem("Erro. E-mail com até 250 caracteres deve conter @.")
     } else {
-      setMensagem(""); // Clear any previous messages
+      setMensagem("Enviando dados..."); // Clear any previous messages
       enviarDados();
     }
   };
