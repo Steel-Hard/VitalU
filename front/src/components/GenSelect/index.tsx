@@ -46,9 +46,9 @@ interface ButtonProps {
 
 const Button = styled.button<ButtonProps>`
   padding: 10px 20px;
-  background-color: ${({ isSelected }) => (isSelected ? '#007bff' : '#f0f0f0')};
+  background-color: ${({ isSelected }) => (isSelected ? ' rgb(67, 170, 132)' : '#f0f0f0')};
   color: ${({ isSelected }) => (isSelected ? 'white' : 'black')};
-  border: 2px solid ${({ isSelected }) => (isSelected ? '#007bff' : '#ccc')};
+  border: 2px solid ${({ isSelected }) => (isSelected ? '#AA5139' : '#ccc')};
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;

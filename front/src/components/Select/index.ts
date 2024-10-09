@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Select = styled.select<SelectProps>`
   padding: 10px 15px;
-  margin: 20px;
+
   font-size: 14px;
   color: ${({ color }) => (color ? color : "white")};
   background-color: ${({ bcolor }) => (bcolor ? bcolor : "rgb(67, 170, 132)")};

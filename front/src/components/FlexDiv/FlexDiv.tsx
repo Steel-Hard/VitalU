@@ -4,6 +4,7 @@ interface FlexProps{
   width?: string;
   height?: string;
   margin?: string;
+  align?:string;
   direction?: string;
   bgColor?: string;
   gap?: string;
@@ -12,25 +13,25 @@ interface FlexProps{
 
 export const FlexDiv = styled.div<FlexProps>`
     display: flex;
-    align-items: center;
+    align-items: ${({align}) => align? align:'center'};
     justify-content: center;
     flex-direction: ${({direction}) => direction? direction: 'unset'};
     width: ${({width}) => width? width:'auto'};
     height: ${({height}) => height? height: 'auto'};
     margin: ${({margin}) => margin? margin:margin};
     background-color: ${({bgColor}) => bgColor? bgColor:'transparent'};
-    gap: ${({gap}) => gap? gap:'0px'}
+    gap: ${({gap}) => gap? gap:'0px'};
+
+    @media (max-width: 1100px){
+      flex-direction: column;
+
+
+
+    }
 `
 
 
-export const FlexDivCo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-`
+
 export const FlexDivResp = styled.div`
     display: flex;
     align-items: center;
