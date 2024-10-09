@@ -3,7 +3,6 @@ import {defaultInteraction} from './api'
 class Auth{
     //realiza cadastro passando parametros definido no backend
     async cadastro(nome:string,email:string,senha:string, fun:CallableFunction){
-        
         console.log("chegei")
         await defaultInteraction.post("/user/cadastro", {mail:email, passwd:senha, nome:nome})
         .then((res) =>{
