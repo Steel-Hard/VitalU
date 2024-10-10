@@ -19,6 +19,8 @@ export const StlCaixa = styled.div<CaixaProps>`
   @media (max-width: 768px) {
     width: 80%;
     padding: 15px;
+    flex-direction: ${({smlDir}) => smlDir? smlDir: null};
+   
   }
 
   @media (max-width: 480px) {
@@ -31,6 +33,7 @@ interface CaixaProps {
   height?: string;
   width?: string;
   smlWidth?: string;
+  smlDir?: string;
   radius?: string;
   direction?: string;
   gap?: string;

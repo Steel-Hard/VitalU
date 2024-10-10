@@ -5,6 +5,7 @@ interface FlexProps{
   height?: string;
   margin?: string;
   align?:string;
+  jContent?:string;
   direction?: string;
   bgColor?: string;
   gap?: string;
@@ -14,7 +15,7 @@ interface FlexProps{
 export const FlexDiv = styled.div<FlexProps>`
     display: flex;
     align-items: ${({align}) => align? align:'center'};
-    justify-content: center;
+    justify-content: ${({jContent}) => jContent ? jContent: 'center'};
     flex-direction: ${({direction}) => direction? direction: 'unset'};
     width: ${({width}) => width? width:'auto'};
     height: ${({height}) => height? height: 'auto'};

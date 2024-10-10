@@ -23,13 +23,11 @@ class Foods{
     }
     async cadastrarProduto(nome:string,
         desc:string,
-        tamanho_porcao:number,
-        uni_tamanho_porcao:string,
         quant_por_porcao:number,
         uni_quant_por_porcao:string,
         cal:number,
-        proteina:number,
         carboidrato:number,
+        proteina:number,
         acucares:number,
         fibras:number,
         gordura_total:number,
@@ -38,7 +36,7 @@ class Foods{
         calcio:number,
         sodio:number)
     {
-        userInteraction.post("/foods/cadastro",{nome:nome,descricao:desc,tamanho_porcao:tamanho_porcao,unidade_tamanho_porcao:uni_tamanho_porcao,quantidade_por_porcao:quant_por_porcao,unidade_quantidade_por_porcao:uni_quant_por_porcao,calorias:cal,proteina:proteina,carboidrato:carboidrato,acucares:acucares,fibras:fibras,gordura_total:gordura_total,gordura_saturada:gordura_saturada,gordura_trans:gordura_trans,calcio:calcio,sodio:sodio})
+        userInteraction.post("/foods/cadastro",{nome:nome,descricao:desc,tamanho_porcao:0,unidade_tamanho_porcao:0,quantidade_por_porcao:quant_por_porcao,unidade_quantidade_por_porcao:uni_quant_por_porcao,calorias:cal,proteina:proteina,carboidrato:carboidrato,acucares:acucares,fibras:fibras,gordura_total:gordura_total,gordura_saturada:gordura_saturada,gordura_trans:gordura_trans,calcio:calcio,sodio:sodio})
         .then((res) => {
             return console.log(res);
         })

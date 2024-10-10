@@ -10,6 +10,7 @@ import {
   FoodCard,
   FoodCategorias,
   Navegacao,
+  BtnStl,
 } from "../index";
 import foods from "../../services/foods";
 import { SearchCtx } from "../../context/searchContext";
@@ -49,6 +50,7 @@ export function FoodSearch() {
             <StlInput 
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={e => {if(e.key == 'Enter') setTriger(true)}}
               bcolor="#ffffff"
               width="auto"
               height="50px"
@@ -62,16 +64,19 @@ export function FoodSearch() {
                 setTriger(true);
               }}
             >
-              <IoSearchSharp />      
+              <IoSearchSharp  size={30}/>      
             </button>
           </StlCaixa>
-          <FlexDiv margin="20px">
+          <FlexDiv margin="20px" gap="20px">
             <FoodCategorias />
+            <Link to="/cadastro/alimento">
+              <BtnStl>Inserir Novo Alimento</BtnStl>
+            </Link>
           </FlexDiv>
         </FlexDiv>
         
         {alimentos.taco.length === 0 && alimentos.produto.length === 0 ? (
-          <div>Não Encontramos alimentos</div>
+          <div>Não foi possivel encontrar alimento.</div>
         ) : (
           <>
             {alimentos.taco ? alimentos.taco.map((obj, i) => <FoodCard key={i} data={obj} />) : null}
