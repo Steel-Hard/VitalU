@@ -6,6 +6,7 @@ import { LinhaSld } from "../components/index"
 
 import user from "../services/user"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
 export default function Perfil() {
@@ -24,6 +25,7 @@ export default function Perfil() {
         const res = await user.obterDados()
         const usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
+    
         setUsuario(usuarioDados)
     }
 
@@ -35,11 +37,6 @@ export default function Perfil() {
         if (usuario.getAltura() === undefined) setErrorAltura(true)
         if (usuario.getPeso() === undefined) setErrorPeso(true)
         if (usuario.getObjetivoPeso() === undefined) setErrorObjetivo(true)
-    }
-
-    function teste() {
-        validarDados()
-        console.log(usuario.getGenero())
     }
 
     useEffect(() => {
@@ -63,8 +60,7 @@ export default function Perfil() {
                             <img
                                 src={config}
                                 className={css.configuracoes}
-                                // onClick={() => window.location.href = "./perfil/config"}
-                                onClick={teste}
+                                onClick={() => window.location.href = "./perfil/config"}
                             />
                         </div>
                     </div>
@@ -126,7 +122,11 @@ export default function Perfil() {
                         </div>
                     </div>
                     <div className={css.rodape}>
-                        <button onClick={obterUsuario}>ADICIONAR ALIMENTO</button>
+                      
+                        <button onClick={() => {
+                            window.location.href = "/pesquisa"
+                        }}>ADICIONAR ALIMENTO</button>
+                        
                     </div>
                 </div>
             </div>
