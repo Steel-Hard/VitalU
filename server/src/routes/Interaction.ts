@@ -2,15 +2,17 @@
 
 import { Router } from "express";
 import {authenticateToken} from  '../middlewares/jwt'
-import UserProduct from "../controllers/UserConsumptionProduct";
-import UserTaco from "../controllers/UserConsumptionTaco";
-
+import UserConsumption from "../controllers/UserConsumption";
 const routes = Router();
 
 
-routes.post("/",authenticateToken, UserTaco.salvarConsumoTaco );
+routes.post("/taco",authenticateToken, UserConsumption.salvarConsumoTaco );
 
-routes.post("/user",authenticateToken, UserProduct.salvarConsumoProduto );
+routes.delete("/taco/drop", authenticateToken, UserConsumption.deletarConsumoTaco);
+
+routes.post("/product",authenticateToken, UserConsumption.salvarConsumoProduto );
+
+routes.delete("/product/drop",authenticateToken, UserConsumption.deletarConsumoProduto);
 
 
 

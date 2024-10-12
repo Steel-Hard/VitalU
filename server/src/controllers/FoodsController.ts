@@ -12,8 +12,6 @@ class Foods{
         const {
             nome,
             descricao,
-            tamanho_porcao,
-            unidade_tamanho_porcao,
             quantidade_por_porcao,
             unidade_quantidade_por_porcao,
             calorias,
@@ -29,7 +27,7 @@ class Foods{
         } = req.body;
     
         const values: (string | number | null | undefined)[] = [
-            id, nome, descricao, tamanho_porcao, unidade_tamanho_porcao,
+            id, nome, descricao, 
             quantidade_por_porcao, unidade_quantidade_por_porcao, calorias, proteina,
             carboidrato, acucares, fibras, gordura_total, gordura_saturada,
             gordura_trans, calcio, sodio
@@ -37,7 +35,7 @@ class Foods{
     
         // Filtra valores nulos e gera a consulta SQL
         const fields: string[] = [
-            'user_default_id', 'nome', 'descricao', 'tamanho_porcao', 'unidade_tamanho_porcao',
+            'user_default_id', 'nome', 'descricao',
             'quantidade_por_porcao', 'unidade_quantidade_por_porcao', 'calorias', 'proteina',
             'carboidrato', 'acucares', 'fibras', 'gordura_total', 'gordura_saturada',
             'gordura_trans', 'calcio', 'sodio'

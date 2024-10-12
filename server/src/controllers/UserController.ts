@@ -140,23 +140,23 @@ class User {
             return res.status(500).json({ error: "Erro interno no servidor" });
         }
     }
-
-
-    public async add_Fav(req: Request, res: Response): Promise<Response> {
+    public async obterConsumo(req:Request,res:Response): Promise<Response>{
         const {id} = res.locals;
-        const { tipo_alimento, alimento_id } = req.body;
-        try {
-            // Tipo_Alimento_Domain AS TEXT CHECK (VALUE IN ('prodprep','Prod_Usr'));
-            const resp: any = await pool.query(
-                `INSERT INTO user_has_favoritos (user_default_id, tipo_alimento, alimento_id) VALUES ($1, $2, $3)`,
-                [id, tipo_alimento, alimento_id]
-            );
-            return res.send( "Favorito Salvo." );
-        } catch (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Erro ao adicionar alimento." });
+        //utiliza storage procedure
+        try{
+            const taco = await pool.query(`SELECT * FROM  get_taco_consumo($1)`,[id]);
+            const prod = await pool.query(`SELECT * FROM get_prod_usr_consumo($1)`,[id]);
+            return res.status(200).json({
+                "taco":taco.rows,
+                "produto":prod.rows
+            })
+        }catch(err){
+            console.log("Erro ao obter consumo: ",err);
+            return res.status(500).json({error: "Erro interno no servidor"});
         }
     }
+
+
 
 };
 
