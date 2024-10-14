@@ -47,8 +47,6 @@ export interface produtoProps{
     user_default_id: number;
     nome: string;
     descricao: string;
-    tamanho_porcao: number;
-    unidade_tamanho_porcao: string;
     quantidade_por_porcao: number;
     unidade_quantidade_por_porcao: string;
     calorias: number;

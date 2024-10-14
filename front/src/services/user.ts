@@ -26,6 +26,13 @@ export default new class User {
             throw err;
         }
     }
+    //obter alimentos consumidos
+    async obterConsumo(){
+        await userInteraction.get("/user/obte/consumo")
+        .then(res => res.data)
+        .catch(err => console.log(err))
+    }
+    
 
     async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
 
@@ -36,7 +43,7 @@ export default new class User {
     }
     async adicionarProduto(produc_id:number, quantidade:number){
         const data_consumo = TimeStamp();
-        await userInteraction.post("/consume/product/user", { produc_id, data_consumo,  quantidade })
+        await userInteraction.post("/consume/product", { produc_id, data_consumo,  quantidade })
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
         }

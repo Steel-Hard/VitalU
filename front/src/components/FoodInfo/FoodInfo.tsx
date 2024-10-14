@@ -78,10 +78,7 @@ export default function FoodInfo(props: InfoToolProps) {
   // Campos para produtoProps
   const produtoFields = !isAlimento(props.data) ? {
     "nome": props.data.nome,
-    "tamanho da porção": props.data.tamanho_porcao,
-    "unidade da porção": props.data.unidade_tamanho_porcao,
-    "quantidade por porção": props.data.quantidade_por_porcao,
-    "unidade quantidade por porção": props.data.unidade_quantidade_por_porcao,
+    "quantidade": props.data.quantidade_por_porcao +  props.data.unidade_quantidade_por_porcao,
     "calorias": props.data.calorias,
     "proteína": props.data.proteina,
     "carboidrato": props.data.carboidrato,

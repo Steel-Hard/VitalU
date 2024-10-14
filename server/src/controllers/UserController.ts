@@ -93,7 +93,7 @@ class User {
                 return res.status(200).json({ message: "Dados Atualizados Com Sucesso"})
             }
         } catch (err) {
-            return res.status(401).json({ err: err })
+            return res.status(500).json({ err: err })
         }
     }
 
@@ -106,8 +106,7 @@ class User {
                 pool.query(`SELECT * FROM User_Dados WHERE User_Default_Id = $1`, [id])
             ]);
 
-            console.log(userDefaultResult.rows[0]);
-            console.log(userDadosResult.rows[0]);
+        
     
             if (userDefaultResult.rowCount === 0) {
                 return res.status(404).json({ error: "Usuário não encontrado" });

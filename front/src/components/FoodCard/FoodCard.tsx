@@ -25,7 +25,14 @@ const ButtonContainer = styled.div`
 
 export default function FoodCard(props: alimentosData) {
   const [count, setCount] = useState(1);
+  const [consu,setConsu] = useState("Consumir");
   const [isVisible, setVisible] = useState(false);
+
+  const wordSet = () => {
+    setConsu("Consumido...")
+    setTimeout(() => setConsu("Consumir"),1000);
+
+  }
 
   const toggleVisible = () => {
     setVisible(!isVisible);
@@ -83,9 +90,11 @@ export default function FoodCard(props: alimentosData) {
         </Stlform>
 
         <BtnStl onClick={() => {
-          isAlimento(props.data)? user.adicionarTaco(props.data.id,props.data.pp_preparacao,count) : user.adicionarProduto(props.data.id,count)
+          isAlimento(props.data)? user.adicionarTaco(props.data.id,props.data.pp_preparacao,count) : user.adicionarProduto(props.data.id,count);
+          wordSet();
+
         }}>
-          Consumir
+          {consu}
         </BtnStl>
       </StlformReverse>
     </StlCaixa>
