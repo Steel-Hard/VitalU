@@ -14,7 +14,7 @@ class Auth{
             fun(err.response.data.error);
         })
     }
-    async login(email:string,senha:string){
+    async login(email:string,senha:string,fun?:CallableFunction){
         await defaultInteraction.post("/user/login", {mail:email, passwd:senha})
         .then((res) => {
             window.localStorage.setItem("token",res.data.token);
@@ -22,7 +22,8 @@ class Auth{
 
         })
         .catch((err) =>{
-            console.log(err.response.data)
+            if(fun)
+            fun(err.response.data.error);
         })
     }
 }

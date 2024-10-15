@@ -8,7 +8,7 @@ import {
   CadastroAlimento,
 } from "./pages/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { GlobalProvider } from "./context/globalContext";
 export default function App() {
   return (
     <BrowserRouter>
@@ -16,10 +16,27 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/perfil/config" element={<PerfilConfig />} />
-        <Route path="/pesquisa" element={<Pesquisa />} />
-        <Route path="/cadastro/alimento" element={<CadastroAlimento />} />
+        <Route path="/perfil" element={
+          <GlobalProvider>
+            <Perfil />
+          </GlobalProvider>
+      } />
+        <Route path="/perfil/config" element={
+          <GlobalProvider>
+            <PerfilConfig />
+          </GlobalProvider>
+        
+        } />
+        <Route path="/pesquisa" element={
+          <GlobalProvider>
+            <Pesquisa />
+          </GlobalProvider>}
+        />
+        <Route path="/cadastro/alimento" element={
+          <GlobalProvider>            
+            <CadastroAlimento />
+          </GlobalProvider>}
+          />
       </Routes>
     </BrowserRouter>
   );

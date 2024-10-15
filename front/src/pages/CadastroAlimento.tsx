@@ -30,11 +30,6 @@ const states = {
   foodGdSt: 0,
   foodCalc: 0,
   foodSodi: 0
-
-
-
-
-  
 }
 
 function reducer(state: typeof states, action: { type: string; payload: any }) {

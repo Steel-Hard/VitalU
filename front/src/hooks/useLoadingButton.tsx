@@ -3,23 +3,17 @@ import { useState, useCallback } from 'react';
 export const useLoadingButton = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  // Função para iniciar o carregamento
-  const startLoading = useCallback(() => setIsLoading(true), []);
-
-  // Função para parar o carregamento
-  const stopLoading = useCallback(() => setIsLoading(false), []);
-
   // Função para executar uma ação com carregamento
   const executeWithLoading = useCallback(async (action: () => Promise<void>) => {
-    startLoading();
+    setIsLoading(true);
     try {
       await action(); // Ação passada como parâmetro
     } catch (error) {
       console.error('Erro durante a execução:', error);
     } finally {
-      stopLoading();
+      setIsLoading(false); // Certifique-se de definir isLoading como false no final
     }
-  }, [startLoading, stopLoading]);
+  }, []);
 
   return { isLoading, executeWithLoading };
 };

@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld, Message } from "../components/index";
+import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld, Message ,LoadingSpinner} from "../components/index";
 import autenticar from '../services/default'
+import { useLoadingButton } from "../hooks/useLoadingButton";
 
 export function Login() {
   const [email,setEmail] = useState("");
   const [senha,setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-
+    const {executeWithLoading,isLoading} =useLoadingButton()
   const validarDados = (email: string, senha: string) => {
     if (!email || !senha) {
       setMensagem("Ops, email e senha são obrigatórios.");
@@ -22,7 +23,7 @@ export function Login() {
   };
  
   const enviarDados = () =>{
-    autenticar.login(email,senha);    
+    autenticar.login(email,senha,setMensagem);    
   }
 
   
@@ -35,17 +36,22 @@ export function Login() {
         <StlInput onChange={e => setEmail(e.target.value)} type="email" height="50px" width="80%" placeholder="E-mail"/>
         <StlInput onChange={e => setSenha(e.target.value)} type="password" height="50px" width="80%" placeholder="Senha"/>
         
-        <BtnStl onClick={()=>validarDados(email,senha)}  height="40px" width="80%">Entrar</BtnStl>
+        <BtnStl onClick={()=>{
+          executeWithLoading(async () => validarDados(email, senha))
+         
+        }
+        }  height="40px" width="80%">
+          {isLoading ? <LoadingSpinner/> : "Entrar"}
+          
+        
+        </BtnStl>
         <Message visible={mensagem ? true : false} height="30px">
           {mensagem}
         </Message>
         <FlexDivResp>
           Não Tem Conta? <Link className="links" to='/cadastro'> Cadastre-Se</Link>
         </FlexDivResp>
-        <FlexDivResp>
-         
 
-        </FlexDivResp>
       </StlCaixa>
     </>
   );
