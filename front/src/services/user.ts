@@ -27,15 +27,16 @@ export default new class User {
         }
     }
     //obter alimentos consumidos
-    async obterConsumo(){
-        await userInteraction.get("/user/obte/consumo")
+    //passar data atual no useEffect da pagina 
+    //quando alterar a data rechamar o metodo...
+    async obterConsumo(data:string){
+        await userInteraction.get(`/user/obte/consumo/${data}`)
         .then(res => res.data)
         .catch(err => console.log(err))
     }
     
 
     async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
-
         const data = TimeStamp();
         await userInteraction.post("/consume/taco", { taco_id: tacoId, data_consumo: data, prep_id: prepId, quantidade: quantidade })
             .then((res) => console.log(res))

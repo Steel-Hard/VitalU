@@ -6,7 +6,7 @@ import { LinhaSld } from "../components/index"
 
 import user from "../services/user"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+
 
 
 export default function Perfil() {
@@ -29,6 +29,8 @@ export default function Perfil() {
         setUsuario(usuarioDados)
     }
 
+    //ajustar possiveis erros ou usar o componente de PopUp
+    //ex <Popup open={false} message="Seja bem-vindo(a)! Estamos felizes em tê-lo(a) aqui, para começar, preencha seu perfil clicando em ⚙️!"/>: null}
     function validarDados() {
         if (usuario.getNome() === "") setErrorNome(true)
         if (usuario.getEmail() === "") setErrorEmail(true)

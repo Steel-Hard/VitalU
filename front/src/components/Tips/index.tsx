@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useState } from "react";
+
 // Estilos para o popup
 const Overlay = styled.div`
   position: fixed;
@@ -29,7 +30,7 @@ const PopupMessage = styled.p`
 `;
 
 const CloseButton = styled.button`
-  background-color: #ff3700;
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -43,28 +44,43 @@ const CloseButton = styled.button`
 
 interface PopProps {
   message: string;
-  open: boolean;
+  onClose: () => void;
 }
 
-
-export default function Popup({message,open}:PopProps){
-  const [isOpen, setIsOpen] = useState(open);
-
-  const closePopup = () => {
-    setIsOpen(false);
-  };
-
-  if(isOpen == false){
-    return
-  }
+function Tips({ message, onClose }:PopProps)  {
   return (
     <Overlay>
       <PopupContainer>
         <PopupMessage>{message}</PopupMessage>
-        <CloseButton onClick={closePopup}>Fechar</CloseButton>
+        <CloseButton onClick={onClose}>Fechar</CloseButton>
       </PopupContainer>
     </Overlay>
   );
 };
 
+function Tip(){
+  const [isOpen, setIsOpen] = useState(false);
 
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <div>
+    
+    
+    
+    
+    
+    
+      <button onClick={openPopup}>Abrir Popup</button>
+      {isOpen && <Tips message="Olá! Este é um pop-up." onClose={closePopup} />}
+    </div>
+  );
+};
+
+export default Tip;

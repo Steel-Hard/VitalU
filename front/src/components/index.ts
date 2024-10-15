@@ -22,8 +22,10 @@ import FoodCategorias from "./FoodCategorias/FoodCategorias";
 import { Message } from "./Message";
 import { GenderSelector } from "./GenSelect";
 import { Select, Option, SelectInBox } from "./Select";
+import Popup from  './PopUp/index'
 export {
   Logo,
+  Popup,
   LinhaSld,
   ParallaxComp,
   StlInput,
