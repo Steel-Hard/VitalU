@@ -128,23 +128,23 @@ export function CadastroAlimento() {
         <FlexDiv direction="column" margin="15px" jContent="space-between">
           <label>Calorias*</label>
           <StlInput
-            placeholder="Insira as Calorias*"
+            placeholder="Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setKcal', payload: e.target.value })}
             maxLength={6}
           />
-          <label>Carboidratos</label>
+          <label>Carboidratos*</label>
           <StlInput
-            placeholder="Campo não obrigatorio"
+            placeholder="Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setCarb', payload: e.target.value })}
             maxLength={6}
           />
-          <label>Proteínas</label>
+          <label>Proteínas*</label>
           <StlInput
-            placeholder="Campo não obrigatorio"
+            placeholder="Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setProt', payload: e.target.value })}
