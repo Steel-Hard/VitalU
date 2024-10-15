@@ -136,7 +136,7 @@ export function CadastroAlimento() {
           />
           <label>Carboidratos*</label>
           <StlInput
-            placeholder="Campo Obrigatório*"
+            placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setCarb', payload: e.target.value })}
