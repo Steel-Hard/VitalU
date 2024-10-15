@@ -155,7 +155,20 @@ class User {
         }
     }
 
-
+    public async obterConsumoData(req:Request,res:Response): Promise<Response>{
+        const {id} = res.locals;
+        const {data} = req.params;
+        //utiliza storage procedure
+        try{
+            // const prod = await pool.query(`SELECT * FROM get_prod_usr_consumo_data($1,$2)`,[id,data]);
+            return res.status(200).json({
+                "produto": "prod.rows" // prod.rows
+            })
+        }catch(err){
+            console.log("Erro ao obter consumo: ",err);
+            return res.status(500).json({error: "Erro interno no servidor"});
+        }
+    }
 
 };
 
