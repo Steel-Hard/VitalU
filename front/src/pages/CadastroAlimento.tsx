@@ -128,7 +128,7 @@ export function CadastroAlimento() {
         <FlexDiv direction="column" margin="15px" jContent="space-between">
           <label>Calorias*</label>
           <StlInput
-            placeholder="Campo Obrigatório*"
+            placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setKcal', payload: e.target.value })}
@@ -144,7 +144,7 @@ export function CadastroAlimento() {
           />
           <label>Proteínas*</label>
           <StlInput
-            placeholder="Campo Obrigatório*"
+            placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
             onChange={(e) => dispatch({ type: 'setProt', payload: e.target.value })}
