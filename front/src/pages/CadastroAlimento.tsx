@@ -7,8 +7,10 @@ import {
   SelectInBox,
   Option,
   Navegacao,
-  LinhaSld
+  LinhaSld,
+  Tip
 } from "../components/index";
+import {dicas} from '../enum/dicas'
 import foods from '../services/foods'
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -72,7 +74,7 @@ export function CadastroAlimento() {
   return (
 
     <>
-      <LinhaSld/>
+      <LinhaSld><Tip message={dicas.cadastroAlimento}/></LinhaSld>
       <Navegacao>
         <Link to="/pesquisa">
           <IoMdReturnLeft size={70}/>

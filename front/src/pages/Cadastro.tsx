@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
-import { BtnStl, FlexDivResp, StlInput, StlCaixa, LinhaSld, Logo, Message } from "../components/index";
+import { BtnStl, FlexDivResp, StlInput, StlCaixa, LinhaSld, Logo, Message, LoadingSpinner, FlexDiv } from "../components/index";
 import { useState } from "react";
+import { useLoadingButton } from "../hooks/useLoadingButton";
 import user from '../services/default'
 export function Cadastro() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const {executeWithLoading,isLoading} = useLoadingButton()
 
   const validarDados = (nome: string, email: string, senha: string) => {
     if (!nome || !email || !senha) {
@@ -67,11 +69,16 @@ export function Cadastro() {
           onKeyDown={handleKeyDown}
         />
         <BtnStl
-          onClick={() => validarDados(nome, email, senha)}
+          onClick={
+            () => {executeWithLoading(async () => validarDados(nome, email, senha))}}
           height="40px"
           width="80%"
           >
-          Cadastrar
+           {isLoading ? 
+          <FlexDiv >
+            <LoadingSpinner/> 
+          </FlexDiv>
+          : "Cadastrar"}
         </BtnStl>
 
         <Message
@@ -82,7 +89,7 @@ export function Cadastro() {
         </Message>
 
         <FlexDivResp>
-          <Link to='/login'>Retornar ao login</Link>
+          <Link to='/login'>Realizar login</Link>
         </FlexDivResp>
 
       </StlCaixa>

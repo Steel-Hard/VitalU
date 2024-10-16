@@ -24,7 +24,7 @@ const ParallaxComp = () => {
       </motion.div>
 
       <motion.div style={{ scale, y, opacity, marginTop: '20px', fontSize: 40, textAlign: 'center' }}>
-        <p>A plataforma que te auxilia no controle calórico</p>
+        <p>A plataforma que te auxilia no controle calórico!</p>
       </motion.div>
 
       <img src='./foods.png'/>

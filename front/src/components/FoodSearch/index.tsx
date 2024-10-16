@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoSearchSharp,IoHome } from "react-icons/io5";
 import MesesDoAno from "../../enum/MesesDoAno";
+import {dicas} from '../../enum/dicas'
 import {
   LinhaSld,
   StlInput,
@@ -11,6 +12,7 @@ import {
   FoodCategorias,
   Navegacao,
   BtnStl,
+  Tip
 } from "../index";
 import foods from "../../services/foods";
 import { SearchCtx } from "../../context/searchContext";
@@ -18,6 +20,7 @@ import { Link } from "react-router-dom";
 
 export function FoodSearch() {
   const { triger, alimentos, setAlimento, setTriger, query, setQuery } = useContext(SearchCtx);
+  const mesesDoAno = Object.values(MesesDoAno)
   const dataAtual = new Date();
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export function FoodSearch() {
 
   return (
     <>
-      <LinhaSld />
+      <LinhaSld><Tip message={dicas.pesquisa}/></LinhaSld>
       <FlexDiv direction="column">
         <FlexDiv direction="column">
           <Navegacao>
@@ -39,7 +42,7 @@ export function FoodSearch() {
               <IoHome size={50}/>
             </Link>
             <h3>
-              {dataAtual.getDate()} de {MesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}    
+              {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}    
             </h3>
             <div>
               <FaCalendarAlt  size={45}/>

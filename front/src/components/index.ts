@@ -23,6 +23,7 @@ import { Message } from "./Message";
 import { GenderSelector } from "./GenSelect";
 import { Select, Option, SelectInBox } from "./Select";
 import Popup from  './PopUp/index'
+import Tip from './Tips/index'
 export {
   Logo,
   Popup,
@@ -51,4 +52,5 @@ export {
   Option,
   Navegacao,
   SelectInBox,
+  Tip
 };
