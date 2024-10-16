@@ -118,6 +118,20 @@
     font-size: 13px;
 }
 
+.alimentos .listaVazia {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alimentos .listaVazia>p {
+    font-family: var(--inter);
+    font-weight: normal;
+    font-size: 16px;
+    color: #a5a5a5;
+}
+
 .alimento {
     display: flex;
     justify-content: left;

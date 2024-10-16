@@ -2,19 +2,18 @@ import { userInteraction } from "./api";
 import { TimeStamp } from "../utils/obterTempo";
 
 export default new class User {
-    
-    async inserirDados(altura:number,peso:number,genero:string,data_nasc:string,objetivos:string){
-        console.log(data_nasc)
-        await userInteraction.post("/user/dados",{altura, peso, genero, objetivos, data_nasc })
-        .then((res) => {
-            console.log(res.data)
 
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+    async inserirDados(altura: number, peso: number, genero: string, data_nasc: string, objetivos: string) {
+        console.log(data_nasc)
+        await userInteraction.post("/user/dados", { altura, peso, genero, objetivos, data_nasc })
+            .then((res) => {
+                console.log(res.data)
+
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
-     
 
     async obterDados() {
         try {
@@ -26,15 +25,15 @@ export default new class User {
             throw err;
         }
     }
+
     //obter alimentos consumidos
     //passar data atual no useEffect da pagina 
     //quando alterar a data rechamar o metodo...
-    async obterConsumo(data:string){
+    async obterConsumo(data: string) {
         await userInteraction.get(`/user/obte/consumo/${data}`)
-        .then(res => res.data)
-        .catch(err => console.log(err))
+            .then(res => res.data)
+            .catch(err => console.log(err))
     }
-    
 
     async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
         const data = TimeStamp();
@@ -42,10 +41,20 @@ export default new class User {
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
     }
-    async adicionarProduto(produc_id:number, quantidade:number){
+
+    async adicionarProduto(produc_id: number, quantidade: number) {
         const data_consumo = TimeStamp();
-        await userInteraction.post("/consume/product", { produc_id, data_consumo,  quantidade })
+        await userInteraction.post("/consume/product", { produc_id, data_consumo, quantidade })
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
+    }
+
+    async obterProdutosConsumidos(data: string) {
+        try {
+            const res = await userInteraction.get(`http://localhost:3030/user/obter/consumo/${data}`)
+            return res.data
+        } catch (err) {
+            console.log(err)
         }
+    }
 }

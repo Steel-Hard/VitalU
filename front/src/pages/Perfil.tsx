@@ -6,6 +6,9 @@ import { LinhaSld } from "../components/index"
 
 import user from "../services/user"
 import { useEffect, useState } from "react"
+import converterData from "../utils/converterData"
+import AlimentoDoDia from "../class/AlimentosDoDia"
+import Alimento from "../class/Alimento"
 
 
 
@@ -21,11 +24,22 @@ export default function Perfil() {
     const [errorPeso, setErrorPeso] = useState<boolean>(false)
     const [errorObjetivo, setErrorObjetivo] = useState<boolean>(false)
 
+    async function obterProdutosConsumidos(usuarioDados: Profile) {
+        const res = await user.obterProdutosConsumidos(converterData(dataAtual))
+        const tacos: [] = res.taco
+        tacos.forEach((taco: { nome_produto: string, data_consumo: string }) => {
+            const alimento: Alimento = new Alimento(taco.nome_produto)
+            const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(alimento, 1, new Date(taco.data_consumo))
+            usuarioDados.adicionarAlimentoConsumido(alimentoConsumido)
+        })
+        return usuarioDados
+    }
+
     async function obterUsuario() {
         const res = await user.obterDados()
-        const usuarioDados = new Profile()
+        let usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
-    
+        usuarioDados = await obterProdutosConsumidos(usuarioDados)
         setUsuario(usuarioDados)
     }
 
@@ -104,31 +118,35 @@ export default function Perfil() {
                             </p>
                         </div>
                         <div className={css.lista}>
-                            {usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
-                                return (
-                                    <div className={css.alimento} key={index}>
-                                        <p>
-                                            {
-                                                alimentoDoDia.getDataDeConsumo().getHours() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getHours() : alimentoDoDia.getDataDeConsumo().getHours()
-                                            }
-                                            :
-                                            {
-                                                alimentoDoDia.getDataDeConsumo().getMinutes() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes() : alimentoDoDia.getDataDeConsumo().getMinutes()
-                                            }
-                                        </p>
-                                        <p>{alimentoDoDia.getQuantidade()}x</p>
-                                        <p>{alimentoDoDia.getAlimento().getNome()}</p>
-                                    </div>
-                                )
-                            })}
+                            {usuario.getAlimentosConsumidos().length === 0 ? <div className={css.listaVazia}>
+                                <p>Nenhum alimento consumido hoje</p>
+                            </div> :
+                                usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
+                                    return (
+                                        <div className={css.alimento} key={index}>
+                                            <p>
+                                                {
+                                                    alimentoDoDia.getDataDeConsumo().getHours() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getHours() : alimentoDoDia.getDataDeConsumo().getHours()
+                                                }
+                                                :
+                                                {
+                                                    alimentoDoDia.getDataDeConsumo().getMinutes() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes() : alimentoDoDia.getDataDeConsumo().getMinutes()
+                                                }
+                                            </p>
+                                            <p>{alimentoDoDia.getQuantidade()}x</p>
+                                            <p>{alimentoDoDia.getAlimento().getNome()}</p>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div className={css.rodape}>
-                      
-                        <button onClick={() => {
-                            window.location.href = "/pesquisa"
-                        }}>ADICIONAR ALIMENTO</button>
-                        
+
+                        <button onClick={
+                            () => { window.location.href = "/pesquisa" }
+                        }>ADICIONAR ALIMENTO</button>
+
                     </div>
                 </div>
             </div>
