@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { MdTipsAndUpdates } from "react-icons/md";
 import styled from "styled-components";
 
 // Estilos para o popup
@@ -30,7 +31,7 @@ const PopupMessage = styled.p`
 `;
 
 const CloseButton = styled.button`
-  background-color: #f44336;
+  background-color: #ff5137;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -38,27 +39,17 @@ const CloseButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #d32f2f;
+    background-color: #fc482c;
   }
 `;
 
 interface PopProps {
   message: string;
-  onClose: () => void;
 }
 
-function Tips({ message, onClose }:PopProps)  {
-  return (
-    <Overlay>
-      <PopupContainer>
-        <PopupMessage>{message}</PopupMessage>
-        <CloseButton onClick={onClose}>Fechar</CloseButton>
-      </PopupContainer>
-    </Overlay>
-  );
-};
 
-function Tip(){
+
+function Tip({ message }:PopProps){
   const [isOpen, setIsOpen] = useState(false);
 
   const openPopup = () => {
@@ -70,15 +61,14 @@ function Tip(){
   };
 
   return (
-    <div>
-    
-    
-    
-    
-    
-    
-      <button onClick={openPopup}>Abrir Popup</button>
-      {isOpen && <Tips message="Olá! Este é um pop-up." onClose={closePopup} />}
+    <div>  
+      <button style={{borderColor: 'white',backgroundColor: '#ff3700'}} title="Exibir Informações utilitárias da página" onClick={openPopup}><MdTipsAndUpdates color="white"/></button>
+      {isOpen && <Overlay>
+      <PopupContainer>
+        <PopupMessage>{message}</PopupMessage>
+        <CloseButton onClick={closePopup}>Fechar</CloseButton>
+      </PopupContainer>
+    </Overlay>}
     </div>
   );
 };

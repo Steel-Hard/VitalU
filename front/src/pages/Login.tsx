@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld, Message ,LoadingSpinner} from "../components/index";
+import { StlCaixa,BtnStl,FlexDivResp,StlInput,Logo,LinhaSld, Message ,LoadingSpinner,FlexDiv} from "../components/index";
 import autenticar from '../services/default'
 import { useLoadingButton } from "../hooks/useLoadingButton";
 
@@ -8,7 +8,7 @@ export function Login() {
   const [email,setEmail] = useState("");
   const [senha,setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-    const {executeWithLoading,isLoading} =useLoadingButton()
+  const {executeWithLoading,isLoading} =useLoadingButton()
   const validarDados = (email: string, senha: string) => {
     if (!email || !senha) {
       setMensagem("Ops, email e senha são obrigatórios.");
@@ -41,7 +41,11 @@ export function Login() {
          
         }
         }  height="40px" width="80%">
-          {isLoading ? <LoadingSpinner/> : "Entrar"}
+          {isLoading ? 
+          <FlexDiv >
+            <LoadingSpinner/> 
+          </FlexDiv>
+          : "Entrar"}
           
         
         </BtnStl>

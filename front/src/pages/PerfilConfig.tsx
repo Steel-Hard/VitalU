@@ -1,12 +1,13 @@
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { StlCaixa,LinhaSld, Navegacao } from "../components/index";
+import {dicas} from '../enum/dicas'
+import { StlCaixa,LinhaSld, Navegacao,Tip } from "../components/index";
 import UserConfig from "../components/UserConfig";
 
 export function PerfilConfig(){
     return(
         <>
-            <LinhaSld/>
+            <LinhaSld><Tip message={dicas.perfilConfig}/></LinhaSld>
             
             <Navegacao>
                 <Link to="/perfil">
