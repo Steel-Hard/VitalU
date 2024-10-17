@@ -158,10 +158,20 @@
 
 .rodape {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     position: absolute;
     width: calc(100% - 100px);
     bottom: 50px;
+}
+
+.rodape .input {
+    display: flex;
+}
+
+.rodape .input>input{
+    padding: 0px 10px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
 }
 
 .rodape>button {
@@ -253,7 +263,7 @@
 
     .rodape {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
         position: absolute;
         width: calc(100% - 60px);
         bottom: 50px;

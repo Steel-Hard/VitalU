@@ -4,18 +4,14 @@ import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
 import {dicas} from '../enum/dicas'
 import { LinhaSld,Tip} from "../components/index"
-
 import user from "../services/user"
 import { useEffect, useState } from "react"
 import converterData from "../utils/converterData"
 import AlimentoDoDia from "../class/AlimentosDoDia"
 import Alimento from "../class/Alimento"
 
-
-
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
-    const dataAtual = new Date()
     const [usuario, setUsuario] = useState<Profile>(new Profile())
     const [errorNome, setErrorNome] = useState<boolean>(false)
     const [errorEmail, setErrorEmail] = useState<boolean>(false)
@@ -25,8 +21,10 @@ export default function Perfil() {
     const [errorPeso, setErrorPeso] = useState<boolean>(false)
     const [errorObjetivo, setErrorObjetivo] = useState<boolean>(false)
 
-    async function obterProdutosConsumidos(usuarioDados: Profile) {
-        const res = await user.obterProdutosConsumidos(converterData(dataAtual))
+    const [dataInput, setDataInput] = useState<string>(converterData(new Date()))
+
+    async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
+        const res = await user.obterProdutosConsumidos(data)
         const tacos: [] = res.taco
         tacos.forEach((taco: { nome_produto: string, data_consumo: string }) => {
             const alimento: Alimento = new Alimento(taco.nome_produto)
@@ -40,8 +38,9 @@ export default function Perfil() {
         const res = await user.obterDados()
         let usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
-        usuarioDados = await obterProdutosConsumidos(usuarioDados)
+        usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput)
         setUsuario(usuarioDados)
+        validarDados()
     }
 
     //ajustar possiveis erros 
@@ -55,9 +54,13 @@ export default function Perfil() {
         if (usuario.getObjetivoPeso() === undefined) setErrorObjetivo(true)
     }
 
+    function handleDataInput(e: React.ChangeEvent<HTMLInputElement>) {
+        setDataInput(e.target.value)
+    }
+
     useEffect(() => {
         obterUsuario()
-    }, [])
+    })
 
     return (
         <>
@@ -114,12 +117,12 @@ export default function Perfil() {
                         <div className={css.titulo}>
                             <h2>Alimentos</h2>
                             <p>
-                                {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}
+                                {dataInput.split("-")[2]} de {mesesDoAno[parseInt(dataInput.split("-")[1]) - 1]} de {dataInput.split("-")[0]}
                             </p>
                         </div>
                         <div className={css.lista}>
                             {usuario.getAlimentosConsumidos().length === 0 ? <div className={css.listaVazia}>
-                                <p>Nenhum alimento consumido hoje</p>
+                                <p>Nenhum alimento consumido nessa data.</p>
                             </div> :
                                 usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
                                     return (
@@ -142,6 +145,15 @@ export default function Perfil() {
                         </div>
                     </div>
                     <div className={css.rodape}>
+
+                        <div className={css.input}>
+                            <input 
+                                type="date" 
+                                onChange={handleDataInput}
+                                value={dataInput}
+                                max={converterData(new Date())}
+                            />
+                        </div>
 
                         <button onClick={
                             () => { window.location.href = "/pesquisa" }
