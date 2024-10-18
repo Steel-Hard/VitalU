@@ -1,26 +1,20 @@
 import Profile from "../class/Profile"
+
 import css from "../styles/perfilPage.module.css"
 import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
 import {dicas} from '../enum/dicas'
-import { LinhaSld,Tip} from "../components/index"
+import { LinhaSld,Tip,Upload} from "../components/index"
 import user from "../services/user"
 import { useEffect, useState } from "react"
 import converterData from "../utils/converterData"
 import AlimentoDoDia from "../class/AlimentosDoDia"
 import Alimento from "../class/Alimento"
 
+
 export default function Perfil() {
     const mesesDoAno = Object.values(MesesDoAno)
     const [usuario, setUsuario] = useState<Profile>(new Profile())
-    const [errorNome, setErrorNome] = useState<boolean>(false)
-    const [errorEmail, setErrorEmail] = useState<boolean>(false)
-    const [errorDataNascimento, setErrorDataNascimento] = useState<boolean>(false)
-    const [errorGenero, setErrorGenero] = useState<boolean>(false)
-    const [errorAltura, setErrorAltura] = useState<boolean>(false)
-    const [errorPeso, setErrorPeso] = useState<boolean>(false)
-    const [errorObjetivo, setErrorObjetivo] = useState<boolean>(false)
-
     const [dataInput, setDataInput] = useState<string>(converterData(new Date()))
 
     async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
@@ -36,31 +30,29 @@ export default function Perfil() {
 
     async function obterUsuario() {
         const res = await user.obterDados()
+    
         let usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
         usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput)
         setUsuario(usuarioDados)
-        validarDados()
+        console.log(usuario.getEmail())
+        console.log(usuario.getAltura())
+     
     }
 
-    //ajustar possiveis erros 
-    function validarDados() {
-        if (usuario.getNome() === "") setErrorNome(true)
-        if (usuario.getEmail() === "") setErrorEmail(true)
-        if (usuario.getDataNascimento() === "") setErrorDataNascimento(true)
-        if (usuario.getGenero() === undefined) setErrorGenero(true)
-        if (usuario.getAltura() === undefined) setErrorAltura(true)
-        if (usuario.getPeso() === undefined) setErrorPeso(true)
-        if (usuario.getObjetivoPeso() === undefined) setErrorObjetivo(true)
-    }
+  
 
     function handleDataInput(e: React.ChangeEvent<HTMLInputElement>) {
         setDataInput(e.target.value)
     }
 
     useEffect(() => {
-        obterUsuario()
-    })
+        obterUsuario();
+        
+       
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     return (
         <>
@@ -68,13 +60,22 @@ export default function Perfil() {
             <div className={css.main}>
                 <div className={css.perfil}>
                     <div>
-                        <div className={css.img}>
-                            <img src={usuario.getFoto()} alt="Foto de perfil" />
+                        
+                        <div>
+
+
+                            {usuario.getEmail() ? <div>
+                                
+                                <Upload userEmail={usuario.getEmail()?.replace(/\s+/g, '')}/>
+                            </div>:null }
                         </div>
+                            
+                        
+                        
                         <div className={css.identificacao}>
                             <div>
-                                {errorNome ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
-                                {errorEmail ? <p></p> : <p>{usuario.getEmail()}</p>}
+                                {!usuario.getNome() ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
+                                {!usuario.getEmail() ? <p></p> : <p>{usuario.getEmail()}</p>}
                             </div>
                             <img
                                 src={config}
@@ -89,19 +90,19 @@ export default function Perfil() {
                     <div className={css.info}>
                         <div>
                             <label>Data de Nascimento:</label>
-                            {errorDataNascimento ? <p className={css.error}>Não registrada</p> : <p>{usuario.getDataNascimento()}</p>}
+                            {!usuario.getDataNascimento() ? <p className={css.error}>Não registrada</p> : <p>{usuario.getDataNascimento()}</p>}
                         </div>
                         <div>
                             <label>Genêro:</label>
-                            {errorGenero ? <p className={css.error}>Não registrado</p> : <p>{usuario.getGenero()}</p>}
+                            {!usuario.getGenero() ? <p className={css.error}>Não registrado</p> : <p>{usuario.getGenero()}</p>}
                         </div>
                         <div>
                             <label>Altura:</label>
-                            {errorAltura ? <p className={css.error}>Não registrada</p> : <p>{usuario.getAltura()}</p>}
+                            {!usuario.getAltura() ? <p className={css.error}>Não registrada</p> : <p>{usuario.getAltura()}</p>}
                         </div>
                         <div>
                             <label>Peso:</label>
-                            {errorPeso ? <p className={css.error}>Não registrado</p> : <p>{usuario.getPeso()}</p>}
+                            {!usuario.getPeso() ? <p className={css.error}>Não registrado</p> : <p>{usuario.getPeso()}</p>}
                         </div>
                         <div>
                             <label>IMC:</label>
@@ -109,7 +110,7 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>Objetivo:</label>
-                            {errorObjetivo ? <p className={css.error}>Não registrado</p> : <p>{usuario.getObjetivoPeso()}</p>}
+                            {!usuario.getObjetivoPeso() ? <p className={css.error}>Não registrado</p> : <p>{usuario.getObjetivoPeso()}</p>}
                         </div>
                     </div>
                     <hr />

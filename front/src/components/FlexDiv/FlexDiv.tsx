@@ -19,15 +19,12 @@ export const FlexDiv = styled.div<FlexProps>`
     flex-direction: ${({direction}) => direction? direction: 'unset'};
     width: ${({width}) => width? width:'auto'};
     height: ${({height}) => height? height: 'auto'};
-    margin: ${({margin}) => margin? margin:margin};
+    margin: ${({margin}) => margin? margin : margin};
     background-color: ${({bgColor}) => bgColor? bgColor:'transparent'};
-    gap: ${({gap}) => gap? gap:'0px'};
+    gap: ${({gap}) => gap? gap : '0px'};
 
     @media (max-width: 1100px){
       flex-direction: column;
-
-
-
     }
 `
 

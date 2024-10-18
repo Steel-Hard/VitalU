@@ -18,23 +18,13 @@ export default new class User {
     async obterDados() {
         try {
             const res = await userInteraction.get("/user/obter");
-            const user = res.data;
-            return user;
+
+            return res.data;
         } catch (err) {
             console.error('Erro ao buscar o usuário:', err);
             throw err;
         }
     }
-
-    //obter alimentos consumidos
-    //passar data atual no useEffect da pagina 
-    //quando alterar a data rechamar o metodo...
-    async obterConsumo(data: string) {
-        await userInteraction.get(`/user/obte/consumo/${data}`)
-            .then(res => res.data)
-            .catch(err => console.log(err))
-    }
-
     async adicionarTaco(tacoId: number, prepId: number, quantidade: number) {
         const data = TimeStamp();
         await userInteraction.post("/consume/taco", { taco_id: tacoId, data_consumo: data, prep_id: prepId, quantidade: quantidade })
@@ -51,7 +41,7 @@ export default new class User {
 
     async obterProdutosConsumidos(data: string) {
         try {
-            const res = await userInteraction.get(`http://localhost:3030/user/obter/consumo/${data}`)
+            const res = await userInteraction.get(`/user/obter/consumo/${data}`)
             return res.data
         } catch (err) {
             console.log(err)

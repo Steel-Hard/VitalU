@@ -31,6 +31,7 @@ export function FoodSearch() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triger]);
+  
 
   return (
     <>
@@ -49,12 +50,14 @@ export function FoodSearch() {
             </div>
           </Navegacao>
 
-          <StlCaixa direction="row" width="100%" radius="5px" jcont="space-between" height="50px">
-            <StlInput 
+          <StlCaixa direction="row" width="100%" radius="5px"  height="50px">
+            <StlInput
+              maxLength={50}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={e => {if(e.key == 'Enter') setTriger(true)}}
-              bcolor="#ffffff"
+              type="text"
+              bcolor="transparent"
               width="auto"
               height="50px"
               placeholder="Pesquisa Alimento"

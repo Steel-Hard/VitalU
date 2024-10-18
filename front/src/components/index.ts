@@ -24,8 +24,10 @@ import { GenderSelector } from "./GenSelect";
 import { Select, Option, SelectInBox } from "./Select";
 import Popup from  './PopUp/index'
 import Tip from './Tips/index'
+import Upload from './Upload/Upload'
 export {
   Logo,
+  Upload,
   Popup,
   LinhaSld,
   ParallaxComp,

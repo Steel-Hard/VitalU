@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
+
 // Estilos para o popup
 const Overlay = styled.div`
   position: fixed;
@@ -24,12 +25,9 @@ const PopupContainer = styled.div`
   width: 100%;
 `;
 
-const PopupMessage = styled.p`
-  margin-bottom: 20px;
-`;
 
 const CloseButton = styled.button`
-  background-color: #ff3700;
+  background-color: #ff5137;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -37,34 +35,36 @@ const CloseButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #d32f2f;
+    background-color: #fc482c;
   }
 `;
 
-interface PopProps {
-  message: string;
-  open: boolean;
-}
 
 
-export default function Popup({message,open}:PopProps){
-  const [isOpen, setIsOpen] = useState(open);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Popup({ children}:any){
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
 
   const closePopup = () => {
     setIsOpen(false);
   };
 
-  if(isOpen == false){
-    return
-  }
   return (
-    <Overlay>
+    <div>  
+      <button style={{borderColor: 'white',backgroundColor: '#ff3700'}} title="Pop Up" onClick={openPopup}>editar</button>
+      {isOpen && <Overlay>
       <PopupContainer>
-        <PopupMessage>{message}</PopupMessage>
+        
+        {children}
         <CloseButton onClick={closePopup}>Fechar</CloseButton>
       </PopupContainer>
-    </Overlay>
+    </Overlay>}
+    </div>
   );
 };
 
-
+export default Popup;

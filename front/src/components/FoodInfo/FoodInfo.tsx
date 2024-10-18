@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { alimentosProps, produtoProps } from "../../types";
 
+interface InfoToolProps {
+  data: alimentosProps | produtoProps;
+  isVisible: boolean;
+}
+
 const Tooltip = styled.div<{ isVisible: boolean }>`
-  display: ${props => (props.isVisible ? 'grid' : 'none')};
+  display: ${({isVisible}) => isVisible ? 'grid' : 'none'};
   position: absolute;
   bottom: 100%; // Posiciona acima do botão
   left: 50%;
@@ -23,11 +28,6 @@ const Tooltip = styled.div<{ isVisible: boolean }>`
         max-height: 200px; 
     }
 `;
-
-interface InfoToolProps {
-  data: alimentosProps | produtoProps;
-  isVisible: boolean;
-}
 
 // Verificação de tipo para saber se o objeto é do tipo alimentosProps
 const isAlimento = (data: alimentosProps | produtoProps): data is alimentosProps => {

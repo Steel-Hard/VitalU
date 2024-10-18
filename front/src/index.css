@@ -41,6 +41,19 @@ body {
   font-weight: bold;
 }
 
+/* styles.css */
+.img-responsive {
+  width: 150px; /* Tamanho padrão para dispositivos normais */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+@media (max-width: 768px) { /* Ajusta para dispositivos móveis */
+  .img-responsive {
+      width: 40px; /* Tamanho para dispositivos móveis */
+  }
+}
+
+
 .links {
   color: rgb(67, 170, 132);
   margin-left: 4px;
