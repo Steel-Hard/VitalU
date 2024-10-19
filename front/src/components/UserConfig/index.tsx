@@ -37,11 +37,13 @@ export default function UserConfig() {
           <Campform
             label="Peso (kg)"
             placeholder="Digite Seu Peso"
+            type='weight'
             funcState={(value: any) => atualizarDadosUsuario("peso", value)}
           />
           <Campform
             label="Altura (cm)"
             placeholder="Digite Sua Altura (cm)"
+            type='height'
             funcState={(value: any) => atualizarDadosUsuario("altura", value)}
           />
           <Campform

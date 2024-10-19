@@ -25,7 +25,13 @@ export function Login() {
   const enviarDados = () =>{
     autenticar.login(email,senha,setMensagem);    
   }
+  
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
+    if (e.key === 'Enter') {
+      validarDados(email, senha)
+    };
+  }
   
   return (
    <>
@@ -33,8 +39,21 @@ export function Login() {
       <StlCaixa height="90%" width='300px' radius="150px 150px 25px 25px" >
         <Logo height="50px" width="auto" />
         <h1 className="title_default">Login</h1>
-        <StlInput onChange={e => setEmail(e.target.value)} type="email" height="50px" width="80%" placeholder="E-mail"/>
-        <StlInput onChange={e => setSenha(e.target.value)} type="password" height="50px" width="80%" placeholder="Senha"/>
+        <StlInput 
+        onChange={e => setEmail(e.target.value)} 
+        onKeyDown={handleKeyDown}
+        type="email" 
+        height="50px"
+        width="80%"
+        placeholder="E-mail"/>
+
+        <StlInput 
+        onChange={e => setSenha(e.target.value)}
+        onKeyDown={handleKeyDown}
+        type="password"
+        height="50px"
+        width="80%"
+        placeholder="Senha"/>
         
         <BtnStl onClick={()=>{
           executeWithLoading(async () => validarDados(email, senha))
@@ -49,7 +68,10 @@ export function Login() {
           
         
         </BtnStl>
-        <Message visible={mensagem ? true : false} height="30px">
+        <Message visible={mensagem ? true : false}
+        height="30px"
+        style={{ color: mensagem.includes('Erro') ? '#f54242' :mensagem.includes('Todos')?'#f54242':mensagem.includes("Ops")?'#f54242':'green' }}
+        >
           {mensagem}
         </Message>
         <FlexDivResp>
