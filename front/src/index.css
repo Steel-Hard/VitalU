@@ -41,15 +41,34 @@ body {
   font-weight: bold;
 }
 
-/* styles.css */
+/* ESTILO IMAGEM PERFIL  */
+.edit-profile-img{
+  
+  position: relative;
+  bottom: 80px;
+  left: 250px;
+  
+}
 .img-responsive {
-  width: 150px; /* Tamanho padrão para dispositivos normais */
-  height: auto; /* Mantém a proporção da imagem */
+  background-color: #fff;
+  width: 320px;
+  height: 320px;
+  border-radius: 100%;
+  margin-bottom: 30px;
+  border: 1px solid rgba(32, 32, 32, 0.2);
 }
 
-@media (max-width: 768px) { /* Ajusta para dispositivos móveis */
+@media (max-width: 768px) { 
   .img-responsive {
-      width: 40px; /* Tamanho para dispositivos móveis */
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    margin-bottom: 0px;
+  }
+  .edit-profile-img{
+    bottom: 20px;
+    left: 40px;
+    
   }
 }
 

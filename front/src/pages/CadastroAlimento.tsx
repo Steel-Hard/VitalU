@@ -8,13 +8,16 @@ import {
   Option,
   Navegacao,
   LinhaSld,
-  Tip
+  Tip,
+  Message
 } from "../components/index";
+import { useLoadingButton } from "../hooks/useLoadingButton";
 import {dicas} from '../enum/dicas'
 import foods from '../services/foods'
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
+import { LoadingSpinner } from "../components/Loading/index";
 
 
 const states = {
@@ -71,6 +74,8 @@ function reducer(state: typeof states, action: { type: string; payload: any }) {
 
 export function CadastroAlimento() {
   const [state, dispatch] = useReducer(reducer, states);
+  const [mensagem, setMensagem] = useState("");
+  const {executeWithLoading,isLoading} = useLoadingButton()
   return (
 
     <>
@@ -188,38 +193,48 @@ export function CadastroAlimento() {
         </FlexDiv>
       </StlCaixa>
       <BtnStl onClick={() => {
-        const {
-          foodNome,
-          foodDesc,
-          foodQunt,
-          foodUnid,
-          foodKcal,
-          foodCarb,
-          foodProt,
-          foodAcuc,
-          foodFibr,
-          foodGdTt,
-          foodGdTr,
-          foodGdSt,
-          foodCalc,
-          foodSodi
-        } = state
-        foods.cadastrarProduto( foodNome,
-          foodDesc,
-          foodQunt,
-          foodUnid,
-          foodKcal,
-          foodCarb,
-          foodProt,
-          foodAcuc,
-          foodFibr,
-          foodGdTt,
-          foodGdTr,
-          foodGdSt,
-          foodCalc,
-          foodSodi)
+          const {
+            foodNome,
+            foodDesc,
+            foodQunt,
+            foodUnid,
+            foodKcal,
+            foodCarb,
+            foodProt,
+            foodAcuc,
+            foodFibr,
+            foodGdTt,
+            foodGdTr,
+            foodGdSt,
+            foodCalc,
+            foodSodi
+          } = state;
+          executeWithLoading(async () =>  foods.cadastrarProduto( foodNome,
+            foodDesc,
+            foodQunt,
+            foodUnid,
+            foodKcal,
+            foodCarb,
+            foodProt,
+            foodAcuc,
+            foodFibr,
+            foodGdTt,
+            foodGdTr,
+            foodGdSt,
+            foodCalc,
+            foodSodi,setMensagem) )
         
-      }}>Registrar</BtnStl>
+          
+        }}>{isLoading ? 
+          <FlexDiv >
+            <LoadingSpinner/> 
+          </FlexDiv>
+          : "Registrar novo alimento"}
+      </BtnStl>
+      <Message visible={mensagem ? true : false} height="30px">
+          {mensagem}
+        </Message>
+      
     </>
   );
 }

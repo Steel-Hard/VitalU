@@ -58,7 +58,7 @@ class Foods{
     
         try {
             const prodCad = await pool.query(query, filteredValues);
-            return res.json({ "Cadastrado": prodCad.rows[0] });
+            return res.json({ "Cadastrado": prodCad.rows[0],"message":"Alimento adicionado com sucesso" });
         } catch (err) {
             console.log(err);
             return res.status(500).json({ error: "Erro ao cadastrar produto." });

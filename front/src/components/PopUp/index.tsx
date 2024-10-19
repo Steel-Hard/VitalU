@@ -40,9 +40,16 @@ const CloseButton = styled.button`
 `;
 
 
+interface LayoutProps {
+  children: React.ReactNode;
+  Component: React.ComponentType;
+  ButtonTitle: string;
+  className: string;
+
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Popup({ children}:any){
+function Popup({ children, Component,ButtonTitle, className}:LayoutProps){
   const [isOpen, setIsOpen] = useState(false);
 
   const openPopup = () => {
@@ -54,8 +61,8 @@ function Popup({ children}:any){
   };
 
   return (
-    <div>  
-      <button style={{borderColor: 'white',backgroundColor: '#ff3700'}} title="Pop Up" onClick={openPopup}>editar</button>
+    <div className={className}>  
+      <button style={{borderColor: 'white'}} title={ButtonTitle} onClick={openPopup}><Component/></button>
       {isOpen && <Overlay>
       <PopupContainer>
         

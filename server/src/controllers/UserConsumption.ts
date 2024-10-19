@@ -41,13 +41,15 @@ class UserConsumption{
     public async salvarConsumoProduto(req: Request, res: Response): Promise<Response> {
         const {id} = res.locals;
         const { produc_id, data_consumo, quantidade } = req.body;
+        console.log(id,produc_id,data_consumo)
         try {
             const data = await pool.query(`
                 INSERT INTO Usr_Consome_Prod_Usr VALUES ($1,$2,$3,$4)`,
-                [produc_id, id, data_consumo, quantidade]);
+                [ id,produc_id, data_consumo, quantidade]);
 
             return res.status(201).json({ "message": "dados inseridos com sucesso" });
-        } catch {
+        } catch(err) {
+            console.log(err)
             return res.status(500).json({ "err": "não foi possivel salvar consumo erro interno no servidor" })
         }
 

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../services/storage";
-import css from "../../styles/perfilPage.module.css"
-import {Popup} from '../index'
+import css from "../../styles/perfilPage.module.css";
+import { FaCamera } from "react-icons/fa";
+import {FlexDiv, Popup} from '../index'
 interface UploadProps {
   userEmail?: string;
 }
@@ -29,7 +30,14 @@ export default function Upload({ userEmail }: UploadProps) {
       const url = getProfilePictureUrl(`${userEmail}`);
       if (url) {
         const uniqueUrl = `${url}?t=${new Date().getTime()}`; // Adiciona um timestamp para evitar cache
-        setProfilePictureUrl(uniqueUrl); // Atualiza a URL da imagem de perfil
+        
+        fetch(uniqueUrl).then((res) => {
+          if(res.status == 400) setProfilePictureUrl("https://cdn.icon-icons.com/icons2/1465/PNG/512/265womanrunning2_100534.png")
+          else setProfilePictureUrl(uniqueUrl); // Atualiza a URL da imagem de perfil
+        })
+        .catch((err) => {
+          console.log("error on fetch url",err)
+        })
       }
     };
 
@@ -97,16 +105,18 @@ export default function Upload({ userEmail }: UploadProps) {
       const uniqueUrl = `${urlData.publicUrl}?t=${new Date().getTime()}`;
       setProfilePictureUrl(uniqueUrl);
     } catch (err) {
-      console.log(err); // Atualiza o estado de erro
+  // Atualiza o estado de erro
       console.log(err);
     } finally {
       setLoading(false); // Finaliza o loading
     }
   };
+
   return (
    
       <div className={css.img}>
       {profilePictureUrl && (
+        
           <img
           className="img-responsive"
             src={profilePictureUrl}
@@ -115,15 +125,17 @@ export default function Upload({ userEmail }: UploadProps) {
           />
    
       )}
-      <Popup open={false}>
+      <Popup open={false} Component={FaCamera} ButtonTitle="Editar Foto Perfil" className="edit-profile-img">
+        <FlexDiv direction="column" gap="20px" margin="20px">
 
-       <input type="file" onChange={handleFileChange} />{" "}
-        {/* Campo para selecionar arquivo  precisa de ajuste css*/ }
-        <button onClick={handleUpload} disabled={loading}>
-          {loading ? "Enviando..." : "Enviar Imagem de Perfil"}
-        </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-        {/* Mensagem de erro */}
+          <input type="file" onChange={handleFileChange} />{" "}
+            {/* Campo para selecionar arquivo  precisa de ajuste css*/ }
+            <button onClick={handleUpload} disabled={loading}>
+              {loading ? "Enviando..." : "Enviar Imagem de Perfil"}
+            </button>
+            {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+            {/* Mensagem de erro */}
+        </FlexDiv>
       </Popup>
 
     </div>
