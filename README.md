@@ -19,7 +19,7 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 # 🗂️SPRINTS
 | Sprint  | Datas   | Sprint Backlog                                    |
 |:-------:| --------------------- |---------------------------------------------- |
-| 1  | :calendar: 02/09/2024 |  ➡️ [Ver](#) |
+| 1  | :calendar: 02/09/2024 |  ➡️ [Ver](https://github.com/Steel-Hard/VitalU/blob/main/docs/sprint1.md) |
 | 2   | :calendar: 23/09/2024 | ➡️  [Ver](#) |
 | 3 | :calendar: 14/10/2024 |  ➡️ [Ver](#) |
 
@@ -105,7 +105,6 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 | Product Owner     | Nícolas José   |          |
 | Dev     | Breno de Luca    |         |
 | Dev     | Claudio Perretti   |        |
-| Dev     |  Georgia Mantchev  |           |
 | Dev     |Luiz Felipe   |      |
 | Dev     | Vitor Francisco  |            |
 
