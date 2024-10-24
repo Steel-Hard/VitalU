@@ -20,9 +20,10 @@ export default function Perfil() {
     async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
         const res = await user.obterProdutosConsumidos(data)
         const tacos: [] = res.taco
-        tacos.forEach((taco: { nome_produto: string, data_consumo: string }) => {
+        tacos.forEach((taco: { nome_produto: string, data_consumo: string,quantidade_consumida:number}) => {
             const alimento: Alimento = new Alimento(taco.nome_produto)
-            const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(alimento, 1, new Date(taco.data_consumo))
+            //console.log(alimento)
+            const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(alimento,taco.quantidade_consumida , new Date(taco.data_consumo))
             usuarioDados.adicionarAlimentoConsumido(alimentoConsumido)
         })
         return usuarioDados
@@ -35,8 +36,8 @@ export default function Perfil() {
         usuarioDados.fromJson(res.dados)
         usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput)
         setUsuario(usuarioDados)
-        console.log(usuario.getEmail())
-        console.log(usuario.getAltura())
+        //console.log(usuario.getEmail())
+        //console.log(usuario.getAltura())
      
     }
 
@@ -52,7 +53,7 @@ export default function Perfil() {
        
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[dataInput])
 
     return (
         <>

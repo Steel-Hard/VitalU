@@ -42,6 +42,7 @@ export default new class User {
     async obterProdutosConsumidos(data: string) {
         try {
             const res = await userInteraction.get(`/user/obter/consumo/${data}`)
+        
             return res.data
         } catch (err) {
             console.log(err)

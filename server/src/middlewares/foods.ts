@@ -18,6 +18,7 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
     calcio,
     sodio,
   } = req.body;
+  
 
   // Verificar se todos os parâmetros obrigatórios estão presentes
   if (!nome || typeof nome !== 'string' || nome.length > 50) {
@@ -28,7 +29,7 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
     return res.status(400).json({ error: 'A descrição, se fornecida, deve ter no máximo 50 caracteres.' });
   }
 
-  if (typeof quantidade_por_porcao !== 'number' || quantidade_por_porcao < 0 || quantidade_por_porcao.toString().length > 8) {
+  if (!quantidade_por_porcao || quantidade_por_porcao < 0 || quantidade_por_porcao.toString().length > 8) {
     return res.status(400).json({ error: 'A quantidade por porção é obrigatória, deve ser um número não negativo e ter até 8 dígitos.' });
   }
 
@@ -44,8 +45,8 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
   ];
 
   for (const { field, name } of requiredFields) {
-    if (typeof field !== 'number' || field < 0 || field.toString().length > 8) {
-      return res.status(400).json({ error: `O campo ${name} é obrigatório, deve ser um número não negativo e ter até 8 dígitos.` });
+    if (field < 0 || field.toString().length > 8 || field.toString().includes(',') || field.toString().includes('-')) {
+      return res.status(400).json({ error: `O campo ${name} é obrigatório, deve ser um número não negativo, ter até 8 dígitos e não pode conter vírgulas.` });
     }
   }
 
@@ -68,7 +69,7 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
   ];
 
   for (const { field, name } of optionalFields) {
-    if (typeof field !== 'number' || field < 0 || field > 99999 || field.toString().includes(',')) {
+    if ( field < 0 || field > 99999 || field.toString().includes(',') || field.toString().includes('-')) {
       return res.status(400).json({ error: `O campo ${name} deve ser um número não negativo e não pode conter vírgulas.` });
     }
   }

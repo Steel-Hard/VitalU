@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserType from '../types/user';
+import { quickSort } from '../utils';
 
 dotenv.config();
 
@@ -146,9 +147,22 @@ class User {
         try{
             const taco = await pool.query(`SELECT * FROM  get_taco_consumo($1,$2)`,[id,data]);
             const prod = await pool.query(`SELECT * FROM get_prod_usr_consumo($1,$2)`,[id,data]);
-            return res.status(200).json({
+            /*console.log("inicial",{         
                 "taco":taco.rows,
-                "produto":prod.rows
+                "produto":prod.rows})
+
+            */
+            // Combinar os arrays
+            const combined = [...taco.rows, ...prod.rows];
+
+            // Ordenar os dados combinados
+            const sortedData = quickSort(combined);
+
+            //console.log("novo",sortedData);
+
+            return res.status(200).json({
+                "taco": sortedData
+           
             })
         }catch(err){
             console.log("Erro ao obter consumo: ",err);

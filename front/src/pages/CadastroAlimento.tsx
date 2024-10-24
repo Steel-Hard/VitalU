@@ -165,8 +165,8 @@ export function CadastroAlimento() {
         </FlexDiv>
 
         <FlexDiv direction="column" margin="15px">
-          <label>Gorduras totais</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
+          <label>Gorduras totais*</label>
+          <StlInput placeholder="*Campo Obrigatório*" height="50px" width="100%"
           onChange={(e) => dispatch({ type: 'seGdTt', payload: e.target.value })}
            maxLength={6}
           />
