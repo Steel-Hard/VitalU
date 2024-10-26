@@ -4,7 +4,7 @@ import css from "../styles/perfilPage.module.css"
 import config from "../assets/config.svg"
 import MesesDoAno from "../enum/MesesDoAno"
 import {dicas} from '../enum/dicas'
-import { LinhaSld,Tip,Upload} from "../components/index"
+import { BtnStl, LinhaSld,Tip,Upload} from "../components/index"
 import user from "../services/user"
 import { useEffect, useState } from "react"
 import converterData from "../utils/converterData"
@@ -78,11 +78,6 @@ export default function Perfil() {
                                 {!usuario.getNome() ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
                                 {!usuario.getEmail() ? <p></p> : <p>{usuario.getEmail()}</p>}
                             </div>
-                            <img
-                                src={config}
-                                className={css.configuracoes}
-                                onClick={() => window.location.href = "./perfil/config"}
-                            />
                         </div>
                     </div>
                     <hr />
@@ -113,6 +108,9 @@ export default function Perfil() {
                             <label>Objetivo:</label>
                             {!usuario.getObjetivoPeso() ? <p className={css.error}>Não registrado</p> : <p>{usuario.getObjetivoPeso()}</p>}
                         </div>
+                    </div>
+                    <div>
+                        <BtnStl onClick={() => window.location.href = "./perfil/config"}> Verifique seu imc </BtnStl>
                     </div>
                     <hr />
                     <div className={css.alimentos}>

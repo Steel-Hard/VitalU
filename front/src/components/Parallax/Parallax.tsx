@@ -15,7 +15,7 @@ const ParallaxComp = () => {
 
   return (
     <Container>
-      <motion.div style={{ scale, y, opacity, width: '100%',display: 'flex' ,alignItems: 'center', backgroundColor: 'white', justifyContent: 'center'}}>
+      <motion.div style={{ scale, y, opacity, width: '100vw',display: 'flex' ,alignItems: 'center', backgroundColor: 'white', justifyContent: 'center'}}>
         <Stlform>
           <Logo height='150px' width='150px'/>
           <h1 className='title'>Vital-U</h1>
