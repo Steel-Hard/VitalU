@@ -4,7 +4,6 @@ interface BtnProps{
   height?: string;
   width?: string;
   bgColor?: string;
- 
 }
 
 export const BtnStl = styled.button<BtnProps>`

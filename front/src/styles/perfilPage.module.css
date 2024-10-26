@@ -160,17 +160,17 @@
 
 .rodape {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     position: absolute;
     width: calc(100% - 100px);
     bottom: 50px;
 }
 
-.rodape .input {
+.titulo .input {
     display: flex;
 }
 
-.rodape .input>input{
+.titulo .input>input{
     padding: 0px 10px;
     border-radius: 5px;
     border: 2px solid #ddd;
@@ -250,7 +250,7 @@
 
     .informacoes {
         width: 100%;
-        height: calc(680px - 80px);
+        height: auto;
         width: calc(600px - 60px);
         padding: 40px 30px;
     }
@@ -265,9 +265,12 @@
 
     .rodape {
         display: flex;
-        justify-content: space-between;
-        position: absolute;
-        width: calc(100% - 60px);
+     
+        margin-top: 20px;
+        align-self: center;
+        justify-content: center;
+        position: static;
+        width: calc(100% - 100px);
         bottom: 50px;
     }
 }

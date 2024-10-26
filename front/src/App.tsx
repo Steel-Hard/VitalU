@@ -30,8 +30,10 @@ export default function App() {
         
         } />
         <Route path="/pesquisa" element={
-          
+          <GlobalProvider>
+
             <Pesquisa />
+          </GlobalProvider>
         }
         />
         <Route path="/cadastro/alimento" element={

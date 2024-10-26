@@ -118,9 +118,14 @@ export default function Perfil() {
                     <div className={css.alimentos}>
                         <div className={css.titulo}>
                             <h2>Alimentos</h2>
-                            <p>
-                                {dataInput.split("-")[2]} de {mesesDoAno[parseInt(dataInput.split("-")[1]) - 1]} de {dataInput.split("-")[0]}
-                            </p>
+                            <div className={css.input}>
+                                <input 
+                                    type="date" 
+                                    onChange={handleDataInput}
+                                    value={dataInput}
+                                    max={converterData(new Date())}
+                                />
+                            </div>
                         </div>
                         <div className={css.lista}>
                             {usuario.getAlimentosConsumidos().length === 0 ? <div className={css.listaVazia}>
@@ -147,16 +152,8 @@ export default function Perfil() {
                         </div>
                     </div>
                     <div className={css.rodape}>
-
-                        <div className={css.input}>
-                            <input 
-                                type="date" 
-                                onChange={handleDataInput}
-                                value={dataInput}
-                                max={converterData(new Date())}
-                            />
-                        </div>
-
+                        
+                            
                         <button onClick={
                             () => { window.location.href = "/pesquisa" }
                         }>ADICIONAR ALIMENTO</button>

@@ -50,7 +50,7 @@ export function FoodSearch() {
             </div>
           </Navegacao>
 
-          <StlCaixa direction="row" width="100%" radius="5px"  height="50px">
+          <StlCaixa direction="row" width="95%" radius="5px"  height="20px">
             <StlInput
               maxLength={50}
               value={query}
@@ -60,7 +60,7 @@ export function FoodSearch() {
               bcolor="transparent"
               width="auto"
               height="50px"
-              placeholder="Pesquisa Alimento"
+              placeholder="Pesquisa de alimentos"
             />
             <button style={{ background: 'transparent', border: 'none', flex: 1, height: '50px' }}
               onClick={() => {
