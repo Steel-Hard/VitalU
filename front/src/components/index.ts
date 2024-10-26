@@ -9,6 +9,7 @@ import {
   FlexDivWe,
   Container,
   StlformReverse,
+  Stlform
 } from "./FlexDiv/FlexDiv";
 import Campform from "./Campform/Campform";
 import UserConfig from "./UserConfig";
@@ -31,6 +32,7 @@ export {
   Popup,
   LinhaSld,
   ParallaxComp,
+  Stlform,
   StlInput,
   FlexDiv,
   FlexDivResp,

@@ -1,18 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   StlCaixa,
   BtnStl,
   HiddenButton,
   StlformReverse,
+  Stlform,
   FlexDiv,
   TitleFoods,
   FoodInfo
 } from "../index";
+import { BsFillInfoSquareFill } from "react-icons/bs";
+
 import styled from 'styled-components';
 import { alimentosProps, produtoProps } from "../../types";
-import { Stlform } from "../FlexDiv/FlexDiv";
+
 import user from "../../services/user";
+import { SearchCtx } from "../../context/searchContext";
 
 interface alimentosData {
   data: alimentosProps | produtoProps;
@@ -27,7 +31,7 @@ export default function FoodCard(props: alimentosData) {
   const [count, setCount] = useState(1);
   const [consu,setConsu] = useState("Consumir");
   const [isVisible, setVisible] = useState(false);
-
+  const buttonRef = useRef(null);
   const wordSet = () => {
     setConsu("Consumido...")
     setTimeout(() => setConsu("Consumir"),1000);
@@ -37,6 +41,25 @@ export default function FoodCard(props: alimentosData) {
   const toggleVisible = () => {
     setVisible(!isVisible);
   };
+  const {tipo,triger} = useContext(SearchCtx);
+  //PARA CONTROLAR O CLICK FORA DO BOTÃO
+  useEffect(() => {
+    setCount(1)
+    const pageClickEvent = (e) => {
+      if (buttonRef.current !== null && !buttonRef.current.contains(e.target)) {
+        setVisible(!isVisible); 
+      }
+    };
+    if (isVisible) {
+      window.addEventListener('click', pageClickEvent);
+    }
+    return () => {
+      window.removeEventListener('click', pageClickEvent);
+    }
+  }, [isVisible,tipo,triger]);
+
+
+
 
   // Verifica se o dado é do tipo alimento (com base em uma propriedade única)
   const isAlimento = (data: alimentosProps | produtoProps): data is alimentosProps => {
@@ -62,14 +85,14 @@ export default function FoodCard(props: alimentosData) {
           )}
         </FlexDiv>
 
-        <ButtonContainer>
-          <BtnStl onClick={toggleVisible}>
-            Informações
-          </BtnStl>
+        <ButtonContainer ref={buttonRef}>
+          <BtnStl onClick={toggleVisible} bgColor="transparent"  title="Exibir informações nutricionais">
+            <BsFillInfoSquareFill color="#ff5137"size={25} />
+         </BtnStl>
           <FoodInfo data={props.data} isVisible={isVisible}/>
         </ButtonContainer>
 
-        <Stlform>
+        <FlexDiv gap="20px" margin="10px" directionOn1100="row" >
           <HiddenButton
             bgColor="#FF3700"
             onClick={() => {
@@ -87,7 +110,7 @@ export default function FoodCard(props: alimentosData) {
           >
             +
           </BtnStl>
-        </Stlform>
+        </FlexDiv>
 
         <BtnStl onClick={() => {
           isAlimento(props.data)? user.adicionarTaco(props.data.id,props.data.pp_preparacao,count) : user.adicionarProduto(props.data.id,count);

@@ -9,6 +9,8 @@ interface FlexProps{
   direction?: string;
   bgColor?: string;
   gap?: string;
+  directionOn1100?: string;
+
 }
 
 
@@ -24,7 +26,7 @@ export const FlexDiv = styled.div<FlexProps>`
     gap: ${({gap}) => gap? gap : '0px'};
 
     @media (max-width: 1100px){
-      flex-direction: column;
+      flex-direction: ${({directionOn1100}) => directionOn1100 ? directionOn1100 : 'column'};
     }
 `
 
