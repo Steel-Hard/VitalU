@@ -9,7 +9,7 @@ interface BtnProps{
 export const BtnStl = styled.button<BtnProps>`
   background-color: ${({bgColor}) => bgColor? bgColor:'rgb(67, 170, 132)'};
   border: none;
-  box-shadow: 0 3px 2px #1a1616b5;
+  box-shadow: 0 2px 2px #1a1616b5;
   font-size: larger;
   font-weight: bold;
   color: white;

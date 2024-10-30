@@ -48,4 +48,8 @@ export default new class User {
             console.log(err)
         }
     }
+
+    async logout() {
+        
+    }
 }

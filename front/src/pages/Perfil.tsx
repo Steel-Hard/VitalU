@@ -1,29 +1,27 @@
 import Profile from "../class/Profile"
 
 import css from "../styles/perfilPage.module.css"
-import config from "../assets/config.svg"
-import MesesDoAno from "../enum/MesesDoAno"
-import {dicas} from '../enum/dicas'
-import { BtnStl, LinhaSld,Tip,Upload} from "../components/index"
+import { dicas } from '../enum/dicas'
+import { BtnStl, LinhaSld, Tip, Upload } from "../components/index"
 import user from "../services/user"
 import { useEffect, useState } from "react"
 import converterData from "../utils/converterData"
 import AlimentoDoDia from "../class/AlimentosDoDia"
 import Alimento from "../class/Alimento"
-
+import { CalculosMetabolicos } from "../class/calculosmet"
+import { calcularIdade } from "../utils/calcularDatas"
 
 export default function Perfil() {
-    const mesesDoAno = Object.values(MesesDoAno)
     const [usuario, setUsuario] = useState<Profile>(new Profile())
     const [dataInput, setDataInput] = useState<string>(converterData(new Date()))
+    const [exercicio, setExercicio] = useState<string>("Pouco ou nenhum exercício")
 
     async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
         const res = await user.obterProdutosConsumidos(data)
         const tacos: [] = res.taco
-        tacos.forEach((taco: { nome_produto: string, data_consumo: string,quantidade_consumida:number}) => {
+        tacos.forEach((taco: { nome_produto: string, data_consumo: string, quantidade_consumida: number }) => {
             const alimento: Alimento = new Alimento(taco.nome_produto)
-            //console.log(alimento)
-            const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(alimento,taco.quantidade_consumida , new Date(taco.data_consumo))
+            const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(alimento, taco.quantidade_consumida, new Date(taco.data_consumo))
             usuarioDados.adicionarAlimentoConsumido(alimentoConsumido)
         })
         return usuarioDados
@@ -31,48 +29,38 @@ export default function Perfil() {
 
     async function obterUsuario() {
         const res = await user.obterDados()
-    
         let usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
         usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput)
         setUsuario(usuarioDados)
-        //console.log(usuario.getEmail())
-        //console.log(usuario.getAltura())
-     
-    }
 
-  
+    }
 
     function handleDataInput(e: React.ChangeEvent<HTMLInputElement>) {
         setDataInput(e.target.value)
     }
 
+    function logout() {
+        localStorage.removeItem("token")
+        window.location.href = "/login"
+    }
+
     useEffect(() => {
         obterUsuario();
-        
-       
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[dataInput])
+    }, [dataInput])
 
     return (
         <>
-            <LinhaSld><Tip message={dicas.perfil}/></LinhaSld>
+            <LinhaSld><Tip message={dicas.perfil} /></LinhaSld>
             <div className={css.main}>
                 <div className={css.perfil}>
                     <div>
-                        
                         <div>
-
-
                             {usuario.getEmail() ? <div>
-                                
-                                <Upload userEmail={usuario.getEmail()?.replace(/\s+/g, '')}/>
-                            </div>:null }
+                                <Upload userEmail={usuario.getEmail()?.replace(/\s+/g, '')} />
+                            </div> : null}
                         </div>
-                            
-                        
-                        
+
                         <div className={css.identificacao}>
                             <div>
                                 {!usuario.getNome() ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
@@ -81,6 +69,9 @@ export default function Perfil() {
                         </div>
                     </div>
                     <hr />
+                    <div className={css.logout}>
+                        <button onClick={logout}>Sair</button>
+                    </div>
                 </div>
                 <div className={css.informacoes}>
                     <div className={css.info}>
@@ -102,7 +93,22 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>IMC:</label>
-                            <p>{usuario.calcularIMC()}</p>
+                            <p>{CalculosMetabolicos.imc(usuario.getAltura(), usuario.getPeso())}</p>
+                        </div>
+                        <div>
+                            <label>Calculo Basal:</label>
+                            <p>{CalculosMetabolicos.basal(usuario.getAltura(), usuario.getPeso(), calcularIdade(converterData(usuario.getDataNascimento())), usuario.getGenero(), exercicio)}</p>
+                            <div className={css.atividadeFisica}>
+                                <select onChange={
+                                    (e) => setExercicio(e.target.value)
+                                }>
+                                    <option value="Pouco ou nenhum exercício">Pouco ou nenhum exercício</option>
+                                    <option value="Exercício leve (1 A 3 dias por semana)">Exercício leve</option>
+                                    <option value="Exercício moderado (3 a 5 dias por semana)">Exercício moderado</option>
+                                    <option value="Exercício intenso (6 a 7 dias por semna)">Exercício intenso</option>
+                                    <option value="Exercício muito intenso ( 2 vezes por dia treinos pesados)">Exercício muito intenso</option>
+                                </select>
+                            </div>
                         </div>
                         <div>
                             <label>Objetivo:</label>
@@ -117,8 +123,8 @@ export default function Perfil() {
                         <div className={css.titulo}>
                             <h2>Alimentos</h2>
                             <div className={css.input}>
-                                <input 
-                                    type="date" 
+                                <input
+                                    type="date"
                                     onChange={handleDataInput}
                                     value={dataInput}
                                     max={converterData(new Date())}
@@ -150,8 +156,8 @@ export default function Perfil() {
                         </div>
                     </div>
                     <div className={css.rodape}>
-                        
-                            
+
+
                         <button onClick={
                             () => { window.location.href = "/pesquisa" }
                         }>ADICIONAR ALIMENTO</button>

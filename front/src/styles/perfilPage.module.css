@@ -41,8 +41,6 @@
     color: #2D865B;
 }
 
-
-
 .identificacao>div>p {
     font-family: var(--inter);
     margin: 0;
@@ -59,10 +57,29 @@
     border: 1px solid rgba(32, 32, 32, 0.2);
 }
 
+.logout {
+    display: flex;
+    justify-content: end;
+}
+
+.logout>button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: rgb(213, 41, 41);
+    font-weight: normal;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.logout>button:hover {
+    color: rgb(175, 26, 26);
+}
+
 .informacoes {
     background-color: #fff;
     border-radius: 10px;
-    min-height: calc(680px - 150px);
+    min-height: calc(720px - 150px);
     max-height: auto;
     width: calc(600px - 100px);
     padding: 50px;
@@ -92,6 +109,17 @@
     font-size: 18px;
 }
 
+.atividadeFisica {
+    margin-left: 10px;
+}
+
+.atividadeFisica select {
+    width: 200px;
+    padding: 0px 5px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
 .informacoes>hr {
     border: 1px solid #318E6C;
     margin-top: 30px;
@@ -99,10 +127,11 @@
     width: 100%;
 }
 
+
 .alimentos>.titulo {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .alimentos>.titulo>* {
@@ -138,7 +167,7 @@
     display: flex;
     justify-content: left;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
 }
 
 .alimento>p {
@@ -146,7 +175,7 @@
     margin-bottom: 10px;
     font-weight: normal;
     font-family: var(--inter);
-    font-size: 14px;
+    font-size: 15px;
     min-width: 40px;
 }
 
@@ -178,8 +207,9 @@
 
 .rodape>button {
     border: none;
-    border-radius: 10px;
+    border-radius: 2px;
     padding: 12px 24px;
+    box-shadow: 0 2px 2px #1a1616b5;
     font-size: 14px;
     color: white;
     background-color: #318E6C;
