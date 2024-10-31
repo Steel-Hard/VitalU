@@ -116,10 +116,10 @@ export function CadastroAlimento() {
           </FlexDiv>
           <FlexDiv>
 
-          <SelectInBox name="Unidade" onChange={(e) => dispatch({ type: 'set', payload: e.target.value })}>
+          <SelectInBox name="Unidade" onChange={(e) => dispatch({ type: 'setUnid', payload: e.target.value })}>
             <Option value="kg">Quilograma (kg)</Option>
-            <Option value="grama">Grama (g)</Option>
-            <Option value="litro">Litro (l)</Option>
+            <Option value="g">Grama (g)</Option>
+            <Option value="l">Litro (l)</Option>
             <Option value="ml">Milititro (ml)</Option>
           </SelectInBox>
           </FlexDiv>

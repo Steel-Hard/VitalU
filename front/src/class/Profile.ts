@@ -1,5 +1,6 @@
 import { CalculosMetabolicos } from "./calculosmet"
-import {Objetivos} from "../enum/Objetivos"
+import {Objetivos,FatorAtividade} from "../enum/Objetivos"
+
 import AlimentoDoDia from "./AlimentosDoDia"
 
 class Profile {
@@ -15,6 +16,7 @@ class Profile {
     private altura?: number | undefined
     private peso?: number | undefined
     private objetivoPeso?: Objetivos | undefined
+    private atividade?: FatorAtividade | undefined
 
     // Fazer esse constructor entrar com um dado do Backend
     constructor() {
@@ -42,6 +44,7 @@ class Profile {
             default:
                 this.objetivoPeso = undefined
         }
+        this.atividade = json.atividade
     }
 
     public calcularIMC = () => {
@@ -69,6 +72,7 @@ class Profile {
     public getAltura = (): number | undefined => this.altura
     public getPeso = (): number | undefined => this.peso
     public getObjetivoPeso = (): Objetivos | undefined => this.objetivoPeso
+    public getAtividade = (): FatorAtividade | undefined => this.atividade
 
     public setId = (id: number) => this.id = id
     public setNome = (nome: string) => this.nome = nome
@@ -79,6 +83,7 @@ class Profile {
     public setAltura = (altura: number) => this.altura = altura
     public setPeso = (peso: number) => this.peso = peso
     public setObjetivoPeso = (objetivoPeso: Objetivos) => this.objetivoPeso = objetivoPeso
+    public setAtividade = (atividade: FatorAtividade) => this.atividade = atividade
 }
 
 export default Profile

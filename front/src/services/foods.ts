@@ -5,6 +5,7 @@ class Foods{
     async pesquisar(query:string, fun:CallableFunction){
         userInteraction.post("/search/foods",{user_query:query})
         .then((res) => {
+            console.log(res.data)
             return fun(res.data);
         })
         .catch((err) => {

@@ -3,9 +3,9 @@ import { TimeStamp } from "../utils/obterTempo";
 
 export default new class User {
 
-    async inserirDados(altura: number, peso: number, genero: string, data_nasc: string, objetivos: string) {
+    async inserirDados(altura: number, peso: number, genero: string, data_nasc: string, objetivos: string,atividade:string) {
         console.log(data_nasc)
-        await userInteraction.post("/user/dados", { altura, peso, genero, objetivos, data_nasc })
+        await userInteraction.post("/user/dados", { altura, peso, genero, objetivos, data_nasc,atividade })
             .then((res) => {
                 console.log(res.data)
 

@@ -1,6 +1,7 @@
-import Profile from "../class/Profile"
+/* eslint-disable react-hooks/exhaustive-deps */
+import Profile from "../class/Profile";
 
-import css from "../styles/perfilPage.module.css"
+import css from "../styles/perfilPage.module.css";
 import { dicas } from '../enum/dicas'
 import { BtnStl, LinhaSld, Tip, Upload } from "../components/index"
 import user from "../services/user"
@@ -14,7 +15,7 @@ import { calcularIdade } from "../utils/calcularDatas"
 export default function Perfil() {
     const [usuario, setUsuario] = useState<Profile>(new Profile())
     const [dataInput, setDataInput] = useState<string>(converterData(new Date()))
-    const [exercicio, setExercicio] = useState<string>("Pouco ou nenhum exercício")
+   
 
     async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
         const res = await user.obterProdutosConsumidos(data)
@@ -66,12 +67,12 @@ export default function Perfil() {
                                 {!usuario.getNome() ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
                                 {!usuario.getEmail() ? <p></p> : <p>{usuario.getEmail()}</p>}
                             </div>
+                            <div className={css.logout}>
+                                <button onClick={logout}>Sair</button>
+                            </div>
                         </div>
                     </div>
                     <hr />
-                    <div className={css.logout}>
-                        <button onClick={logout}>Sair</button>
-                    </div>
                 </div>
                 <div className={css.informacoes}>
                     <div className={css.info}>
@@ -97,17 +98,10 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>Calculo Basal:</label>
-                            <p>{CalculosMetabolicos.basal(usuario.getAltura(), usuario.getPeso(), calcularIdade(converterData(usuario.getDataNascimento())), usuario.getGenero(), exercicio)}</p>
+                            <p>{CalculosMetabolicos.basal(usuario.getAltura(), usuario.getPeso(), calcularIdade(converterData(usuario.getDataNascimento())), usuario.getGenero(), usuario.getAtividade())}</p>
                             <div className={css.atividadeFisica}>
-                                <select onChange={
-                                    (e) => setExercicio(e.target.value)
-                                }>
-                                    <option value="Pouco ou nenhum exercício">Pouco ou nenhum exercício</option>
-                                    <option value="Exercício leve (1 A 3 dias por semana)">Exercício leve</option>
-                                    <option value="Exercício moderado (3 a 5 dias por semana)">Exercício moderado</option>
-                                    <option value="Exercício intenso (6 a 7 dias por semna)">Exercício intenso</option>
-                                    <option value="Exercício muito intenso ( 2 vezes por dia treinos pesados)">Exercício muito intenso</option>
-                                </select>
+                            {!usuario.getAtividade() ? <span className={css.error}>Sem registro de Atividade </span> : usuario.getAtividade()}
+                                
                             </div>
                         </div>
                         <div>

@@ -5,7 +5,8 @@ type UserType = {
     "dataNascimento": Date,
     "altura": number,
     "peso": number,
-    "objetivoPeso": string
+    "objetivoPeso": string,
+    "atividade": string
 }
 
 export default UserType;

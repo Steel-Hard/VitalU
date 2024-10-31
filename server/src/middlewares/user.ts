@@ -48,7 +48,7 @@ export default validateLogin;
 
 
 const validateDadosUser = (req: Request, res: Response, next: NextFunction) => {
-  const { altura, peso, genero, objetivos, data_nasc } = req.body;
+  const { altura, peso, genero, objetivos, data_nasc,atividade } = req.body;
 
 
   if (typeof altura !== 'number' || altura < 0) {
@@ -73,6 +73,9 @@ const validateDadosUser = (req: Request, res: Response, next: NextFunction) => {
     return res.status(400).json({ error: 'A data de nascimento deve estar no formato YYYY-MM-DD.' });
   }
 
+  if (atividade!==  'Pouco ou nenhum exercício' && atividade !== 'Exercício leve (1 A 3 dias por semana)' && atividade !== 'Exercício moderado (3 a 5 dias por semana)' && atividade !==  'Exercício intenso (6 a 7 dias por semna)' && atividade !== 'Exercício muito intenso ( 2 vezes por dia treinos pesados)') {
+    return res.status(400).json({ error: 'Atividade fisica não corresponde aos valores dispostos.' });
+  }
   
 
   // Se todas as validações passarem, chame o próximo middleware

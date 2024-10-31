@@ -27,7 +27,7 @@ export default function UserConfig() {
 
   const verificarCamposNulos = () => {
     const { peso, altura, idade, sexo, fator } = dadosUsuario;
-    return !(peso === 0 || altura === 0 || idade === "" || sexo === "" || fator === "");
+    return !(peso === 0 || altura === 0 || idade === "" || sexo === "" || fator === "" );
   };
 
   return (
@@ -99,7 +99,7 @@ export default function UserConfig() {
               }
 
               const { altura, peso, idade, sexo, fator,objetivo } = dadosUsuario;
-              user.inserirDados(altura,peso,sexo,idade,objetivo);
+              user.inserirDados(altura,peso,sexo,idade,objetivo,fator);
               const imc = CalculosMetabolicos.imc(altura, peso);
               const tmb = CalculosMetabolicos.basal(altura, peso, calcularIdade(idade), sexo, fator);
 

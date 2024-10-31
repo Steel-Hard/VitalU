@@ -32,14 +32,14 @@ export class CalculosMetabolicos {
         if (altura != undefined && peso != undefined && altura > 0 && peso > 0) {
             const alturacm = altura / 100; // Converte a altura de centímetros para metros
             const res = (peso / (alturacm * alturacm)).toFixed(2);
-            let nivel = this.nivelImc(parseInt(res))
+            const nivel = this.nivelImc(parseInt(res))
             return res + " " + nivel  // Arredonda o IMC para 2 casas decimais
         } else {
             return "";
         }
     }
 
-    static casoBasal(Fator: string) {
+    static casoBasal(Fator: string | undefined) {
         let res: number = 0;
         switch (Fator) {
             case FatorAtividade.sedentario:
@@ -66,7 +66,7 @@ export class CalculosMetabolicos {
         return res;
 
     }
-    static basal(altura: number | undefined, peso: number | undefined, idade: number | undefined, gen: string | undefined, Fator: string) {
+    static basal(altura: number | undefined, peso: number | undefined, idade: number | undefined, gen: string | undefined, Fator: string | undefined) {
         const fatorResp = this.casoBasal(Fator);
         if (altura != undefined && peso != undefined && idade != undefined && gen != undefined) {
             if (peso > 0 && altura > 0 && idade > 0) {
