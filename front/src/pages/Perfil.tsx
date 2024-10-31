@@ -30,6 +30,7 @@ export default function Perfil() {
 
     async function obterUsuario() {
         const res = await user.obterDados()
+        console.log(res)
         let usuarioDados = new Profile()
         usuarioDados.fromJson(res.dados)
         usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput)
@@ -94,15 +95,12 @@ export default function Perfil() {
                         </div>
                         <div>
                             <label>IMC:</label>
-                            <p>{CalculosMetabolicos.imc(usuario.getAltura(), usuario.getPeso())}</p>
+                            {!CalculosMetabolicos.imc(usuario.getAltura(), usuario.getPeso()) ? <p className={css.error}>Não registrado</p> : <p>{CalculosMetabolicos.imc(usuario.getAltura(), usuario.getPeso())}</p>}
                         </div>
                         <div>
                             <label>Calculo Basal:</label>
                             <p>{CalculosMetabolicos.basal(usuario.getAltura(), usuario.getPeso(), calcularIdade(converterData(usuario.getDataNascimento())), usuario.getGenero(), usuario.getAtividade())}</p>
-                            <div className={css.atividadeFisica}>
-                            {!usuario.getAtividade() ? <span className={css.error}>Sem registro de Atividade </span> : usuario.getAtividade()}
-                                
-                            </div>
+                            {!usuario.getAtividade() ? <p className={css.error}>Sem registro de Atividade</p> : <p className={css.detalhe}>{usuario.getAtividade()}</p>}
                         </div>
                         <div>
                             <label>Objetivo:</label>

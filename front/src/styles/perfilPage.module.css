@@ -109,15 +109,10 @@
     font-size: 18px;
 }
 
-.atividadeFisica {
-    margin-left: 10px;
-}
-
-.atividadeFisica select {
-    width: 200px;
-    padding: 0px 5px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
+.detalhe {
+    color: #858585;
+    font-size: 14px !important;
+    padding-left: 10px;
 }
 
 .informacoes>hr {
