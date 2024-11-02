@@ -77,8 +77,8 @@ a {
   color: rgb(67, 170, 132);
 }
 label {
-  font-size: larger;
+  font-size: large;
   font-weight: bolder;
-  text-align: center;
+  text-align: start;
   align-self: self-start;
 }

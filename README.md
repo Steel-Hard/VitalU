@@ -1,9 +1,5 @@
 # VitalU
 
-### Urgente Ler Arquivo Leia.txt
-ABP 2_semestre.
-
----
 
 <div align="middle">
   <img #logo src="https://github.com/Steel-Hard/Steel-Hard/blob/main/assets/vitalu-gitlogo.gif" align="middle">

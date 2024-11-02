@@ -27,7 +27,7 @@ import { Select, Option, SelectInBox } from "./Select";
 import Popup from  './PopUp/index'
 import Tip from './Tips/index'
 import Upload from './Upload/Upload';
-import GraficosCalorias from "./Graph/Graph";
+import Graph from "./Graph/Graph";
 export {
   Logo,
   Upload,
@@ -59,5 +59,6 @@ export {
   Navegacao,
   SelectInBox,
   Tip,
-  DescFoods, GraficosCalorias
+  DescFoods, 
+  Graph
 };
