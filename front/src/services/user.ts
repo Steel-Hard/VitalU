@@ -1,5 +1,6 @@
 import { userInteraction } from "./api";
 import { TimeStamp } from "../utils/obterTempo";
+import { data } from "@remix-run/router";
 
 export default new class User {
 
@@ -18,7 +19,7 @@ export default new class User {
     async obterDados() {
         try {
             const res = await userInteraction.get("/user/obter");
-
+            console.log(res.data)
             return res.data;
         } catch (err) {
             console.error('Erro ao buscar o usuário:', err);
@@ -42,7 +43,7 @@ export default new class User {
     async obterProdutosConsumidos(data: string) {
         try {
             const res = await userInteraction.get(`/user/obter/consumo/${data}`)
-        
+            console.log(res.data.taco)
             return res.data
         } catch (err) {
             console.log(err)

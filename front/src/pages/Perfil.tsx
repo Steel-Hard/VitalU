@@ -11,6 +11,7 @@ import AlimentoDoDia from "../class/AlimentosDoDia"
 import Alimento from "../class/Alimento"
 import { CalculosMetabolicos } from "../class/calculosmet"
 import { calcularIdade } from "../utils/calcularDatas"
+import { Link } from "../../node_modules/react-router-dom/dist/index";
 
 export default function Perfil() {
     const [usuario, setUsuario] = useState<Profile>(new Profile())
@@ -74,6 +75,7 @@ export default function Perfil() {
                         </div>
                     </div>
                     <hr />
+                    <Link to ="/Estatisticas">Resultado</Link>
                 </div>
                 <div className={css.informacoes}>
                     <div className={css.info}>

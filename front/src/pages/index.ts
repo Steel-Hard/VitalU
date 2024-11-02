@@ -5,6 +5,7 @@ import { PerfilConfig } from "./PerfilConfig";
 import { Cadastro } from "./Cadastro";
 import { Pesquisa } from "./Pesquisa";
 import Perfil from "./Perfil";
+import Estatisticas from "./Estatisticas";
 import { CadastroAlimento } from "./CadastroAlimento";
 //import  Calcimc  from "./calcimc/Calcimc";
 
@@ -16,4 +17,5 @@ export {
   Pesquisa,
   Perfil,
   CadastroAlimento,
+  Estatisticas
 };

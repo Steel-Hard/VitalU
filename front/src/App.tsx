@@ -6,6 +6,7 @@ import {
   Pesquisa,
   Perfil,
   CadastroAlimento,
+  Estatisticas
 } from "./pages/index";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -41,6 +42,13 @@ export default function App() {
             <CadastroAlimento />
           </GlobalProvider>}
           />
+          <Route path="/Estatisticas" element={
+            <GlobalProvider>
+
+            <Estatisticas/>
+          </GlobalProvider>
+        }
+        />
       </Routes>
     </BrowserRouter>
   );
