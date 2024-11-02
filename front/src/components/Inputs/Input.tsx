@@ -9,13 +9,13 @@ interface InputProps {
 }
 
 export const StlInput = styled.input<InputProps>`
-  flex:auto;
+  flex: auto;
   border: none;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  background-color: ${({ bcolor }) => bcolor ? bcolor : "#c9c9c9"};
+  background-color: ${({ bcolor }) => (bcolor ? bcolor : "#c9c9c9")};
   height: ${({ height }) => (height ? height : "auto")};
   width: ${({ width }) => (width ? width : "100%")};
   margin-right: ${({ marginR }) => (marginR ? marginR : "0")};

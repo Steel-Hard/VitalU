@@ -9,16 +9,15 @@ import {
   Navegacao,
   LinhaSld,
   Tip,
-  Message
+  Message,
 } from "../components/index";
 import { useLoadingButton } from "../hooks/useLoadingButton";
-import {dicas} from '../enum/dicas'
-import foods from '../services/foods'
+import { dicas } from "../enum/dicas";
+import foods from "../services/foods";
 import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useReducer, useState } from 'react';
+import { useReducer, useState } from "react";
 import { LoadingSpinner } from "../components/Loading/index";
-
 
 const states = {
   foodNome: "",
@@ -34,38 +33,38 @@ const states = {
   foodGdTr: 0,
   foodGdSt: 0,
   foodCalc: 0,
-  foodSodi: 0
-}
+  foodSodi: 0,
+};
 
 function reducer(state: typeof states, action: { type: string; payload: any }) {
   switch (action.type) {
-    case 'setNome':
+    case "setNome":
       return { ...state, foodNome: action.payload };
-    case 'setDesc':
+    case "setDesc":
       return { ...state, foodDesc: action.payload };
-    case 'setQunt':
-      return { ...state, foodQunt: action.payload }
-    case 'setUnid':
+    case "setQunt":
+      return { ...state, foodQunt: action.payload };
+    case "setUnid":
       return { ...state, foodUnid: action.payload };
-    case 'setKcal':
+    case "setKcal":
       return { ...state, foodKcal: action.payload };
-    case 'setCarb':
+    case "setCarb":
       return { ...state, foodCarb: action.payload };
-    case 'setProt':
+    case "setProt":
       return { ...state, foodProt: action.payload };
-    case 'setAcuc':
+    case "setAcuc":
       return { ...state, foodAcuc: action.payload };
-    case 'setFibr':
-        return { ...state, foodFibr: action.payload };
-    case 'setGdTt':
+    case "setFibr":
+      return { ...state, foodFibr: action.payload };
+    case "setGdTt":
       return { ...state, foodGdTt: action.payload };
-    case 'setGdTr':
+    case "setGdTr":
       return { ...state, foodGdTr: action.payload };
-    case 'setGdSt':
+    case "setGdSt":
       return { ...state, foodGdSt: action.payload };
-    case 'setCalc':
+    case "setCalc":
       return { ...state, foodCalc: action.payload };
-    case 'setSodi':
+    case "setSodi":
       return { ...state, foodSodi: action.payload };
     default:
       return state;
@@ -75,17 +74,18 @@ function reducer(state: typeof states, action: { type: string; payload: any }) {
 export function CadastroAlimento() {
   const [state, dispatch] = useReducer(reducer, states);
   const [mensagem, setMensagem] = useState("");
-  const {executeWithLoading,isLoading} = useLoadingButton()
+  const { executeWithLoading, isLoading } = useLoadingButton();
   return (
-
     <>
-      <LinhaSld><Tip message={dicas.cadastroAlimento}/></LinhaSld>
+      <LinhaSld>
+        <Tip message={dicas.cadastroAlimento} />
+      </LinhaSld>
       <Navegacao>
         <Link to="/pesquisa">
-          <IoMdReturnLeft size={70}/>
+          <IoMdReturnLeft size={70} />
         </Link>
       </Navegacao>
-      <StlCaixa width="50%" >
+      <StlCaixa width="50%">
         <FlexDiv direction="row" jContent="space-between" gap="20px">
           <FlexDiv align="baseline" direction="column">
             <label>Nome Alimento*</label>
@@ -93,16 +93,20 @@ export function CadastroAlimento() {
               placeholder="Nome do alimento*"
               maxLength={30}
               height="50px"
-              onChange={(e) => dispatch({ type: 'setNome', payload: e.target.value })}
+              onChange={(e) =>
+                dispatch({ type: "setNome", payload: e.target.value })
+              }
             />
           </FlexDiv>
-          <FlexDiv  align="baseline" direction="column">
+          <FlexDiv align="baseline" direction="column">
             <label>Descrição*</label>
             <StlInput
               maxLength={30}
               placeholder="Uma breve descrição*"
               height="50px"
-              onChange={(e) => dispatch({ type: 'setDesc', payload: e.target.value })}
+              onChange={(e) =>
+                dispatch({ type: "setDesc", payload: e.target.value })
+              }
             />
           </FlexDiv>
           <FlexDiv align="baseline" direction="column">
@@ -111,20 +115,26 @@ export function CadastroAlimento() {
               height="50px"
               placeholder="Insira a quantidade*"
               maxLength={10}
-              onChange={(e) => dispatch({ type: 'setQunt', payload: e.target.value })}
+              type="number"
+              onChange={(e) =>
+                dispatch({ type: "setQunt", payload: e.target.value })
+              }
             />
           </FlexDiv>
           <FlexDiv>
-
-          <SelectInBox name="Unidade" onChange={(e) => dispatch({ type: 'setUnid', payload: e.target.value })}>
-            <Option value="kg">Quilograma (kg)</Option>
-            <Option value="g">Grama (g)</Option>
-            <Option value="l">Litro (l)</Option>
-            <Option value="ml">Milititro (ml)</Option>
-          </SelectInBox>
+            <SelectInBox
+              name="Unidade"
+              onChange={(e) =>
+                dispatch({ type: "setUnid", payload: e.target.value })
+              }
+            >
+              <Option value="kg">Quilograma (kg)</Option>
+              <Option value="g">Grama (g)</Option>
+              <Option value="l">Litro (l)</Option>
+              <Option value="ml">Milititro (ml)</Option>
+            </SelectInBox>
           </FlexDiv>
         </FlexDiv>
-
       </StlCaixa>
       <StlCaixa direction="row" width="50%" jcont="center" smlDir="column">
         <FlexDiv direction="column" margin="15px" jContent="space-between">
@@ -133,7 +143,10 @@ export function CadastroAlimento() {
             placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
-            onChange={(e) => dispatch({ type: 'setKcal', payload: e.target.value })}
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setKcal", payload: e.target.value })
+            }
             maxLength={6}
           />
           <label>Carboidratos*</label>
@@ -141,7 +154,10 @@ export function CadastroAlimento() {
             placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
-            onChange={(e) => dispatch({ type: 'setCarb', payload: e.target.value })}
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setCarb", payload: e.target.value })
+            }
             maxLength={6}
           />
           <label>Proteínas*</label>
@@ -149,50 +165,96 @@ export function CadastroAlimento() {
             placeholder="*Campo Obrigatório*"
             height="50px"
             width="100%"
-            onChange={(e) => dispatch({ type: 'setProt', payload: e.target.value })}
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setProt", payload: e.target.value })
+            }
             maxLength={6}
           />
           <label>Açúcares</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'setAcuc', payload: e.target.value })}
-           maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setAcuc", payload: e.target.value })
+            }
+            maxLength={6}
           />
           <label>Fibras</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-            onChange={(e) => dispatch({ type: 'setFibr', payload: e.target.value })}
-           maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setFibr", payload: e.target.value })
+            }
+            maxLength={6}
           />
         </FlexDiv>
 
         <FlexDiv direction="column" margin="15px">
           <label>Gorduras totais*</label>
-          <StlInput placeholder="*Campo Obrigatório*" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'seGdTt', payload: e.target.value })}
-           maxLength={6}
+          <StlInput
+            placeholder="*Campo Obrigatório*"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "seGdTt", payload: e.target.value })
+            }
+            maxLength={6}
           />
           <label>Gorduras saturadas</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'setGdTr', payload: e.target.value })}
-          maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setGdTr", payload: e.target.value })
+            }
+            maxLength={6}
           />
           <label>Gorduras trans</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'setGdSt', payload: e.target.value })}
-          maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setGdSt", payload: e.target.value })
+            }
+            maxLength={6}
           />
           <label>Cálcio</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'setCalc', payload: e.target.value })}
-          maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setCalc", payload: e.target.value })
+            }
+            maxLength={6}
           />
           <label>Sódio</label>
-          <StlInput placeholder="Campo não obrigatorio" height="50px" width="100%"
-          onChange={(e) => dispatch({ type: 'setSodi', payload: e.target.value })}
-          maxLength={6}
+          <StlInput
+            placeholder="Campo não obrigatorio"
+            height="50px"
+            width="100%"
+            type="number"
+            onChange={(e) =>
+              dispatch({ type: "setSodi", payload: e.target.value })
+            }
+            maxLength={6}
           />
         </FlexDiv>
       </StlCaixa>
-      <BtnStl onClick={() => {
+      <BtnStl
+        onClick={() => {
           const {
             foodNome,
             foodDesc,
@@ -207,34 +269,40 @@ export function CadastroAlimento() {
             foodGdTr,
             foodGdSt,
             foodCalc,
-            foodSodi
+            foodSodi,
           } = state;
-          executeWithLoading(async () =>  foods.cadastrarProduto( foodNome,
-            foodDesc,
-            foodQunt,
-            foodUnid,
-            foodKcal,
-            foodCarb,
-            foodProt,
-            foodAcuc,
-            foodFibr,
-            foodGdTt,
-            foodGdTr,
-            foodGdSt,
-            foodCalc,
-            foodSodi,setMensagem) )
-        
-          
-        }}>{isLoading ? 
-          <FlexDiv >
-            <LoadingSpinner/> 
+          executeWithLoading(async () =>
+            foods.cadastrarProduto(
+              foodNome,
+              foodDesc,
+              foodQunt,
+              foodUnid,
+              foodKcal,
+              foodCarb,
+              foodProt,
+              foodAcuc,
+              foodFibr,
+              foodGdTt,
+              foodGdTr,
+              foodGdSt,
+              foodCalc,
+              foodSodi,
+              setMensagem
+            )
+          );
+        }}
+      >
+        {isLoading ? (
+          <FlexDiv>
+            <LoadingSpinner />
           </FlexDiv>
-          : "Registrar novo alimento"}
+        ) : (
+          "Registrar novo alimento"
+        )}
       </BtnStl>
       <Message visible={mensagem ? true : false} height="30px">
-          {mensagem}
-        </Message>
-      
+        {mensagem}
+      </Message>
     </>
   );
 }
