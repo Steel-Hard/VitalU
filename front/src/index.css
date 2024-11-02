@@ -42,12 +42,10 @@ body {
 }
 
 /* ESTILO IMAGEM PERFIL  */
-.edit-profile-img{
-  
+.edit-profile-img {
   position: relative;
   bottom: 80px;
   left: 250px;
-  
 }
 .img-responsive {
   background-color: #fff;
@@ -58,20 +56,18 @@ body {
   border: 1px solid rgba(32, 32, 32, 0.2);
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
   .img-responsive {
     width: 64px;
     height: 64px;
     border-radius: 100%;
     margin-bottom: 0px;
   }
-  .edit-profile-img{
+  .edit-profile-img {
     bottom: 20px;
     left: 40px;
-    
   }
 }
-
 
 .links {
   color: rgb(67, 170, 132);
@@ -81,9 +77,8 @@ a {
   color: rgb(67, 170, 132);
 }
 label {
-  font-family: "rubik";
-  font-size: small;
-  font-weight: normal;
-  text-align: start;
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
   align-self: self-start;
 }

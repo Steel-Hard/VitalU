@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TitleFoods = styled.h3`
+export const DescFoods = styled.p`
   flex-grow: 1;
   text-align: center;
   font-weight: bolder;
