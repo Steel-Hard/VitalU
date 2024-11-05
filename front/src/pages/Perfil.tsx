@@ -105,7 +105,7 @@ export default function Perfil() {
               )}
             </div>
             <div>
-              <label>Genêro:</label>
+              <label>Gênero:</label>
               {!usuario.getGenero() ? (
                 <p className={css.error}>Não registrado</p>
               ) : (
@@ -145,7 +145,7 @@ export default function Perfil() {
               )}
             </div>
             <div>
-              <label>Calculo Basal:</label>
+              <label>Cálculo Basal:</label>
               <p>
                 {CalculosMetabolicos.basal(
                   usuario.getAltura(),

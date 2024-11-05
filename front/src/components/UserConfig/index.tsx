@@ -69,13 +69,13 @@ export default function UserConfig() {
         </FlexDiv>
         <FlexDiv direction="row" align="baseline" gap="10px">
           <FlexDiv direction="column">
-            <label>Genero:</label>
+            <label>Gênero:</label>
             <GenderSelector
               setGen={(value) => atualizarDadosUsuario("sexo", value)}
             />
           </FlexDiv>
           <FlexDiv direction="column">
-            <label>Atividade física:</label>
+            <label>Atividade Física:</label>
             <Select
               value={dadosUsuario.fator}
               onChange={(e) => atualizarDadosUsuario("fator", e.target.value)}

@@ -69,6 +69,7 @@ export default function Campform(props: CampformProps) {
       <StlInput
         placeholder={props.placeholder}
         height="50px"
+        width="200px"
         type={getInputType()}
         onChange={handleChange}
         min={min}
