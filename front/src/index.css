@@ -80,6 +80,9 @@ body {
 a {
   color: rgb(67, 170, 132);
 }
+a:hover{
+  color: rgb(18, 60, 44);
+}
 label {
   font-size: large;
   font-weight: bolder;

@@ -1,7 +1,5 @@
 import { useEffect, useContext } from "react";
-import { FaCalendarAlt } from "react-icons/fa";
 import { IoSearchSharp,IoHome } from "react-icons/io5";
-import MesesDoAno from "../../enum/MesesDoAno";
 import {dicas} from '../../enum/dicas'
 import {
   LinhaSld,
@@ -23,9 +21,6 @@ import styled from "styled-components";
 
 export function FoodSearch() {
   const { triger, alimentos, setAlimento, setTriger, query, setQuery } = useContext(SearchCtx);
-  const mesesDoAno = Object.values(MesesDoAno)
-  const dataAtual = new Date();
-
   useEffect(() => {
     if (triger) {
       foods.pesquisar(query, setAlimento);
@@ -45,10 +40,6 @@ export function FoodSearch() {
     display:none;
     }
   `
-
-
-
-
   return (
     <>
       <LinhaSld><Tip message={dicas.pesquisa}/></LinhaSld>
@@ -58,14 +49,6 @@ export function FoodSearch() {
             <Link to="/perfil">
               <IoHome size={50}/>
             </Link>
-            <h3>
-              {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}    
-            </h3>
-            <div>
-              <FaCalendarAlt  size={45}/>
-            </div>
-          </Navegacao>
-
           <StlCaixa direction="row" width="95%" radius="5px"  height="20px">
             <StlInput
               maxLength={50}
@@ -89,6 +72,8 @@ export function FoodSearch() {
               <IoSearchSharp  size={30}/>      
             </button>
           </StlCaixa>
+          </Navegacao>
+
           <FlexDiv margin="20px" gap="20px">
             <FoodCategorias />
             <Link to="/cadastro/alimento">
