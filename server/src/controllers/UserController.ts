@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserType from '../types/user';
+import { quickSort } from '../utils';
 
 dotenv.config();
 
@@ -74,7 +75,7 @@ class User {
     }
     public async determinarPerfil(req: Request, res: Response): Promise<Response> {
         const {id} = res.locals;
-        const { altura, peso, genero, objetivos, data_nasc } = req.body;
+        const { altura, peso, genero, objetivos, data_nasc,atividade } = req.body;
        
         try {
             const verificar_dados = await pool.query(`
@@ -83,17 +84,17 @@ class User {
 
             if (verificar_dados.rows.length == 0) {
                 const insert = await pool.query(`
-                        INSERT INTO User_Dados VALUES ($1,$2,$3,$4,$5,$6)
-                    `, [id, altura, peso, genero, objetivos, data_nasc]);
+                        INSERT INTO User_Dados VALUES ($1,$2,$3,$4,$5,$6,$7)
+                    `, [id, altura, peso, genero, objetivos, data_nasc,atividade]);
                 return res.status(200).json({ message: "Dados Salvos Com Sucesso"})
             } else {
                 const update = await pool.query(`
-                    UPDATE User_Dados SET Altura = $1,Peso = $2,Genero= $3,Obj_Peso= $4, Data_Nasc = $5  WHERE User_Default_Id = $6
-                    `, [altura, peso, genero, objetivos,data_nasc, id])
+                    UPDATE User_Dados SET Altura = $1,Peso = $2,Genero= $3,Obj_Peso= $4, Data_Nasc = $5, Atv_Fisica = $6  WHERE User_Default_Id = $7
+                    `, [altura, peso, genero, objetivos,data_nasc,atividade, id])
                 return res.status(200).json({ message: "Dados Atualizados Com Sucesso"})
             }
         } catch (err) {
-            return res.status(401).json({ err: err })
+            return res.status(500).json({ err: err })
         }
     }
 
@@ -106,21 +107,21 @@ class User {
                 pool.query(`SELECT * FROM User_Dados WHERE User_Default_Id = $1`, [id])
             ]);
 
-            console.log(userDefaultResult.rows[0]);
-            console.log(userDadosResult.rows[0]);
+        
     
             if (userDefaultResult.rowCount === 0) {
                 return res.status(404).json({ error: "Usuário não encontrado" });
             }
     
             const { nome, email } = userDefaultResult.rows[0];
-            let genero, data_nasc, altura, peso, obj_peso
+            let genero, data_nasc, altura, peso, obj_peso, atv_fisica
             if (userDadosResult.rows[0] != undefined) {
                 if (userDadosResult.rows[0].genero != undefined) genero = userDadosResult.rows[0].genero
                 if (userDadosResult.rows[0].data_nasc != undefined) data_nasc = userDadosResult.rows[0].data_nasc
                 if (userDadosResult.rows[0].altura != undefined) altura = userDadosResult.rows[0].altura
                 if (userDadosResult.rows[0].peso != undefined) peso = userDadosResult.rows[0].peso
                 if (userDadosResult.rows[0].obj_peso != undefined) obj_peso = userDadosResult.rows[0].obj_peso
+                if (userDadosResult.rows[0].atv_fisica != undefined) atv_fisica = userDadosResult.rows[0].atv_fisica
             };
     
             const userDados: UserType = {
@@ -130,7 +131,9 @@ class User {
                 dataNascimento: data_nasc,
                 altura,
                 peso,
-                objetivoPeso: obj_peso
+                objetivoPeso: obj_peso,
+                atividade: atv_fisica
+                
             };
     
             return res.status(200).json({ dados: userDados });
@@ -140,21 +143,33 @@ class User {
             return res.status(500).json({ error: "Erro interno no servidor" });
         }
     }
-
-
-    public async add_Fav(req: Request, res: Response): Promise<Response> {
+    public async obterConsumo(req:Request,res:Response): Promise<Response>{
         const {id} = res.locals;
-        const { tipo_alimento, alimento_id } = req.body;
-        try {
-            // Tipo_Alimento_Domain AS TEXT CHECK (VALUE IN ('prodprep','Prod_Usr'));
-            const resp: any = await pool.query(
-                `INSERT INTO user_has_favoritos (user_default_id, tipo_alimento, alimento_id) VALUES ($1, $2, $3)`,
-                [id, tipo_alimento, alimento_id]
-            );
-            return res.send( "Favorito Salvo." );
-        } catch (err) {
-            console.log(err);
-            return res.status(500).json({ error: "Erro ao adicionar alimento." });
+        const {data} = req.params
+        //utiliza storage procedure
+        try{
+            const taco = await pool.query(`SELECT * FROM  get_taco_consumo($1,$2)`,[id,data]);
+            const prod = await pool.query(`SELECT * FROM get_prod_usr_consumo($1,$2)`,[id,data]);
+            /*console.log("inicial",{         
+                "taco":taco.rows,
+                "produto":prod.rows})
+
+            */
+            // Combinar os arrays
+            const combined = [...taco.rows, ...prod.rows];
+
+            // Ordenar os dados combinados
+            const sortedData = quickSort(combined);
+
+            //console.log("novo",sortedData);
+
+            return res.status(200).json({
+                "taco": sortedData
+           
+            })
+        }catch(err){
+            console.log("Erro ao obter consumo: ",err);
+            return res.status(500).json({error: "Erro interno no servidor"});
         }
     }
 

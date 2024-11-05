@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 // Estilos para o popup
@@ -7,6 +8,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -23,12 +25,9 @@ const PopupContainer = styled.div`
   width: 100%;
 `;
 
-const PopupMessage = styled.p`
-  margin-bottom: 20px;
-`;
 
 const CloseButton = styled.button`
-  background-color: #f44336;
+  background-color: #ff5137;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -36,24 +35,43 @@ const CloseButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #d32f2f;
+    background-color: #fc482c;
   }
 `;
 
-interface PopProps {
-  message: string;
-  onClose: () => void;
+
+interface LayoutProps {
+  children: React.ReactNode;
+  Component: React.ComponentType;
+  ButtonTitle: string;
+  className: string;
+
 }
 
-export default function Popup({message,onClose}:PopProps){
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function Popup({ children, Component,ButtonTitle, className}:LayoutProps){
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <Overlay>
+    <div className={className}>  
+      <button style={{borderColor: 'white'}} title={ButtonTitle} onClick={openPopup}><Component/></button>
+      {isOpen && <Overlay>
       <PopupContainer>
-        <PopupMessage>{message}</PopupMessage>
-        <CloseButton onClick={onClose}>Fechar</CloseButton>
+        
+        {children}
+        <CloseButton onClick={closePopup}>Fechar</CloseButton>
       </PopupContainer>
-    </Overlay>
+    </Overlay>}
+    </div>
   );
 };
 
-
+export default Popup;

@@ -29,8 +29,8 @@ export function SearchProvider({ children }: any) {
     produto: [],
   });
 
-  const [triger, setTriger] = useState(false);
   const [query, setQuery] = useState("");
+  const [triger, setTriger] = useState(false);
 
   return (
     <SearchCtx.Provider

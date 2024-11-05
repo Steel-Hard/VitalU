@@ -1,7 +1,6 @@
 import { useEffect, useContext } from "react";
-import { FaCalendarAlt } from "react-icons/fa";
 import { IoSearchSharp,IoHome } from "react-icons/io5";
-import MesesDoAno from "../../enum/MesesDoAno";
+import {dicas} from '../../enum/dicas'
 import {
   LinhaSld,
   StlInput,
@@ -11,15 +10,17 @@ import {
   FoodCategorias,
   Navegacao,
   BtnStl,
+  Tip
 } from "../index";
 import foods from "../../services/foods";
 import { SearchCtx } from "../../context/searchContext";
 import { Link } from "react-router-dom";
+import { FiInfo } from "react-icons/fi";
+import styled from "styled-components";
+
 
 export function FoodSearch() {
   const { triger, alimentos, setAlimento, setTriger, query, setQuery } = useContext(SearchCtx);
-  const dataAtual = new Date();
-
   useEffect(() => {
     if (triger) {
       foods.pesquisar(query, setAlimento);
@@ -28,33 +29,37 @@ export function FoodSearch() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triger]);
+  
 
+
+  const InfoIcon = styled(FiInfo)`
+    color: black;
+    cursor: pointer;
+    size: 16px;
+    @media(max-width:1100px){
+    display:none;
+    }
+  `
   return (
     <>
-      <LinhaSld />
+      <LinhaSld><Tip message={dicas.pesquisa}/></LinhaSld>
       <FlexDiv direction="column">
         <FlexDiv direction="column">
           <Navegacao>
             <Link to="/perfil">
               <IoHome size={50}/>
             </Link>
-            <h3>
-              {dataAtual.getDate()} de {MesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}    
-            </h3>
-            <div>
-              <FaCalendarAlt  size={45}/>
-            </div>
-          </Navegacao>
-
-          <StlCaixa direction="row" width="100%" radius="5px" jcont="space-between" height="50px">
-            <StlInput 
+          <StlCaixa direction="row" width="95%" radius="5px"  height="20px">
+            <StlInput
+              maxLength={50}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={e => {if(e.key == 'Enter') setTriger(true)}}
-              bcolor="#ffffff"
+              type="text"
+              bcolor="transparent"
               width="auto"
               height="50px"
-              placeholder="Pesquisa Alimento"
+              placeholder="Pesquisa de alimentos"
             />
             <button style={{ background: 'transparent', border: 'none', flex: 1, height: '50px' }}
               onClick={() => {
@@ -67,11 +72,14 @@ export function FoodSearch() {
               <IoSearchSharp  size={30}/>      
             </button>
           </StlCaixa>
+          </Navegacao>
+
           <FlexDiv margin="20px" gap="20px">
             <FoodCategorias />
             <Link to="/cadastro/alimento">
-              <BtnStl>Inserir Novo Alimento</BtnStl>
+              <BtnStl title="">Inserir Novo Alimento</BtnStl>
             </Link>
+              <InfoIcon title="Aqui você pode inserir seus próprios alimentos, caso não os encontre na nossa base de dados."></InfoIcon>
           </FlexDiv>
         </FlexDiv>
         

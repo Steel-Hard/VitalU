@@ -15,7 +15,7 @@ const ParallaxComp = () => {
 
   return (
     <Container>
-      <motion.div style={{ scale, y, opacity, width: '100%',display: 'flex' ,alignItems: 'center', backgroundColor: 'white', justifyContent: 'center'}}>
+      <motion.div style={{ scale, y, opacity, width: '100vw',display: 'flex' ,alignItems: 'center', backgroundColor: 'white', justifyContent: 'center'}}>
         <Stlform>
           <Logo height='150px' width='150px'/>
           <h1 className='title'>Vital-U</h1>
@@ -24,7 +24,7 @@ const ParallaxComp = () => {
       </motion.div>
 
       <motion.div style={{ scale, y, opacity, marginTop: '20px', fontSize: 40, textAlign: 'center' }}>
-        <p>A plataforma que te auxilia no controle calórico</p>
+        <p>A plataforma que te auxilia no controle calórico!</p>
       </motion.div>
 
       <img src='./foods.png'/>

@@ -1,135 +1,236 @@
-import Profile from "../class/Profile"
-import css from "../styles/perfilPage.module.css"
-import config from "../assets/config.svg"
-import MesesDoAno from "../enum/MesesDoAno"
-import { LinhaSld } from "../components/index"
+/* eslint-disable react-hooks/exhaustive-deps */
+import Profile from "../class/Profile";
+import { FiEdit } from 'react-icons/fi';
+import { RiBarChartLine } from 'react-icons/ri';
 
-import user from "../services/user"
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import css from "../styles/perfilPage.module.css";
+import { dicas } from "../enum/dicas";
+import { BtnStl, FlexDiv, LinhaSld, Tip, Upload } from "../components/index";
+import user from "../services/user";
+import { useEffect, useState } from "react";
+import converterData from "../utils/converterData";
+import AlimentoDoDia from "../class/AlimentosDoDia";
+import Alimento from "../class/Alimento";
+import { CalculosMetabolicos } from "../class/calculosmet";
+import { calcularIdade } from "../utils/calcularDatas";
 
 
 export default function Perfil() {
-    const mesesDoAno = Object.values(MesesDoAno)
-    const dataAtual = new Date()
-    const [usuario, setUsuario] = useState<Profile>(new Profile())
-    const [errorNome, setErrorNome] = useState<boolean>(false)
-    const [errorEmail, setErrorEmail] = useState<boolean>(false)
-    const [errorDataNascimento, setErrorDataNascimento] = useState<boolean>(false)
-    const [errorGenero, setErrorGenero] = useState<boolean>(false)
-    const [errorAltura, setErrorAltura] = useState<boolean>(false)
-    const [errorPeso, setErrorPeso] = useState<boolean>(false)
-    const [errorObjetivo, setErrorObjetivo] = useState<boolean>(false)
+  const [usuario, setUsuario] = useState<Profile>(new Profile());
+  const [dataInput, setDataInput] = useState<string>(converterData(new Date()));
 
-    async function obterUsuario() {
-        const res = await user.obterDados()
-        const usuarioDados = new Profile()
-        usuarioDados.fromJson(res.dados)
-    
-        setUsuario(usuarioDados)
-    }
+  async function obterProdutosConsumidos(usuarioDados: Profile, data: string) {
+    const res = await user.obterProdutosConsumidos(data);
+    const tacos: [] = res.taco;
+    tacos.forEach(
+      (taco: {
+        nome_produto: string;
+        data_consumo: string;
+        quantidade_consumida: number;
+      }) => {
+        const alimento: Alimento = new Alimento(taco.nome_produto);
+        const alimentoConsumido: AlimentoDoDia = new AlimentoDoDia(
+          alimento,
+          taco.quantidade_consumida,
+          new Date(taco.data_consumo)
+        );
+        usuarioDados.adicionarAlimentoConsumido(alimentoConsumido);
+      }
+    );
+    return usuarioDados;
+  }
 
-    function validarDados() {
-        if (usuario.getNome() === "") setErrorNome(true)
-        if (usuario.getEmail() === "") setErrorEmail(true)
-        if (usuario.getDataNascimento() === "") setErrorDataNascimento(true)
-        if (usuario.getGenero() === undefined) setErrorGenero(true)
-        if (usuario.getAltura() === undefined) setErrorAltura(true)
-        if (usuario.getPeso() === undefined) setErrorPeso(true)
-        if (usuario.getObjetivoPeso() === undefined) setErrorObjetivo(true)
-    }
+  async function obterUsuario() {
+    const res = await user.obterDados();
+    let usuarioDados = new Profile();
+    usuarioDados.fromJson(res.dados);
+    usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput);
+    setUsuario(usuarioDados);
+  }
 
-    useEffect(() => {
-        obterUsuario()
-    }, [])
+  function handleDataInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setDataInput(e.target.value);
+  }
 
-    return (
-        <>
-            <LinhaSld />
-            <div className={css.main}>
-                <div className={css.perfil}>
-                    <div>
-                        <div className={css.img}>
-                            <img src={usuario.getFoto()} alt="Foto de perfil" />
-                        </div>
-                        <div className={css.identificacao}>
-                            <div>
-                                {errorNome ? <strong>Nome não encontrado</strong> : <strong>{usuario.getNome()}</strong>}
-                                {errorEmail ? <p></p> : <p>{usuario.getEmail()}</p>}
-                            </div>
-                            <img
-                                src={config}
-                                className={css.configuracoes}
-                                onClick={() => window.location.href = "./perfil/config"}
-                            />
-                        </div>
-                    </div>
-                    <hr />
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
+
+  useEffect(() => {
+    obterUsuario();
+  }, [dataInput]);
+
+  return (
+    <>
+      <LinhaSld>
+        <Tip message={dicas.perfil} />
+      </LinhaSld>
+      <div className={css.main}>
+        <div className={css.perfil}>
+          <div>
+            <div>
+              {usuario.getEmail() ? (
+                <div>
+                  <Upload userEmail={usuario.getEmail()?.replace(/\s+/g, "")} />
                 </div>
-                <div className={css.informacoes}>
-                    <div className={css.info}>
-                        <div>
-                            <label>Data de Nascimento:</label>
-                            {errorDataNascimento ? <p className={css.error}>Não registrada</p> : <p>{usuario.getDataNascimento()}</p>}
-                        </div>
-                        <div>
-                            <label>Genêro:</label>
-                            {errorGenero ? <p className={css.error}>Não registrado</p> : <p>{usuario.getGenero()}</p>}
-                        </div>
-                        <div>
-                            <label>Altura:</label>
-                            {errorAltura ? <p className={css.error}>Não registrada</p> : <p>{usuario.getAltura()}</p>}
-                        </div>
-                        <div>
-                            <label>Peso:</label>
-                            {errorPeso ? <p className={css.error}>Não registrado</p> : <p>{usuario.getPeso()}</p>}
-                        </div>
-                        <div>
-                            <label>IMC:</label>
-                            <p>{usuario.calcularIMC()}</p>
-                        </div>
-                        <div>
-                            <label>Objetivo:</label>
-                            {errorObjetivo ? <p className={css.error}>Não registrado</p> : <p>{usuario.getObjetivoPeso()}</p>}
-                        </div>
-                    </div>
-                    <hr />
-                    <div className={css.alimentos}>
-                        <div className={css.titulo}>
-                            <h2>Alimentos</h2>
-                            <p>
-                                {dataAtual.getDate()} de {mesesDoAno[dataAtual.getMonth()]} de {dataAtual.getFullYear()}
-                            </p>
-                        </div>
-                        <div className={css.lista}>
-                            {usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
-                                return (
-                                    <div className={css.alimento} key={index}>
-                                        <p>
-                                            {
-                                                alimentoDoDia.getDataDeConsumo().getHours() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getHours() : alimentoDoDia.getDataDeConsumo().getHours()
-                                            }
-                                            :
-                                            {
-                                                alimentoDoDia.getDataDeConsumo().getMinutes() < 10 ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes() : alimentoDoDia.getDataDeConsumo().getMinutes()
-                                            }
-                                        </p>
-                                        <p>{alimentoDoDia.getQuantidade()}x</p>
-                                        <p>{alimentoDoDia.getAlimento().getNome()}</p>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div className={css.rodape}>
-                      
-                        <button onClick={() => {
-                            window.location.href = "/pesquisa"
-                        }}>ADICIONAR ALIMENTO</button>
-                        
-                    </div>
-                </div>
+              ) : null}
             </div>
-        </>
-    )
+
+            <div className={css.identificacao}>
+              <div>
+                {!usuario.getNome() ? (
+                  <strong>Nome não encontrado</strong>
+                ) : (
+                  <strong>{usuario.getNome()}</strong>
+                )}
+                {!usuario.getEmail() ? <p></p> : <p>{usuario.getEmail()}</p>}
+              </div>
+              <div className={css.logout}>
+                <button onClick={logout}>Sair</button>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+        <div className={css.informacoes}>
+          <div className={css.info}>
+            <div>
+              <label>Data de Nascimento:</label>
+              {!usuario.getDataNascimento() ? (
+                <p className={css.error}>Não registrada</p>
+              ) : (
+                <p>{usuario.getDataNascimento()}</p>
+              )}
+            </div>
+            <div>
+              <label>Genêro:</label>
+              {!usuario.getGenero() ? (
+                <p className={css.error}>Não registrado</p>
+              ) : (
+                <p>{usuario.getGenero()}</p>
+              )}
+            </div>
+            <div>
+              <label>Altura:</label>
+              {!usuario.getAltura() ? (
+                <p className={css.error}>Não registrada</p>
+              ) : (
+                <p>{usuario.getAltura()}</p>
+              )}
+            </div>
+            <div>
+              <label>Peso:</label>
+              {!usuario.getPeso() ? (
+                <p className={css.error}>Não registrado</p>
+              ) : (
+                <p>{usuario.getPeso()}</p>
+              )}
+            </div>
+            <div>
+              <label>IMC:</label>
+              {!CalculosMetabolicos.imc(
+                usuario.getAltura(),
+                usuario.getPeso()
+              ) ? (
+                <p className={css.error}>Não registrado</p>
+              ) : (
+                <p>
+                  {CalculosMetabolicos.imc(
+                    usuario.getAltura(),
+                    usuario.getPeso()
+                  )}
+                </p>
+              )}
+            </div>
+            <div>
+              <label>Calculo Basal:</label>
+              <p>
+                {CalculosMetabolicos.basal(
+                  usuario.getAltura(),
+                  usuario.getPeso(),
+                  calcularIdade(converterData(usuario.getDataNascimento())),
+                  usuario.getGenero(),
+                  usuario.getAtividade()
+                )}
+              </p>
+              {!usuario.getAtividade() ? (
+                <p className={css.error}>Sem registro de Atividade</p>
+              ) : (
+                <p className={css.detalhe}>{usuario.getAtividade()}</p>
+              )}
+            </div>
+            <div>
+              <label>Objetivo:</label>
+              {!usuario.getObjetivoPeso() ? (
+                <p className={css.error}>Não registrado</p>
+              ) : (
+                <p>{usuario.getObjetivoPeso()}</p>
+              )}
+            </div>
+          </div>
+          <FlexDiv gap="10px">
+            <BtnStl onClick={() => (window.location.href = "./perfil/config")}>
+              
+            <FiEdit />Editar Dados
+              
+            </BtnStl>
+            <BtnStl onClick={() => (window.location.href = "./Estatisticas")}>
+              
+            <RiBarChartLine />Ver Estatísticas
+              
+            </BtnStl>
+          </FlexDiv>
+          <hr />
+          <div className={css.alimentos}>
+            <div className={css.titulo}>
+              <h2>Alimentos</h2>
+              <div className={css.input}>
+                <input
+                  type="date"
+                  onChange={handleDataInput}
+                  value={dataInput}
+                  max={converterData(new Date())}
+                />
+              </div>
+            </div>
+            <div className={css.lista}>
+              {usuario.getAlimentosConsumidos().length === 0 ? (
+                <div className={css.listaVazia}>
+                  <p>Nenhum alimento consumido nessa data.</p>
+                </div>
+              ) : (
+                usuario.getAlimentosConsumidos().map((alimentoDoDia, index) => {
+                  return (
+                    <div className={css.alimento} key={index}>
+                      <p>
+                        {alimentoDoDia.getDataDeConsumo().getHours() < 10
+                          ? "0" + alimentoDoDia.getDataDeConsumo().getHours()
+                          : alimentoDoDia.getDataDeConsumo().getHours()}
+                        :
+                        {alimentoDoDia.getDataDeConsumo().getMinutes() < 10
+                          ? "0" + alimentoDoDia.getDataDeConsumo().getMinutes()
+                          : alimentoDoDia.getDataDeConsumo().getMinutes()}
+                      </p>
+                      <p>{alimentoDoDia.getQuantidade()}x</p>
+                      <p>{alimentoDoDia.getAlimento().getNome()}</p>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+          <div className={css.rodape}>
+            <button
+              onClick={() => {
+                window.location.href = "/pesquisa";
+              }}
+            >
+              ADICIONAR ALIMENTO
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
