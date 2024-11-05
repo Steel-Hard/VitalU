@@ -5,7 +5,7 @@ class Foods {
     async pesquisar(query: string, fun: CallableFunction) {
         userInteraction.post("/search/foods", { user_query: query })
             .then((res) => {
-                console.log(res.data)
+            
                 return fun(res.data);
             })
             .catch((err) => {
@@ -39,9 +39,10 @@ class Foods {
         calcio: number,
         sodio: number,
         fun1: CallableFunction) {
-        console.log(quant_por_porcao)
+        
         userInteraction.post("/foods/cadastro", { nome: nome, descricao: desc, quantidade_por_porcao: quant_por_porcao, unidade_quantidade_por_porcao: uni_quant_por_porcao, calorias: cal, proteina: proteina, carboidrato: carboidrato, acucares: acucares, fibras: fibras, gordura_total: gordura_total, gordura_saturada: gordura_saturada, gordura_trans: gordura_trans, calcio: calcio, sodio: sodio })
             .then((res) => {
+                
                 return fun1(res.data.message);
             })
             .catch((err) => {

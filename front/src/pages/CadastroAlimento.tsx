@@ -75,6 +75,31 @@ export function CadastroAlimento() {
   const [state, dispatch] = useReducer(reducer, states);
   const [mensagem, setMensagem] = useState("");
   const { executeWithLoading, isLoading } = useLoadingButton();
+
+  const verificarCamposNulos = () => {
+    const {
+      foodNome,
+      foodDesc,
+      foodQunt,
+      foodKcal,
+      foodProt,
+      foodCarb,
+      foodGdTt,
+    } = state;
+    //verificação
+    return !(
+      !foodQunt ||
+      !foodNome ||
+      !foodDesc ||
+      foodProt === ""||
+      foodCarb === ""||
+      foodGdTt === ""||
+      foodKcal === ""||
+      foodNome === "" ||
+      foodDesc === "" ||
+      foodKcal === 0
+    );
+  };
   return (
     <>
       <LinhaSld>
@@ -255,6 +280,11 @@ export function CadastroAlimento() {
       </StlCaixa>
       <BtnStl
         onClick={() => {
+          if (!verificarCamposNulos()) {
+            setMensagem("Existem campos obrigatórios vazios.");
+            return;
+          }
+
           const {
             foodNome,
             foodDesc,
@@ -300,7 +330,19 @@ export function CadastroAlimento() {
           "Registrar novo alimento"
         )}
       </BtnStl>
-      <Message visible={mensagem ? true : false} height="30px">
+      <Message
+        visible={mensagem ? true : false}
+        height="30px"
+        style={{
+          color: mensagem.includes("obrigatório")
+            ? "#f54242"
+            : mensagem.includes("negativo")
+            ? "#f54242"
+            : mensagem.includes("Erro")
+            ? "#f54242"
+            : "green",
+        }}
+      >
         {mensagem}
       </Message>
     </>

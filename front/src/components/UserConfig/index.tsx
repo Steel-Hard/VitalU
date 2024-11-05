@@ -37,11 +37,11 @@ export default function UserConfig() {
 
   const verificarCamposNulos = () => {
     const { peso, altura, idade, sexo, fator } = dadosUsuario;
-    console.log(typeof(peso))
+    
     return !(
       peso === 0 ||
-      peso === "" ||
-      altura === "" ||
+      !peso  ||
+      !altura  ||
       altura === 0 ||
       idade === "" ||
       sexo === "" ||
@@ -158,7 +158,12 @@ export default function UserConfig() {
           Salvar e Calcular
         </BtnStl>
       </FlexDiv>
-      <Message height="30px" direction="column" visible={true}>
+      <Message height="30px" direction="column" visible={true}
+        style={{
+          color: message.includes("vazios")
+            ? "#f54242"
+            : "green"
+        }}>
         {message ? message : null}
         {dadosUsuario.imc !== "" && (
           <div>

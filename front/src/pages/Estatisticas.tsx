@@ -48,7 +48,7 @@ export default function Estatisticas() {
   );
 
   const calcularCaloriasDiarias = async (produtos: any[]): Promise<number> => {
-    console.log(produtos, "recebido na func");
+
     let totalCalorias = 0;
 
     for (const produto of produtos) {
@@ -61,7 +61,7 @@ export default function Estatisticas() {
   useEffect(() => {
     calcularCaloriasDiarias(produtos).then((total) => {
       setCalorias(total);
-      console.log("Total de calorias:", total);
+     
     });
   }, [produtos]);
 
@@ -75,7 +75,7 @@ export default function Estatisticas() {
           <IoMdReturnLeft size={70} />
         </Link>
       </Navegacao>
-      <StlCaixa>
+      <StlCaixa width="80%">
 
      <div>
 

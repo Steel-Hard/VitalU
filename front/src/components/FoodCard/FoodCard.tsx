@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useContext, useEffect, useRef, useState } from "react";
 import {
   StlCaixa,
   BtnStl,
   HiddenButton,
   StlformReverse,
-  Stlform,
   FlexDiv,
   TitleFoods,
   FoodInfo,
@@ -24,44 +22,47 @@ interface alimentosData {
 }
 
 const ButtonContainer = styled.div`
-  position: relative; // permitir posicionamento absoluto do cartão
-  display: inline-block; // evitar que o cartão afete outros elementos
+  position: relative; 
+  display: inline-block;
 `;
 
 export default function FoodCard(props: alimentosData) {
   const [count, setCount] = useState(1);
   const [consu, setConsu] = useState("Consumir");
   const [isVisible, setVisible] = useState(false);
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null); // Tipando a ref corretamente
+
   const wordSet = () => {
     setConsu("Consumido...");
     setTimeout(() => setConsu("Consumir"), 1000);
   };
 
   const toggleVisible = () => {
-    setVisible(!isVisible);
+    setVisible((prevVisible) => !prevVisible); // Usando callback para garantir a consistência do estado
   };
+
   const { tipo, triger } = useContext(SearchCtx);
-  //PARA CONTROLAR O CLICK FORA DO BOTÃO
+
+  // Função para controlar o clique fora do botão
   useEffect(() => {
     setCount(1);
-    const pageClickEvent = (e) => {
-      if (buttonRef.current !== null && !buttonRef.current.contains(e.target)) {
-        setVisible(!isVisible);
+    const pageClickEvent = (e: MouseEvent) => {
+      if (buttonRef.current && !buttonRef.current.contains(e.target as Node)) {
+        setVisible(false); // Fechando o menu quando o clique for fora
       }
     };
+
     if (isVisible) {
       window.addEventListener("click", pageClickEvent);
     }
+
     return () => {
       window.removeEventListener("click", pageClickEvent);
     };
   }, [isVisible, tipo, triger]);
 
-  // Verifica se o dado é do tipo alimento (com base em uma propriedade única)
-  const isAlimento = (
-    data: alimentosProps | produtoProps
-  ): data is alimentosProps => {
+  // Verifica se o dado é do tipo alimentosProps
+  const isAlimento = (data: alimentosProps | produtoProps): data is alimentosProps => {
     return (data as alimentosProps).pro_descricao !== undefined;
   };
 
@@ -73,7 +74,8 @@ export default function FoodCard(props: alimentosData) {
           {isAlimento(props.data) ? (
             <>
               <TitleFoods>{props.data.pro_descricao}</TitleFoods>
-              <DescFoods>Preparação:</DescFoods> <p>{props.data.preparacao}</p>
+              <DescFoods>Preparação:</DescFoods>
+              <p>{props.data.preparacao}</p>
             </>
           ) : (
             <>
@@ -99,7 +101,7 @@ export default function FoodCard(props: alimentosData) {
           <HiddenButton
             bgColor="#FF3700"
             onClick={() => {
-              setCount((prev) => (prev -= 1));
+              setCount((prev) => (prev > 1 ? prev - 1 : prev)); 
             }}
             visible={count > 1}
           >
@@ -108,7 +110,7 @@ export default function FoodCard(props: alimentosData) {
           {count}
           <BtnStl
             onClick={() => {
-              setCount((prev) => (prev += 1));
+              setCount((prev) => prev + 1); 
             }}
           >
             +
@@ -117,14 +119,13 @@ export default function FoodCard(props: alimentosData) {
 
         <BtnStl
           onClick={() => {
-            isAlimento(props.data)
-              ? user.adicionarTaco(
-                  props.data.id,
-                  props.data.pp_preparacao,
-                  count
-                )
-              : user.adicionarProduto(props.data.id, count);
+            if (isAlimento(props.data)) {
+              user.adicionarTaco(props.data.id, props.data.pp_preparacao, count);
+            } else {
+              user.adicionarProduto(props.data.id, count);
+            }
             wordSet();
+            setCount(1)
           }}
         >
           {consu}

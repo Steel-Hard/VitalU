@@ -42,7 +42,6 @@ export default function Perfil() {
 
   async function obterUsuario() {
     const res = await user.obterDados();
-    console.log(res);
     let usuarioDados = new Profile();
     usuarioDados.fromJson(res.dados);
     usuarioDados = await obterProdutosConsumidos(usuarioDados, dataInput);

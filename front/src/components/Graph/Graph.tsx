@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import {FlexDiv} from '../index'
 
 interface GraphProps {
@@ -50,7 +50,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
             <h2>{goal}</h2>
             <FlexDiv >
                 <BarChart
-                    width={500}
+                    width={300}
                     height={300}
                     data={data}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}

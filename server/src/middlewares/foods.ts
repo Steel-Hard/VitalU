@@ -18,7 +18,6 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
     calcio,
     sodio,
   } = req.body;
-  
 
   // Verificar se todos os parâmetros obrigatórios estão presentes
   if (!nome || typeof nome !== 'string' || nome.length > 50) {
@@ -50,13 +49,13 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
     }
   }
 
-  // Definindo campos opcionais com valor padrão 0 se não estiverem presentes
-  req.body.acucares = (acucares !== undefined) ? acucares : 0;
-  req.body.fibras = (fibras !== undefined) ? fibras : 0;
-  req.body.gordura_saturada = (gordura_saturada !== undefined) ? gordura_saturada : 0;
-  req.body.gordura_trans = (gordura_trans !== undefined) ? gordura_trans : 0;
-  req.body.calcio = (calcio !== undefined) ? calcio : 0;
-  req.body.sodio = (sodio !== undefined) ? sodio : 0;
+  // Definindo campos opcionais com valor padrão 0 se não estiverem presentes ou se forem uma string vazia
+  req.body.acucares = (acucares === undefined || acucares === "") ? 0 : acucares;
+  req.body.fibras = (fibras === undefined || fibras === "") ? 0 : fibras;
+  req.body.gordura_saturada = (gordura_saturada === undefined || gordura_saturada === "") ? 0 : gordura_saturada;
+  req.body.gordura_trans = (gordura_trans === undefined || gordura_trans === "") ? 0 : gordura_trans;
+  req.body.calcio = (calcio === undefined || calcio === "") ? 0 : calcio;
+  req.body.sodio = (sodio === undefined || sodio === "") ? 0 : sodio;
 
   // Verificação para campos opcionais
   const optionalFields = [
@@ -69,7 +68,7 @@ const validateNutritionalData = (req: Request, res: Response, next: NextFunction
   ];
 
   for (const { field, name } of optionalFields) {
-    if ( field < 0 || field > 99999 || field.toString().includes(',') || field.toString().includes('-')) {
+    if (field < 0 || field > 99999 || field.toString().includes(',') || field.toString().includes('-')) {
       return res.status(400).json({ error: `O campo ${name} deve ser um número não negativo e não pode conter vírgulas.` });
     }
   }

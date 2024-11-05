@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const LinhaSld = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 20px;
     background-color: #39aa88;
     margin: 0;
