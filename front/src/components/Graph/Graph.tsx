@@ -50,7 +50,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
             <h2>{goal}</h2>
             <FlexDiv >
                 <BarChart
-                    width={300}
+                    width={500}
                     height={300}
                     data={data}
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
@@ -59,8 +59,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
-                    <Bar dataKey="value" fill={color} />
+                    <Bar dataKey="value" fill={color}  name="Consumo"/>
                 </BarChart>
             </FlexDiv>
             <p style={{ fontSize: '1.5em', margin: '20px 0' }}>
