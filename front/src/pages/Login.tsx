@@ -91,6 +91,8 @@ export function Login() {
               ? "#f54242"
               : mensagem.includes("Ops")
               ? "#f54242"
+              : mensagem.includes("inválidas")
+              ? "#f54242"
               : "green",
           }}
         >

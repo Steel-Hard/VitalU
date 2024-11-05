@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import user from "../../services/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import {
   Select,
   Option,
@@ -26,6 +27,7 @@ export default function UserConfig() {
     objetivo: "",
   });
 
+  const [message, setMessage] = useState("");
   const atualizarDadosUsuario = (campo: string, valor: any) => {
     setDadosUsuario((prevState) => ({
       ...prevState,
@@ -35,32 +37,47 @@ export default function UserConfig() {
 
   const verificarCamposNulos = () => {
     const { peso, altura, idade, sexo, fator } = dadosUsuario;
+    console.log(typeof(peso))
     return !(
       peso === 0 ||
+      peso === "" ||
+      altura === "" ||
       altura === 0 ||
       idade === "" ||
       sexo === "" ||
       fator === ""
     );
   };
+  useEffect(() => {
+    user.obterDados().then((res: any) => {
+      if (res.dados.peso != undefined) {
+        atualizarDadosUsuario("peso", parseFloat(res.dados.peso));
+        atualizarDadosUsuario("altura", parseInt(res.dados.altura));
+        atualizarDadosUsuario("idade", res.dados.dataNascimento.slice(0, 10));
+      }
+    });
+  }, []);
 
   return (
     <>
       <FlexDiv direction="column" gap="10px" margin="10px">
         <FlexDiv direction="row" align="baseline" gap="10px">
           <Campform
+            value={dadosUsuario.peso}
             label="Peso (kg)"
             placeholder="Digite Seu Peso"
             type="weight"
             funcState={(value: any) => atualizarDadosUsuario("peso", value)}
           />
           <Campform
+            value={dadosUsuario.altura}
             label="Altura (cm)"
             placeholder="Digite Sua Altura (cm)"
             type="height"
             funcState={(value: any) => atualizarDadosUsuario("altura", value)}
           />
           <Campform
+            value={dadosUsuario.idade}
             label="Data De Nascimento"
             type="date"
             placeholder="Digite Sua Data De Nascimento"
@@ -118,7 +135,7 @@ export default function UserConfig() {
           height="40px"
           onClick={() => {
             if (!verificarCamposNulos()) {
-              console.log("Existem campos obrigatórios vazios.");
+              setMessage("Existem campos obrigatórios vazios.");
               return;
             }
 
@@ -133,6 +150,7 @@ export default function UserConfig() {
               fator
             );
 
+            setMessage("");
             atualizarDadosUsuario("imc", imc);
             atualizarDadosUsuario("tmb", tmb);
           }}
@@ -141,6 +159,7 @@ export default function UserConfig() {
         </BtnStl>
       </FlexDiv>
       <Message height="30px" direction="column" visible={true}>
+        {message ? message : null}
         {dadosUsuario.imc !== "" && (
           <div>
             <strong>Resultado do IMC:</strong> {dadosUsuario.imc}

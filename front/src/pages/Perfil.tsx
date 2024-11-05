@@ -105,7 +105,7 @@ export default function Perfil() {
               )}
             </div>
             <div>
-              <label>Gênero:</label>
+              <label>Genêro:</label>
               {!usuario.getGenero() ? (
                 <p className={css.error}>Não registrado</p>
               ) : (
@@ -117,7 +117,7 @@ export default function Perfil() {
               {!usuario.getAltura() ? (
                 <p className={css.error}>Não registrada</p>
               ) : (
-                <p>{usuario.getAltura()} cm</p>
+                <p>{usuario.getAltura()}</p>
               )}
             </div>
             <div>
@@ -125,7 +125,7 @@ export default function Perfil() {
               {!usuario.getPeso() ? (
                 <p className={css.error}>Não registrado</p>
               ) : (
-                <p>{usuario.getPeso()} kg</p>
+                <p>{usuario.getPeso()}</p>
               )}
             </div>
             <div>
@@ -145,7 +145,7 @@ export default function Perfil() {
               )}
             </div>
             <div>
-              <label>Cálculo Basal:</label>
+              <label>Calculo Basal:</label>
               <p>
                 {CalculosMetabolicos.basal(
                   usuario.getAltura(),
