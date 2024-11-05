@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { dicas } from "../enum/dicas";
-import { Graph, LinhaSld, Navegacao, Tip,StlInput} from "../components/index";
+import { Graph, LinhaSld, Navegacao, Tip,StlInput, StlCaixa} from "../components/index";
 import user from "../services/user";
 import { calcularIdade } from "../utils/calcularDatas";
 import Profile from "../class/Profile";
@@ -75,6 +75,8 @@ export default function Estatisticas() {
           <IoMdReturnLeft size={70} />
         </Link>
       </Navegacao>
+      <StlCaixa>
+
      <div>
 
       <StlInput
@@ -96,6 +98,7 @@ export default function Estatisticas() {
           caloriesConsumed={calorias}
         />
       </div>
+      </StlCaixa>
     </>
   );
 }

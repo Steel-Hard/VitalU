@@ -41,7 +41,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
     }
 
     const data = [
-        { name: 'Calorias Consumidas', value: caloriesConsumed },
+        { name: 'Calorias Consumidas', value: caloriesConsumed.toFixed(2) },
         { name: 'Taxa Basal', value: basalRate },
     ];
 
@@ -64,7 +64,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
                 </BarChart>
             </FlexDiv>
             <p style={{ fontSize: '1.5em', margin: '20px 0' }}>
-                {caloriesConsumed} Calorias Consumidas
+                {caloriesConsumed.toFixed(2)} Calorias Consumidas
             </p>
             <p style={{ fontSize: '1.2em', color: '#555' }}>
                 Taxa Basal: {basalRate} Calorias
