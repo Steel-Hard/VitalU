@@ -69,6 +69,10 @@ body {
   }
 }
 
+.className{
+  margin: 15px;
+}
+
 .links {
   color: rgb(67, 170, 132);
   margin-left: 4px;

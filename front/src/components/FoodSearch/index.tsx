@@ -17,6 +17,9 @@ import {
 import foods from "../../services/foods";
 import { SearchCtx } from "../../context/searchContext";
 import { Link } from "react-router-dom";
+import { FiInfo } from "react-icons/fi";
+import styled from "styled-components";
+
 
 export function FoodSearch() {
   const { triger, alimentos, setAlimento, setTriger, query, setQuery } = useContext(SearchCtx);
@@ -32,6 +35,19 @@ export function FoodSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [triger]);
   
+
+
+  const InfoIcon = styled(FiInfo)`
+    color: black;
+    cursor: pointer;
+    size: 16px;
+    @media(max-width:1100px){
+    display:none;
+    }
+  `
+
+
+
 
   return (
     <>
@@ -76,8 +92,9 @@ export function FoodSearch() {
           <FlexDiv margin="20px" gap="20px">
             <FoodCategorias />
             <Link to="/cadastro/alimento">
-              <BtnStl>Inserir Novo Alimento</BtnStl>
+              <BtnStl title="">Inserir Novo Alimento</BtnStl>
             </Link>
+              <InfoIcon title="Aqui você pode inserir seus próprios alimentos, caso não os encontre na nossa base de dados."></InfoIcon>
           </FlexDiv>
         </FlexDiv>
         
