@@ -158,7 +158,7 @@ export default function UserConfig() {
           Salvar e Calcular
         </BtnStl>
       </FlexDiv>
-      <Message height="30px" direction="column" visible={true}
+      <Message height="30px" margin="30px" direction="column" visible={true}
         style={{
           color: message.includes("vazios")
             ? "#f54242"
