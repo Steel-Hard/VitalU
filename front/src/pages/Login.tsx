@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
 import {
   StlCaixa,
   BtnStl,
@@ -18,7 +19,20 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState("");
-  const { executeWithLoading, isLoading } = useLoadingButton();
+  const { loading, setLoading } = useLoadingButton();
+
+  const enviarDados = async () => {
+    setLoading(true); // Começa o carregamento
+
+    try {
+      await autenticar.login(email, senha, setMensagem);
+    } catch {
+      setMensagem("Erro ao tentar autenticar.");
+    } finally {
+      setLoading(false); // Finaliza o carregamento
+    }
+  };
+
   const validarDados = (email: string, senha: string) => {
     if (!email || !senha) {
       setMensagem("Ops, email e senha são obrigatórios.");
@@ -28,12 +42,8 @@ export function Login() {
       setMensagem("Erro. E-mail com até 250 caracteres deve conter @.");
     } else {
       setMensagem("Enviando dados...");
-      enviarDados();
+      enviarDados(); // Envia os dados
     }
-  };
-
-  const enviarDados = () => {
-    autenticar.login(email, senha, setMensagem);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -68,12 +78,12 @@ export function Login() {
 
         <BtnStl
           onClick={() => {
-            executeWithLoading(async () => validarDados(email, senha));
+            validarDados(email, senha);
           }}
           height="40px"
           width="80%"
         >
-          {isLoading ? (
+          {loading ? (
             <FlexDiv>
               <LoadingSpinner />
             </FlexDiv>
@@ -81,6 +91,7 @@ export function Login() {
             "Entrar"
           )}
         </BtnStl>
+
         <Message
           visible={mensagem ? true : false}
           height="30px"
@@ -98,10 +109,10 @@ export function Login() {
         >
           {mensagem}
         </Message>
+
         <FlexDivResp>
           Não Tem Conta?{" "}
           <Link className="links" to="/cadastro">
-            {" "}
             Cadastre-Se
           </Link>
         </FlexDivResp>
