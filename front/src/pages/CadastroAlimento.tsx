@@ -74,7 +74,7 @@ function reducer(state: typeof states, action: { type: string; payload: any }) {
 export function CadastroAlimento() {
   const [state, dispatch] = useReducer(reducer, states);
   const [mensagem, setMensagem] = useState("");
-  const { executeWithLoading, isLoading } = useLoadingButton();
+  const { setLoading, loading } = useLoadingButton();
 
   const verificarCamposNulos = () => {
     const {
@@ -100,6 +100,52 @@ export function CadastroAlimento() {
       foodKcal === 0
     );
   };
+
+  const enviarDados = async () => {
+    setLoading(true);
+    const {
+      foodNome,
+      foodDesc,
+      foodQunt,
+      foodUnid,
+      foodKcal,
+      foodCarb,
+      foodProt,
+      foodAcuc,
+      foodFibr,
+      foodGdTt,
+      foodGdTr,
+      foodGdSt,
+      foodCalc,
+      foodSodi,
+    } = state;
+    try{
+   
+        await foods.cadastrarProduto(
+          foodNome,
+          foodDesc,
+          foodQunt,
+          foodUnid,
+          foodKcal,
+          foodCarb,
+          foodProt,
+          foodAcuc,
+          foodFibr,
+          foodGdTt,
+          foodGdTr,
+          foodGdSt,
+          foodCalc,
+          foodSodi,
+          setMensagem
+        )
+      
+    }catch{
+      setMensagem("Erro ao cadastrar alimento")
+    }finally{
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <LinhaSld>
@@ -278,51 +324,19 @@ export function CadastroAlimento() {
           />
         </FlexDiv>
       </StlCaixa>
-      <BtnStl
+      <BtnStl height="60px"
+      width="200px"
         onClick={() => {
           if (!verificarCamposNulos()) {
             setMensagem("Existem campos obrigatórios vazios.");
             return;
           }
 
-          const {
-            foodNome,
-            foodDesc,
-            foodQunt,
-            foodUnid,
-            foodKcal,
-            foodCarb,
-            foodProt,
-            foodAcuc,
-            foodFibr,
-            foodGdTt,
-            foodGdTr,
-            foodGdSt,
-            foodCalc,
-            foodSodi,
-          } = state;
-          executeWithLoading(async () =>
-            foods.cadastrarProduto(
-              foodNome,
-              foodDesc,
-              foodQunt,
-              foodUnid,
-              foodKcal,
-              foodCarb,
-              foodProt,
-              foodAcuc,
-              foodFibr,
-              foodGdTt,
-              foodGdTr,
-              foodGdSt,
-              foodCalc,
-              foodSodi,
-              setMensagem
-            )
-          );
+          enviarDados();
+          
         }}
       >
-        {isLoading ? (
+        {loading ? (
           <FlexDiv>
             <LoadingSpinner />
           </FlexDiv>

@@ -125,7 +125,7 @@ export default function Upload({ userEmail }: UploadProps) {
           />
    
       )}
-      <Popup open={false} Component={FaCamera} ButtonTitle="Editar Foto Perfil" className="edit-profile-img">
+      <Popup  Component={FaCamera} ButtonTitle="Editar Foto Perfil" className="edit-profile-img">
         <FlexDiv direction="column" gap="20px" margin="20px">
 
           <input type="file" onChange={handleFileChange} />{" "}
