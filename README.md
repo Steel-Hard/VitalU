@@ -16,8 +16,8 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 | Sprint  | Datas   | Sprint Backlog                                    |
 |:-------:| --------------------- |---------------------------------------------- |
 | 1  | :calendar: 02/09/2024 |  ➡️ [Ver](https://github.com/Steel-Hard/VitalU/blob/main/docs/sprint1.md) |
-| 2   | :calendar: 23/09/2024 | ➡️  [Ver](#) |
-| 3 | :calendar: 14/10/2024 |  ➡️ [Ver](#) |
+| 2   | :calendar: 23/09/2024 | ➡️  [Ver](https://github.com/Steel-Hard/VitalU/blob/main/docs/sprint2.md) |
+| 3 | :calendar: 14/10/2024 |  ➡️ [Ver](https://github.com/Steel-Hard/VitalU/blob/main/docs/sprint3.md) |
 
 # 📰PRODUCT BACKLOG
 
@@ -63,14 +63,14 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 |Como um desenvolvedor | Quero que o sistema possa integrar com APIs externas para facilitar a consulta de dados nutricionais de alimentos. | Para melhorar a funcionalidade e a precisão das informações nutricionais.                            |
 
 # ❤️‍🔥BURNDOWN
-<img src= "https://github.com/Steel-Hard/VitalU/blob/b539149992bded736594d7201a17e920a53cb11f/docs/burndown.jpg" />
-
+<img src= "https://github.com/Steel-Hard/VitalU/blob/main/docs/burndown.jpg" />
+<img src= "https://github.com/Steel-Hard/VitalU/blob/main/docs/sprint2_burndown.jpeg" />
 
 
 # 🖼️ WIREFRAME
 
 <div align="middle">
-
+<img src="https://github.com/Steel-Hard/VitalU/blob/main/docs/wireframe.jpg" />
 </div>
 
 # 🔗 LINKS
@@ -85,7 +85,7 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 [Clique Aqui](#)
 
 ## 🏦 BD 
-[Clique Aqui](#)
+[Clique Aqui](https://github.com/Steel-Hard/VitalU/blob/main/docs/ERD.png)
 
 # 🧑‍💻 TOOLS
 
