@@ -22,7 +22,7 @@ class AlimentoDoDia {
     public setDataDeConsumo = (dataDeConsumo: Date) => {
         // Se a data estiver em UTC, ajusta para o horário de Brasília (UTC-3)
         const localDate = new Date(dataDeConsumo);
-        localDate.setHours(localDate.getHours() - 3);  // Subtrai 3 horas (UTC-3)
+        localDate.setHours(localDate.getHours()); 
         this.dataDeConsumo = localDate;
     }
 }
