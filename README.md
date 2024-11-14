@@ -82,17 +82,8 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 ## 🖌️ FIGMA
 [Clique Aqui](https://www.figma.com/design/0zdcRwlcWlTIJ311FKKpDa/Untitled?node-id=1-16&m=dev&t=P1S4mLtsn3krv4SI-1)
 
-## ❇️ CORES
-[Clique Aqui](#)
-
 ## 🏦 BD 
 [Clique Aqui](https://github.com/Steel-Hard/VitalU/blob/main/docs/ERD.png)
-
-# 🧑‍💻 TOOLS
-
-<div align="middle">
-
-</div>
 
 # 🖥️ EQUIPE
 
