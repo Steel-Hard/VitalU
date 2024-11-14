@@ -90,14 +90,9 @@ relatórios, garantindo segurança, disponibilidade e usabilidade do sistema.
 |CARGO | NOME| SOCIAL MEDIA |
 |------|-----|:--------------:|
 | Scrum Master     |  Claudio dos Santos   |   <a target="_blank" href="https://github.com/claudsaints"><img  src="https://skillicons.dev/icons?i=github"></a>    <a target="_blank" href="https://github.com/claudsaints"><img  src="https://skillicons.dev/icons?i=linkedin"></a>  |
-| Product Owner     | Nícolas José   |     <a target="_blank" href="https://github.com/Nickaqui"><img  src="https://skillicons.dev/icons?i=github"></a>   
- <a target="_blank" href="https://www.linkedin.com/in/nicolas-aquino-b8bbaa154"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
-| Dev     | Breno de Luca    |   <a target="_blank" href="https://github.com/brn-lc"><img  src="https://skillicons.dev/icons?i=github"></a>          
- <a target="_blank" href="https://br.linkedin.com/in/brenoluca"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
-| Dev     | Claudio Perretti   |      <a target="_blank" href="https://github.com/ClauPerretti"><img  src="https://skillicons.dev/icons?i=github"></a>      
- <a target="_blank" href="https://ww.linkedin.com/in/claudio-perretti-junior-3a290b310"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
-| Dev     |Luiz Felipe   |    <a target="_blank" href="https://github.com/felipe-sant"><img  src="https://skillicons.dev/icons?i=github"></a>         
- <a target="_blank" href="https://www.linkedin.com/in/lfelipesant/"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
-| Dev     | Vitor Francisco  |    <a target="_blank" href="https://github.com/frevisto"><img  src="https://skillicons.dev/icons?i=github"></a>              
- <a target="_blank" href="https://www.linkedin.com/in/vitor-francisco-ab6860235"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
+| Product Owner     | Nícolas José   |     <a target="_blank" href="https://github.com/Nickaqui"><img  src="https://skillicons.dev/icons?i=github"></a>   <a target="_blank" href="https://www.linkedin.com/in/nicolas-aquino-b8bbaa154"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
+| Dev     | Breno de Luca    |   <a target="_blank" href="https://github.com/brn-lc"><img  src="https://skillicons.dev/icons?i=github"></a>           <a target="_blank" href="https://br.linkedin.com/in/brenoluca"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
+| Dev     | Claudio Perretti   |      <a target="_blank" href="https://github.com/ClauPerretti"><img  src="https://skillicons.dev/icons?i=github"></a>      <a target="_blank" href="https://ww.linkedin.com/in/claudio-perretti-junior-3a290b310"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
+| Dev     |Luiz Felipe   |    <a target="_blank" href="https://github.com/felipe-sant"><img  src="https://skillicons.dev/icons?i=github"></a>         <a target="_blank" href="https://www.linkedin.com/in/lfelipesant/"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
+| Dev     | Vitor Francisco  |    <a target="_blank" href="https://github.com/frevisto"><img  src="https://skillicons.dev/icons?i=github"></a>   <a target="_blank" href="https://www.linkedin.com/in/vitor-francisco-ab6860235"><img  src="https://skillicons.dev/icons?i=linkedin"></a> |
 
