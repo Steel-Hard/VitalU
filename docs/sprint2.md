@@ -1,12 +1,12 @@
 | **BACKLOG**                                                 | **Poker Planning** |
 |-------------------------------------------------------------|--------------------|
-| Criar verificação de dados de cadastro e login              |                    |
-| Conectar o perfil e configuração com Backend                |                    |
-| Modificar o design deixando mais clean                     |                    |
-| Criar método para enviar dados de cadastro                  |                    |
-| Criar página para buscar alimentos                         |                    |
-| Criar página para cadastrar alimento                       |                    |
-| Criar Todos Controllers Necessários                         |                    |
+| Criar verificação de dados de cadastro e login              |          3          |
+| Conectar o perfil e configuração com Backend                |        5            |
+| Modificar o design deixando mais clean                     |       3             |
+| Criar método para enviar dados de cadastro                  |        5            |
+| Criar página para buscar alimentos                         |        8            |
+| Criar página para cadastrar alimento                       |            8        |
+| Criar Todos Controllers Necessários                         |          5          |
 
 ### **SPRINT REVIEW**
 
