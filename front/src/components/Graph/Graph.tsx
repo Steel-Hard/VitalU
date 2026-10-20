@@ -12,7 +12,9 @@ interface GraphProps {
 function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
   let message = '';
   let color = '#4CAF50'; // Default color for meeting goal
+
   const basalFix = Number((basalRate * 1.1).toFixed(2));
+
   // Lógica para determinar a mensagem e a cor
   if (goal === 'Ganhar Peso') {
     if (caloriesConsumed >= basalRate) {
@@ -58,7 +60,7 @@ function Graph({ caloriesConsumed, basalRate, goal }: GraphProps) {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis  domain={[0, basalFix]} /> 
+          <YAxis domain={[0, basalFix]} /> 
           <Tooltip />
 
           
