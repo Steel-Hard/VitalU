@@ -24,6 +24,8 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+
 @font-face {
   font-family: "michrome";
   src: url("./assets//fonts/mich.ttf");
@@ -39,6 +41,15 @@ body {
   font-size: 100px;
   font-family: "michrome";
   font-weight: bold;
+}
+
+.img_welcome{
+  width: auto;
+
+  @media (max-width: 500px ) {
+    width: 100%;
+    
+  }
 }
 
 /* ESTILO IMAGEM PERFIL  */

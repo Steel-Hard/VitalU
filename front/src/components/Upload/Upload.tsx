@@ -32,10 +32,11 @@ export default function Upload({ userEmail }: UploadProps) {
         const uniqueUrl = `${url}?t=${new Date().getTime()}`; // Adiciona um timestamp para evitar cache
         
         fetch(uniqueUrl).then((res) => {
-          if(res.status == 400) setProfilePictureUrl("https://cdn.icon-icons.com/icons2/1465/PNG/512/265womanrunning2_100534.png")
+          if(res.status == 400) setProfilePictureUrl('./profile.png')
           else setProfilePictureUrl(uniqueUrl); // Atualiza a URL da imagem de perfil
         })
         .catch((err) => {
+          setProfilePictureUrl('./profile.png');
           console.log("error on fetch url",err)
         })
       }

@@ -27,7 +27,7 @@ const ParallaxComp = () => {
         <p>A plataforma que te auxilia no controle calórico!</p>
       </motion.div>
 
-      <img src='./foods.png'/>
+      <img className='img_welcome' src='./foods.png'/>
 
       <motion.div style={{ scale: scale2, y, opacity: opacity2, textAlign: 'center' }}>
         <Stlform>

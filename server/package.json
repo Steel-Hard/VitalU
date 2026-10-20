@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "tsup src/index.ts --out-dir dist",
+    "build:prod": "tsup src/index.ts --format cjs,esm --minify --out-dir dist",
     "dev": "ts-node-dev ./src/index.ts",
+    "start": "ts-node ./src/index.ts",
     "criar": "ts-node ./src/bd/criar",
     "inserir": "ts-node ./src/bd/inserir"
   },
@@ -29,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsup": "^8.3.5",
     "typescript": "^5.5.4"
   }
 }

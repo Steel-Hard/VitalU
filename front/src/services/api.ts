@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios"
-const url = 'http://localhost:3030'
+const url = 'https://vitalu.onrender.com/'
 
 export const defaultInteraction: AxiosInstance = axios.create({
     baseURL: url,

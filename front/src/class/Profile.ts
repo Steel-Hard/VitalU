@@ -65,7 +65,11 @@ class Profile {
     public getEmail = (): string | undefined => this.email
     public getGenero = (): string | undefined => this.genero
     public getDataNascimento = (): string => {
-        if (this.dataNascimento) return this.dataNascimento.toLocaleDateString()
+        if (this.dataNascimento) {
+  const dataISO = this.dataNascimento.toISOString().split('T')[0]; // Obtém "YYYY-MM-DD"
+  const [ano, mes, dia] = dataISO.split('-'); // Divide em partes
+  return `${dia}/${mes}/${ano}`; // Formata para "DD/MM/YYYY"
+}
             return ""
     }
     public getAlimentosConsumidos = (): AlimentoDoDia[] => this.alimentosConsumidos
